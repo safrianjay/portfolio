@@ -20,7 +20,11 @@
       "Bash(sips -g pixelWidth -g pixelHeight erudifi_test.png)",
       "Bash(python3 standardize_logos.py)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(python3 fix_logos.py)"
+      "Bash(python3 fix_logos.py)",
+      "Bash(python3 fix_purwadhika.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(sips -g pixelWidth -g pixelHeight purwadhika_original.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight purwadhika_user.png)"
     ]
   }
 }
