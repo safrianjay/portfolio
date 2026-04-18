@@ -18,7 +18,9 @@
       "Bash(pip3 install *)",
       "Bash(sips -s format png erudifi.svg --out erudifi_test.png)",
       "Bash(sips -g pixelWidth -g pixelHeight erudifi_test.png)",
-      "Bash(python3 standardize_logos.py)"
+      "Bash(python3 standardize_logos.py)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 fix_logos.py)"
     ]
   }
 }
