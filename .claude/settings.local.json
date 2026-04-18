@@ -11,7 +11,14 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(gh repo *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/slumdogmacbookair/Desktop/Portfolio/tokopedia.jpg /Users/slumdogmacbookair/Desktop/Portfolio/bukalapak.png /Users/slumdogmacbookair/Desktop/Portfolio/mliki.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/slumdogmacbookair/Desktop/Portfolio/semaai.png /Users/slumdogmacbookair/Desktop/Portfolio/tictag.webp /Users/slumdogmacbookair/Desktop/Portfolio/erudifi.svg)",
+      "Bash(python3 -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(pip3 install *)",
+      "Bash(sips -s format png erudifi.svg --out erudifi_test.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight erudifi_test.png)",
+      "Bash(python3 standardize_logos.py)"
     ]
   }
 }
