@@ -292,16 +292,24 @@
 
         <section id="work" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-32">
             
-            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black">
-                <div class="flex justify-between items-start mb-auto">
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black relative overflow-hidden group">
+                <div class="relative z-10 flex justify-between items-start mb-auto">
                     <span class="px-4 py-1 border-2 border-brand-black rounded-full text-xs font-bold uppercase">Finance & Wealth Management</span>
                     <a href="#" class="w-10 h-10 rounded-full border-2 border-brand-black flex items-center justify-center hover:bg-brand-black hover:text-white transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
-                <div>
+                <div class="relative z-10">
                     <h3 class="text-3xl font-bold uppercase heading-brutal mb-4">Wealth Management<br>Dashboard</h3>
                     <p class="font-medium text-gray-600">Architected a scalable wealth management platform connecting B2B partners and streamlining financial tracking.</p>
+                </div>
+                <!-- Rising trend lines — finance/growth theme -->
+                <div class="absolute -bottom-2 right-0 opacity-[0.09] group-hover:opacity-[0.16] group-hover:scale-105 transition-all duration-500 pointer-events-none">
+                    <svg width="290" height="220" viewBox="0 0 290 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="0,210 55,162 95,182 148,115 192,82 240,45 290,12" stroke="#0a0a0a" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="0,220 55,190 95,206 148,150 192,120 240,88 290,58" stroke="#0a0a0a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="40,220 95,220 148,185 192,162 240,128 290,98" stroke="#0a0a0a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
 
@@ -328,16 +336,39 @@
                 </div>
             </div>
 
-            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black">
-                <div class="flex justify-between items-start mb-auto">
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black relative overflow-hidden group">
+                <div class="relative z-10 flex justify-between items-start mb-auto">
                     <span class="px-4 py-1 border-2 border-brand-black rounded-full text-xs font-bold uppercase">AI Infrastructure</span>
                     <a href="#" class="w-10 h-10 rounded-full border-2 border-brand-black flex items-center justify-center hover:bg-brand-black hover:text-white transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
-                <div>
+                <div class="relative z-10">
                     <h3 class="text-3xl font-bold uppercase heading-brutal mb-4">B2C Data<br>Annotation App</h3>
                     <p class="font-medium text-gray-600">Directed the end-to-end design of an intuitive interface for retail users to train and power underlying machine learning models.</p>
+                </div>
+                <!-- Annotation bounding boxes — AI data labeling theme -->
+                <div class="absolute -bottom-2 -right-2 opacity-[0.09] group-hover:opacity-[0.16] group-hover:scale-105 transition-all duration-500 pointer-events-none">
+                    <svg width="245" height="225" viewBox="0 0 245 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Large bounding box with dashed border + corner anchors -->
+                        <rect x="5" y="18" width="172" height="132" rx="5" stroke="#0a0a0a" stroke-width="9" fill="none" stroke-dasharray="11 7"/>
+                        <circle cx="5"   cy="18"  r="9" fill="#0a0a0a"/>
+                        <circle cx="177" cy="18"  r="9" fill="#0a0a0a"/>
+                        <circle cx="5"   cy="150" r="9" fill="#0a0a0a"/>
+                        <circle cx="177" cy="150" r="9" fill="#0a0a0a"/>
+                        <!-- Medium overlapping box -->
+                        <rect x="112" y="108" width="128" height="112" rx="5" stroke="#0a0a0a" stroke-width="7" fill="none" stroke-dasharray="8 5"/>
+                        <circle cx="112" cy="108" r="7" fill="#0a0a0a"/>
+                        <circle cx="240" cy="108" r="7" fill="#0a0a0a"/>
+                        <circle cx="112" cy="220" r="7" fill="#0a0a0a"/>
+                        <circle cx="240" cy="220" r="7" fill="#0a0a0a"/>
+                        <!-- Small inner box -->
+                        <rect x="48" y="58" width="84" height="68" rx="5" stroke="#0a0a0a" stroke-width="5" fill="none" stroke-dasharray="6 4"/>
+                        <circle cx="48"  cy="58"  r="5" fill="#0a0a0a"/>
+                        <circle cx="132" cy="58"  r="5" fill="#0a0a0a"/>
+                        <circle cx="48"  cy="126" r="5" fill="#0a0a0a"/>
+                        <circle cx="132" cy="126" r="5" fill="#0a0a0a"/>
+                    </svg>
                 </div>
             </div>
 
@@ -363,16 +394,29 @@
                 </div>
             </div>
 
-            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black">
-                <div class="flex justify-between items-start mb-auto">
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 flex flex-col h-[500px] border-2 border-brand-black relative overflow-hidden group">
+                <div class="relative z-10 flex justify-between items-start mb-auto">
                     <span class="px-4 py-1 border-2 border-brand-black rounded-full text-xs font-bold uppercase">Web3 & Blockchain</span>
                     <a href="#" class="w-10 h-10 rounded-full border-2 border-brand-black flex items-center justify-center hover:bg-brand-black hover:text-white transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
-                <div>
+                <div class="relative z-10">
                     <h3 class="text-3xl font-bold uppercase heading-brutal mb-4">On-Chain<br>Analytics Explorer</h3>
                     <p class="font-medium text-gray-600">Designed complex DeFi interactions and live on-chain data visualizations for retail crypto investors through progressive disclosure.</p>
+                </div>
+                <!-- Hexagonal cluster — blockchain/Web3 theme -->
+                <div class="absolute -bottom-4 -right-4 opacity-[0.09] group-hover:opacity-[0.16] group-hover:scale-105 transition-all duration-500 pointer-events-none">
+                    <svg width="270" height="248" viewBox="0 0 270 248" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Flat-top hexagons, largest top-right -->
+                        <polygon points="265,80 232,24 167,24 135,80 167,136 232,136" stroke="#0a0a0a" stroke-width="11" fill="none"/>
+                        <!-- Mid hex, overlapping lower-left -->
+                        <polygon points="185,153 160,110 110,110 85,153 110,196 160,196" stroke="#0a0a0a" stroke-width="8" fill="none"/>
+                        <!-- Small hex, bottom-left -->
+                        <polygon points="103,205 84,172 46,172 27,205 46,238 84,238" stroke="#0a0a0a" stroke-width="6" fill="none"/>
+                        <!-- Tiny accent hex, right side -->
+                        <polygon points="248,155 234,131 206,131 192,155 206,179 234,179" stroke="#0a0a0a" stroke-width="5" fill="none"/>
+                    </svg>
                 </div>
             </div>
 
