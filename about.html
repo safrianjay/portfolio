@@ -102,13 +102,20 @@
         }
         .mobile-bottom-nav {
             padding-bottom: env(safe-area-inset-bottom, 0);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                        opacity 0.25s ease;
+            /* Default = the "appearing" transition: spring overshoot then settle */
+            transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.35s ease-out,
+                        filter 0.4s ease-out;
         }
         .mobile-bottom-nav.is-hidden {
-            transform: translate(-50%, 150%);
+            transform: translate(-50%, 130%) scale(0.85);
             opacity: 0;
+            filter: blur(2px);
             pointer-events: none;
+            /* Override for the "hiding" direction: short, snappy ease-in */
+            transition: transform 0.22s cubic-bezier(0.55, 0, 0.85, 0.35),
+                        opacity 0.18s ease-in,
+                        filter 0.18s ease-in;
         }
 
         /* ── Scroll progress bar ── */
