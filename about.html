@@ -125,15 +125,15 @@
             will-change: transform;
         }
 
-        /* ── Page transition (quick fade — applied to children so the loader can stay solid) ── */
-        body.page-fx > *:not(.page-loader):not(.scroll-progress) {
+        /* ── Page transition (quick fade — applied to children so the loader / top nav can stay solid) ── */
+        body.page-fx > *:not(.page-loader):not(.scroll-progress):not(.page-persist) {
             opacity: 0;
             transition: opacity 0.22s ease-out;
         }
-        body.page-fx.is-loaded > *:not(.page-loader):not(.scroll-progress) {
+        body.page-fx.is-loaded > *:not(.page-loader):not(.scroll-progress):not(.page-persist) {
             opacity: 1;
         }
-        body.page-fx.is-leaving > *:not(.page-loader):not(.scroll-progress) {
+        body.page-fx.is-leaving > *:not(.page-loader):not(.scroll-progress):not(.page-persist) {
             opacity: 0;
             transition-duration: 0.12s;
             transition-timing-function: ease-in;
@@ -222,7 +222,7 @@
     </div>
 
     <!-- NAV -->
-    <div class="fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
+    <div class="page-persist fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
         <div class="flex items-center px-6 py-4 md:py-0 border-b-2 md:border-b-0 md:border-r-2 border-brand-black md:w-1/4 xl:w-1/5">
             <a href="index.html" class="font-bold text-xl tracking-tight flex items-center gap-2">
                 <svg class="w-5 h-5 text-brand-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z"/></svg>
