@@ -128,21 +128,21 @@
         /* ── Page transition (fade + lift) ── */
         body.page-fx {
             opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(6px);
+            transition: opacity 0.22s ease-out, transform 0.22s ease-out;
         }
         body.page-fx.is-loaded { opacity: 1; transform: none; }
-        body.page-fx.is-leaving { opacity: 0; transform: translateY(-10px); transition-duration: 0.3s; }
+        body.page-fx.is-leaving { opacity: 0; transform: translateY(-6px); transition-duration: 0.18s; }
 
         /* ── Scroll-synced section reveal ── */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translate3d(0, 22px, 0);
+            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
             will-change: opacity, transform;
         }
         .reveal.is-revealed { opacity: 1; transform: none; }
+        .reveal.is-instant { transition: none; opacity: 1; transform: none; }
 
         @media (prefers-reduced-motion: reduce) {
             body.page-fx,
@@ -720,7 +720,7 @@
                 e.preventDefault();
                 document.body.classList.add('is-leaving');
                 document.body.classList.remove('is-loaded');
-                setTimeout(() => { window.location.href = url.href; }, 320);
+                setTimeout(() => { window.location.href = url.href; }, 170);
             });
         })();
 
@@ -750,10 +750,17 @@
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
             if (!targets.length) return;
-            targets.forEach((el, i) => {
-                el.classList.add('reveal');
-                el.style.transitionDelay = Math.min(i * 60, 240) + 'ms';
+
+            const vh = window.innerHeight;
+            targets.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < vh - 80) {
+                    el.classList.add('reveal', 'is-instant');
+                } else {
+                    el.classList.add('reveal');
+                }
             });
+
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if (e.isIntersecting) {
@@ -761,8 +768,8 @@
                         io.unobserve(e.target);
                     }
                 });
-            }, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
-            targets.forEach(el => io.observe(el));
+            }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+            targets.forEach(el => { if (!el.classList.contains('is-instant')) io.observe(el); });
         })();
     </script>
 </body>
