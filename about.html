@@ -315,28 +315,66 @@
 
         <!-- ─── HERO ─── -->
         <section class="mb-20">
-            <div class="bg-brand-white rounded-[2rem] p-8 md:p-16 flex flex-col justify-between relative border-2 border-brand-black min-h-[50vh]">
-                <div>
-                    <div class="inline-flex items-center gap-2.5 border-2 border-brand-black rounded-full px-4 py-1.5 mb-6 shadow-[4px_4px_0px_0px_rgba(10,10,10,1)] animate-float-1">
-                        <div class="w-2 h-2 bg-brand-vibrant rounded-full animate-pulse flex-shrink-0"></div>
-                        <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-black">Senior Product Designer & Researcher</span>
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-10 lg:gap-16 items-center relative border-2 border-brand-black overflow-hidden">
+
+                <!-- ── Left: text ── -->
+                <div class="flex-1 flex flex-col justify-between min-h-full">
+                    <div>
+                        <div class="inline-flex items-center gap-2.5 border-2 border-brand-black rounded-full px-4 py-1.5 mb-6 shadow-[4px_4px_0px_0px_rgba(10,10,10,1)] animate-float-1">
+                            <div class="w-2 h-2 bg-brand-vibrant rounded-full animate-pulse flex-shrink-0"></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-black">Senior Product Designer & Researcher</span>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase heading-brutal text-brand-black mb-6">
+                            Safrian<br>Jayadi.
+                        </h1>
+                        <p class="text-base md:text-lg font-medium text-gray-700 leading-relaxed max-w-2xl">
+                            A product designer with <strong class="text-brand-black">7+ years</strong> of experience building products from 0 to 1 and scaling them from 1 to 100. I bridge research, strategy, and design to ship things that actually work — across AI, Web3, Fintech, E-Commerce, and beyond.
+                        </p>
                     </div>
-                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase heading-brutal text-brand-black mb-6">
-                        Safrian<br>Jayadi.
-                    </h1>
-                    <p class="text-base md:text-lg font-medium text-gray-700 leading-relaxed max-w-2xl">
-                        A product designer with <strong class="text-brand-black">7+ years</strong> of experience building products from 0 to 1 and scaling them from 1 to 100. I bridge research, strategy, and design to ship things that actually work — across AI, Web3, Fintech, E-Commerce, and beyond.
-                    </p>
+                    <div class="mt-10 flex flex-wrap gap-3">
+                        <button onclick="openTalkModal()" class="bg-brand-black text-brand-white px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-brand-vibrant transition-colors">
+                            Get in touch
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </button>
+                        <a href="index.html#work" class="border-2 border-brand-black text-brand-black px-6 py-3 rounded-full text-sm font-bold hover:bg-brand-black hover:text-white transition-all">
+                            View My Work
+                        </a>
+                    </div>
                 </div>
-                <div class="mt-10 flex flex-wrap gap-3">
-                    <a href="mailto:safrianjayadi@gmail.com" class="bg-brand-black text-brand-white px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-brand-vibrant transition-colors">
-                        Get in touch
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                    <a href="index.html#work" class="border-2 border-brand-black text-brand-black px-6 py-3 rounded-full text-sm font-bold hover:bg-brand-black hover:text-white transition-all">
-                        View My Work
-                    </a>
+
+                <!-- ── Right: photo ── -->
+                <div class="relative flex-shrink-0 w-full lg:w-[280px] xl:w-[320px] self-stretch flex items-end">
+
+                    <!-- Decorative light-blue block offset behind the frame -->
+                    <div class="absolute bottom-2 right-2 w-full h-[92%] rounded-[2rem] bg-brand-lightBlue border-2 border-brand-black -z-0"></div>
+
+                    <!-- Photo frame -->
+                    <div class="relative w-full overflow-hidden rounded-[2rem] border-2 border-brand-black z-10 shadow-[6px_6px_0px_0px_rgba(8,71,247,1)]">
+                        <img src="Foto%20(1).png"
+                             alt="Safrian Jayadi — Senior Product Designer"
+                             class="w-full block object-cover object-top"
+                             style="aspect-ratio: 3/4; filter: contrast(1.04) brightness(0.97) saturate(0.92);">
+
+                        <!-- Blue gradient vignette at base — grounds the figure -->
+                        <div class="absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none"
+                             style="background: linear-gradient(to top, rgba(8,71,247,0.28) 0%, transparent 100%);"></div>
+
+                        <!-- Grain overlay (SVG turbulence) -->
+                        <div class="absolute inset-0 pointer-events-none opacity-[0.035]"
+                             style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22/></svg>');
+                                  background-size: 200px 200px;"></div>
+
+                        <!-- Brutalist floating name badge -->
+                        <div class="absolute bottom-4 left-4 right-4 bg-brand-black/85 backdrop-blur-sm rounded-xl px-4 py-2.5 flex items-center gap-2.5">
+                            <div class="w-2 h-2 bg-brand-vibrant rounded-full animate-pulse flex-shrink-0"></div>
+                            <div>
+                                <p class="text-white text-[10px] font-black uppercase tracking-widest leading-none">Safrian Jayadi</p>
+                                <p class="text-gray-400 text-[9px] font-medium mt-0.5 leading-none">Product Designer · Global Co. Exp.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
