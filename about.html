@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safrian | About Me</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            white: '#ffffff',
+                            blue: '#4A88FF',
+                            vibrant: '#0847f7',
+                            lightBlue: '#C9DDFF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0a0a0a; color: #0a0a0a; }
+
+        .ethereal-bg {
+            background: linear-gradient(135deg, #f0f5ff 0%, #a6c4ff 50%, #4A88FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ethereal-bg::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+            opacity: 0.5;
+            filter: blur(40px);
+            animation: drift 15s infinite alternate ease-in-out;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        .heading-brutal { letter-spacing: -0.02em; line-height: 1.05; }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+            50% { transform: translate(-20px, 20px) rotate(5deg); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(12deg); }
+            50% { transform: translate(25px, -15px) scale(1.05) rotate(0deg); }
+        }
+        .animate-float-1 { animation: float-1 8s ease-in-out infinite; }
+        .animate-float-2 { animation: float-2 12s ease-in-out infinite; }
+
+        .timeline-card { border-left: 4px solid #0847f7; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- NAV -->
+    <div class="fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
+        <div class="flex items-center px-6 py-4 md:py-0 border-b-2 md:border-b-0 md:border-r-2 border-brand-black md:w-1/4 xl:w-1/5">
+            <a href="index.html" class="font-bold text-xl tracking-tight flex items-center gap-2">
+                <svg class="w-5 h-5 text-brand-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z"/></svg>
+                safrian
+            </a>
+        </div>
+        <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
+            <a href="index.html#work" class="hover:text-brand-vibrant transition-colors">Work</a>
+            <a href="index.html#expertise" class="hover:text-brand-vibrant transition-colors">Expertise</a>
+            <a href="index.html#process" class="hover:text-brand-vibrant transition-colors">Process</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-3 px-6 border-l-2 border-brand-black">
+            <a href="about.html" class="border-2 border-brand-vibrant text-brand-vibrant bg-transparent px-5 py-1.5 rounded-full text-sm font-bold hover:bg-brand-vibrant hover:text-white transition-all">
+                About Me
+            </a>
+            <a href="index.html#contact" class="bg-brand-black text-brand-white px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-gray-800 transition-colors">
+                Let's Talk
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+        </div>
+    </div>
+
+    <main class="pt-24 md:pt-32 px-4 md:px-8 pb-12 max-w-[100rem] mx-auto">
+
+        <!-- ─── HERO ─── -->
+        <section class="mb-20">
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-16 flex flex-col justify-between relative border-2 border-brand-black min-h-[50vh]">
+                <div>
+                    <div class="inline-flex items-center gap-2.5 border-2 border-brand-black rounded-full px-4 py-1.5 mb-6 shadow-[4px_4px_0px_0px_rgba(10,10,10,1)] animate-float-1">
+                        <div class="w-2 h-2 bg-brand-vibrant rounded-full animate-pulse flex-shrink-0"></div>
+                        <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-black">Senior Product Designer & Researcher</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold uppercase heading-brutal text-brand-black mb-6">
+                        Safrian<br>Jayadi.
+                    </h1>
+                    <p class="text-base md:text-lg font-medium text-gray-700 leading-relaxed max-w-2xl">
+                        A product designer with <strong class="text-brand-black">7+ years</strong> of experience building products from 0 to 1 and scaling them from 1 to 100. I bridge research, strategy, and design to ship things that actually work — across AI, Web3, Fintech, E-Commerce, and beyond.
+                    </p>
+                </div>
+                <div class="mt-10 flex flex-wrap gap-3">
+                    <a href="mailto:safrianjayadi@gmail.com" class="bg-brand-black text-brand-white px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-brand-vibrant transition-colors">
+                        Get in touch
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                    <a href="index.html#work" class="border-2 border-brand-black text-brand-black px-6 py-3 rounded-full text-sm font-bold hover:bg-brand-black hover:text-white transition-all">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── WORK EXPERIENCE ─── -->
+        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center mb-10 gap-8">
+            <div class="flex items-start md:items-center gap-4 md:gap-8 max-w-4xl">
+                <div class="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 border-4 border-brand-white mt-1 md:mt-0 flex items-center justify-center">
+                    <div class="w-4 h-4 bg-brand-white"></div>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold uppercase heading-brutal text-brand-white">
+                    WORK EXPERIENCE.<br>THE JOURNEY SO FAR.
+                </h2>
+            </div>
+            <div class="xl:w-1/4 text-sm font-medium text-gray-300">
+                8 companies across AI, Fintech, E-Commerce, Agritech, Web3, and Marketplace — each one pushing me further.
+            </div>
+        </div>
+
+        <section class="space-y-4 mb-32">
+
+            <!-- Tagteam / Tictag — Featured (blue) -->
+            <div class="bg-brand-vibrant rounded-[2rem] p-8 md:p-12 border-2 border-brand-black relative overflow-hidden group">
+                <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-white rounded-full opacity-5 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 border-b-2 border-white/30 pb-6">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-3">
+                                <span class="px-3 py-1 border-2 border-white/60 text-white rounded-full text-xs font-bold uppercase">AI & Data</span>
+                                <span class="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-bold uppercase">Current Role</span>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white">Tagteam Technology<br><span class="text-blue-200 text-2xl md:text-3xl">Pte Ltd — Tictag</span></h3>
+                            <p class="text-blue-100 font-semibold mt-2">Senior Product Design & Research</p>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-200 border-2 border-white/30 rounded-full px-4 py-2 flex-shrink-0">Sept 2024 — Present</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start gap-3 text-blue-100 font-medium"><div class="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"></div>Led cross-functional design across Korea, Vietnam, Singapore & Indonesia — tailoring product to each market's culture.</li>
+                        <li class="flex items-start gap-3 text-blue-100 font-medium"><div class="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"></div>Architected the company's first Design System from 0, unifying visual language and accelerating design-to-engineering handoff.</li>
+                        <li class="flex items-start gap-3 text-blue-100 font-medium"><div class="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"></div>Spearheaded 0-to-1 B2B Retail Insight Dashboard — transforming complex datasets into actionable visual intelligence.</li>
+                        <li class="flex items-start gap-3 text-blue-100 font-medium"><div class="w-2 h-2 bg-white rounded-full flex-shrink-0 mt-2"></div>Directed end-to-end design of B2C Data Annotation App to power the company's AI and machine learning models.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Semaai -->
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 border-b-2 border-gray-100 pb-6">
+                        <div>
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">Agritech · Sequoia-Backed</span>
+                            <h3 class="text-3xl font-bold uppercase heading-brutal text-brand-black">Semaai</h3>
+                            <p class="text-brand-vibrant font-semibold mt-1">Product Design & Research Lead</p>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 border-2 border-gray-200 rounded-full px-4 py-2 flex-shrink-0">July 2022 — July 2023</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Joined as a founding team member of a Sequoia-backed agritech startup — built product, design & research from the ground up.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Led and mentored a team of designers and researchers, setting OKRs and KPIs aligned to company objectives.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Created a comprehensive design system ensuring consistency and efficiency across all products.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Leveraged user research and data to inform product strategy and prioritize feature development.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bukalapak + ErudiFi side by side -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-[#f0f5ff] rounded-[2rem] p-8 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="relative z-10">
+                        <div class="mb-5 border-b-2 border-brand-vibrant/20 pb-5">
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">E-Commerce</span>
+                            <h3 class="text-2xl font-bold uppercase heading-brutal text-brand-vibrant">Bukalapak</h3>
+                            <p class="text-brand-black font-semibold text-sm mt-1">Product Design II</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1 inline-block">Jan 2022 — Jul 2022</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Redesigned checkout flow → <strong class="text-brand-black">+15% conversion rate</strong></li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Personalized recommendations → <strong class="text-brand-black">+10% average order value</strong></li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>New onboarding flow → <strong class="text-brand-black">–8% churn rate</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-brand-white rounded-[2rem] p-8 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="relative z-10">
+                        <div class="mb-5 border-b-2 border-gray-100 pb-5">
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">Fintech · Singapore</span>
+                            <h3 class="text-2xl font-bold uppercase heading-brutal text-brand-black">ErudiFi</h3>
+                            <p class="text-brand-vibrant font-semibold text-sm mt-1">Senior Product Design</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1 inline-block">Aug 2020 — Jan 2022</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Designed B2B partnership dashboards for SG, PH & ID markets.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div><strong class="text-brand-black">+20% partner engagement</strong>, –15% support requests.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Built design system from scratch and established research processes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purwadhika -->
+            <div class="bg-[#f0f5ff] rounded-[2rem] p-8 md:p-12 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 border-b-2 border-brand-vibrant/20 pb-6">
+                        <div>
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">Education · Tech School</span>
+                            <h3 class="text-3xl font-bold uppercase heading-brutal text-brand-vibrant">Purwadhika</h3>
+                            <p class="text-brand-black font-semibold mt-1">Executive Lecturer & UX Instructor</p>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 border-2 border-gray-200 rounded-full px-4 py-2 flex-shrink-0">May 2020 — Nov 2025</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Designed and delivered executive education on digital transformation, UX/UI design & product management.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Coached senior leaders at PLN, Astra Honda Motor & other enterprise clients on digital disruption strategy.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Developed a comprehensive UX/UI curriculum — from design principles to usability testing.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-2"></div>Delivered engaging lectures and workshops incorporating real-world case studies.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BlockSphere + Tokopedia side by side -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-brand-white rounded-[2rem] p-8 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="relative z-10">
+                        <div class="mb-5 border-b-2 border-gray-100 pb-5">
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">Blockchain · Web3</span>
+                            <h3 class="text-2xl font-bold uppercase heading-brutal text-brand-black">BlockSphere</h3>
+                            <p class="text-brand-vibrant font-semibold text-sm mt-1">UX/UI Lead · IC</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1 inline-block">Mar 2020 — Aug 2020</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Led end-to-end design for Astra International MVP & Property Investment app using Double Diamond.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Built Atomic Design System & standardized PRD documentation.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Established SOPs for UX Research, Interaction Design & UX Writing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-[#f0f5ff] rounded-[2rem] p-8 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="relative z-10">
+                        <div class="mb-5 border-b-2 border-brand-vibrant/20 pb-5">
+                            <span class="px-3 py-1 border-2 border-brand-vibrant text-brand-vibrant rounded-full text-xs font-bold uppercase mb-3 inline-block">E-Commerce · O2O</span>
+                            <h3 class="text-2xl font-bold uppercase heading-brutal text-brand-vibrant">Tokopedia</h3>
+                            <p class="text-brand-black font-semibold text-sm mt-1">UX Designer</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1 inline-block">Apr 2019 — Mar 2020</span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Worked within New Retail and Top-Up & Recharge Tribe alongside AVP & product teams.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Led O2O features: train reservations, digital top-ups, marketplace services.</li>
+                            <li class="flex items-start gap-3 text-gray-700 font-medium text-sm"><div class="w-2 h-2 bg-brand-vibrant rounded-full flex-shrink-0 mt-1.5"></div>Data-driven optimization to iterate on user satisfaction and business results.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gatemarried — earliest -->
+            <div class="bg-brand-white rounded-[2rem] p-8 md:p-12 border-2 border-brand-black relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 border-b-2 border-gray-100 pb-6">
+                        <div>
+                            <span class="px-3 py-1 border-2 border-brand-black text-brand-black rounded-full text-xs font-bold uppercase mb-3 inline-block">Product · Design Lead</span>
+                            <h3 class="text-3xl font-bold uppercase heading-brutal text-brand-black">Gatemarried</h3>
+                            <p class="text-gray-600 font-semibold mt-1">UI/UX & Product Design Lead</p>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 border-2 border-gray-200 rounded-full px-4 py-2 flex-shrink-0">May 2017 — Apr 2019</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-3">
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-black rounded-full flex-shrink-0 mt-2"></div>Built design workflow, design system, documentation and KPI/metrics for the team.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-black rounded-full flex-shrink-0 mt-2"></div>Led new product design using Design Thinking and Design Sprint methodology.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-black rounded-full flex-shrink-0 mt-2"></div>Conducted user behavior research: UT, UX interviews, card sorting, A/B testing.</li>
+                        <li class="flex items-start gap-3 text-gray-700 font-medium"><div class="w-2 h-2 bg-brand-black rounded-full flex-shrink-0 mt-2"></div>Designed sustainable design systems and maintained all design features in production.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── FOOTER ─── -->
+        <footer id="contact" class="bg-brand-white rounded-t-[2rem] p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-6 border-2 border-brand-black border-b-0 mt-16">
+            <div class="font-bold text-xl tracking-tight">safrian.</div>
+            <div class="flex gap-6 text-sm font-bold uppercase">
+                <a href="#" class="hover:text-brand-vibrant transition-colors">Twitter</a>
+                <a href="#" class="hover:text-brand-vibrant transition-colors">LinkedIn</a>
+                <a href="mailto:safrianjayadi@gmail.com" class="hover:text-brand-vibrant transition-colors">Email</a>
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>
