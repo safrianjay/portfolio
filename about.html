@@ -353,23 +353,35 @@
                         <img src="Foto%20(1).png"
                              alt="Safrian Jayadi — Senior Product Designer"
                              class="w-full block object-cover object-top"
-                             style="aspect-ratio: 3/4; filter: contrast(1.04) brightness(0.97) saturate(0.92);">
+                             style="aspect-ratio: 3/4; filter: contrast(1.08) brightness(0.93) saturate(0.8);">
 
-                        <!-- Blue gradient vignette at base — grounds the figure -->
-                        <div class="absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none"
-                             style="background: linear-gradient(to top, rgba(8,71,247,0.28) 0%, transparent 100%);"></div>
+                        <!-- Duotone blue wash — sits over the whole image, multiply blend tints light areas blue -->
+                        <div class="absolute inset-0 pointer-events-none"
+                             style="background: rgba(8,71,247,0.13); mix-blend-mode: multiply;"></div>
 
-                        <!-- Grain overlay (SVG turbulence) -->
-                        <div class="absolute inset-0 pointer-events-none opacity-[0.035]"
+                        <!-- Strong blue vignette bottom 55% — anchors the figure and badge -->
+                        <div class="absolute bottom-0 left-0 right-0 pointer-events-none"
+                             style="height: 55%; background: linear-gradient(to top, rgba(8,71,247,0.55) 0%, rgba(8,71,247,0.18) 50%, transparent 100%);"></div>
+
+                        <!-- Soft top vignette — darkens the crown to keep contrast -->
+                        <div class="absolute top-0 left-0 right-0 pointer-events-none"
+                             style="height: 30%; background: linear-gradient(to bottom, rgba(10,10,10,0.28) 0%, transparent 100%);"></div>
+
+                        <!-- Grain overlay — bumped for visible texture -->
+                        <div class="absolute inset-0 pointer-events-none opacity-[0.07]"
                              style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22/></svg>');
                                   background-size: 200px 200px;"></div>
 
-                        <!-- Brutalist floating name badge -->
-                        <div class="absolute bottom-4 left-4 right-4 bg-brand-black/85 backdrop-blur-sm rounded-xl px-4 py-2.5 flex items-center gap-2.5">
+                        <!-- Scanline overlay — subtle horizontal rhythm -->
+                        <div class="absolute inset-0 pointer-events-none opacity-[0.04]"
+                             style="background-image: repeating-linear-gradient(0deg, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 1px, transparent 1px, transparent 3px);"></div>
+
+                        <!-- Brutalist floating badge -->
+                        <div class="absolute bottom-4 left-4 right-4 border border-white/20 bg-brand-black/80 backdrop-blur-md rounded-xl px-4 py-3 flex items-center gap-3">
                             <div class="w-2 h-2 bg-brand-vibrant rounded-full animate-pulse flex-shrink-0"></div>
                             <div>
                                 <p class="text-white text-[10px] font-black uppercase tracking-widest leading-none">Safrian Jayadi</p>
-                                <p class="text-gray-400 text-[9px] font-medium mt-0.5 leading-none">Product Designer · Global Co. Exp.</p>
+                                <p class="text-brand-lightBlue text-[9px] font-semibold mt-1 leading-none tracking-wide">Design · Research · Strategy</p>
                             </div>
                         </div>
                     </div>
