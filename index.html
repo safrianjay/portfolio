@@ -228,6 +228,13 @@
         }
         .reveal.is-instant { --r: 1 !important; }
 
+        /* Footer gets a bigger upward travel so it feels like it rises
+           as a stage curtain when the user scrolls to it. */
+        footer.reveal {
+            transform: translate3d(0, calc((1 - var(--r)) * 100px), 0)
+                       scale(calc(0.97 + var(--r) * 0.03));
+        }
+
         /* Cascading children — same continuous progress, but each
            child reads from its parent's --r minus a small per-child
            offset so they cascade in. */
@@ -969,7 +976,7 @@
         <footer id="contact" class="bg-brand-black rounded-t-[2.5rem] border-2 border-brand-black border-b-0 mt-32 overflow-hidden">
 
             <!-- ── CTA block ── -->
-            <div class="px-8 md:px-16 pt-16 md:pt-24 pb-12 md:pb-16 relative">
+            <div class="reveal-skip px-8 md:px-16 pt-16 md:pt-24 pb-12 md:pb-16 relative">
                 <!-- Subtle radial glow -->
                 <div class="absolute top-0 right-0 w-[500px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(ellipse at 80% 20%, rgba(8,71,247,0.18) 0%, transparent 70%);"></div>
 
@@ -988,10 +995,10 @@
             </div>
 
             <!-- ── Divider ── -->
-            <div class="mx-8 md:mx-16 border-t border-white/10"></div>
+            <div class="reveal-skip mx-8 md:mx-16 border-t border-white/10"></div>
 
             <!-- ── Bottom bar ── -->
-            <div class="px-8 md:px-16 py-7 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div class="reveal-skip px-8 md:px-16 py-7 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                 <div class="font-black text-xl tracking-tight text-brand-white">safrian.</div>
                 <p class="text-[11px] text-gray-600 font-medium order-last md:order-none">© 2025 Safrian Jayadi · All rights reserved.</p>
                 <div class="flex items-center gap-3">
@@ -1224,7 +1231,7 @@
         // (Apple-style) rather than firing once at a threshold.
         (() => {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
+            const targets = Array.from(document.querySelectorAll('main > section, main > div > section, main > footer, .reveal-me'));
             if (!targets.length) return;
 
             // Tag cascade children with a per-child stagger offset (0..1)
