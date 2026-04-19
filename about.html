@@ -110,9 +110,50 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        /* ── Scroll progress bar ── */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 100%;
+            transform-origin: 0 50%;
+            transform: scaleX(var(--p, 0));
+            background: linear-gradient(90deg, #0847f7, #4A88FF);
+            z-index: 60;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* ── Page transition (fade + lift) ── */
+        body.page-fx {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.page-fx.is-loaded { opacity: 1; transform: none; }
+        body.page-fx.is-leaving { opacity: 0; transform: translateY(-10px); transition-duration: 0.3s; }
+
+        /* ── Scroll-synced section reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-revealed { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            body.page-fx,
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .scroll-progress { display: none; }
+        }
     </style>
 </head>
-<body class="antialiased font-sans">
+<body class="antialiased font-sans page-fx">
+
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- NAV -->
     <div class="fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
@@ -648,6 +689,80 @@
                 idleTimer = setTimeout(() => nav.classList.remove('is-hidden'), SHOW_DELAY);
             };
             window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+
+        // ── Page transition: fade-in on load, fade-out on internal nav ──
+        (() => {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+
+            window.addEventListener('pageshow', () => {
+                document.body.classList.remove('is-leaving');
+                document.body.classList.add('is-loaded');
+            });
+
+            if (reduce) return;
+
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest('a[href]');
+                if (!a) return;
+                if (a.target && a.target !== '_self') return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+                const href = a.getAttribute('href');
+                if (!href) return;
+                if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                let url;
+                try { url = new URL(href, window.location.href); } catch { return; }
+                if (url.origin !== window.location.origin) return;
+                if (url.pathname === window.location.pathname && url.hash) return;
+
+                e.preventDefault();
+                document.body.classList.add('is-leaving');
+                document.body.classList.remove('is-loaded');
+                setTimeout(() => { window.location.href = url.href; }, 320);
+            });
+        })();
+
+        // ── Scroll progress bar ──
+        (() => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const bar = document.querySelector('.scroll-progress');
+            if (!bar) return;
+            let ticking = false;
+            const update = () => {
+                const h = document.documentElement;
+                const max = h.scrollHeight - h.clientHeight;
+                const p = max > 0 ? Math.min(1, Math.max(0, h.scrollTop / max)) : 0;
+                bar.style.setProperty('--p', p.toFixed(4));
+                ticking = false;
+            };
+            const onScroll = () => {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+        })();
+
+        // ── Scroll-synced section reveal ──
+        (() => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
+            if (!targets.length) return;
+            targets.forEach((el, i) => {
+                el.classList.add('reveal');
+                el.style.transitionDelay = Math.min(i * 60, 240) + 'ms';
+            });
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-revealed');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
+            targets.forEach(el => io.observe(el));
         })();
     </script>
 </body>
