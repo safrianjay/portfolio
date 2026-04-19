@@ -110,13 +110,16 @@
         .animate-float-3 { animation: float-3 9s ease-in-out infinite; }
 
         /* Mobile floating bottom nav */
-        .bn-item { transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+        .bn-item { transition: background-color 0.25s ease, color 0.25s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
         /* Active state — subtle light-blue pill so it stays visually
            distinct from the solid-blue Talk CTA. */
         .bn-item.is-active {
             background-color: #C9DDFF; /* brand-lightBlue */
             color: #0847f7;
         }
+        /* Tactile press feedback */
+        .bn-item:active,
+        .mobile-bottom-nav a.bg-brand-vibrant:active { transform: scale(0.9); }
         /* nav.mobile-bottom-nav (specificity 0,1,1) wins over Tailwind's
            -translate-x-1/2 utility so we control the transform fully and
            both states share the same function shape — required for smooth
