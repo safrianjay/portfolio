@@ -995,24 +995,21 @@
     </nav>
 
     <script>
-        // ── Mobile bottom-nav: hide while scrolling, show when idle ──
+        // ── Mobile bottom-nav: hide while scrolling, spring in when idle ──
         (() => {
             const nav = document.querySelector('.mobile-bottom-nav');
             if (!nav) return;
             let idleTimer = null;
-            let lastY = window.scrollY;
-            const HIDE_DELTA = 6;       // px of movement before hiding
-            const SHOW_DELAY = 280;     // ms of idle before showing again
 
             const onScroll = () => {
-                const y = window.scrollY;
-                if (Math.abs(y - lastY) > HIDE_DELTA) {
-                    nav.classList.add('is-hidden');
-                    lastY = y;
-                }
+                // Hide immediately on any scroll event
+                nav.classList.add('is-hidden');
+                // Reset the idle countdown every scroll event.
+                // 600ms gives the 0.75s spring room to fully play out.
                 clearTimeout(idleTimer);
-                idleTimer = setTimeout(() => nav.classList.remove('is-hidden'), SHOW_DELAY);
+                idleTimer = setTimeout(() => nav.classList.remove('is-hidden'), 600);
             };
+
             window.addEventListener('scroll', onScroll, { passive: true });
         })();
 
