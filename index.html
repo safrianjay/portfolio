@@ -141,25 +141,44 @@
             will-change: transform;
         }
 
-        /* ── Page transition (fade + lift) ── */
+        /* ── Page transition (Apple-style ease) ── */
         body.page-fx {
             opacity: 0;
-            transform: translateY(6px);
-            transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+            transform: translateY(8px) scale(0.992);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         body.page-fx.is-loaded { opacity: 1; transform: none; }
-        body.page-fx.is-leaving { opacity: 0; transform: translateY(-6px); transition-duration: 0.18s; }
+        body.page-fx.is-leaving {
+            opacity: 0;
+            transform: translateY(-6px) scale(0.992);
+            transition-duration: 0.28s;
+            transition-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+        }
 
-        /* ── Scroll-synced section reveal ── */
+        /* ── Scroll-synced reveal (Apple feel) ── */
         .reveal {
             opacity: 0;
-            transform: translate3d(0, 22px, 0);
-            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+            transform: translate3d(0, 48px, 0) scale(0.96);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0ms);
             will-change: opacity, transform;
         }
         .reveal.is-revealed { opacity: 1; transform: none; }
-        /* Pre-revealed elements skip the transition entirely */
         .reveal.is-instant { transition: none; opacity: 1; transform: none; }
+
+        /* Cascading children when their parent .reveal enters */
+        .reveal-child {
+            opacity: 0;
+            transform: translate3d(0, 28px, 0);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--child-delay, 0ms);
+            will-change: opacity, transform;
+        }
+        .reveal.is-revealed .reveal-child,
+        .reveal.is-instant .reveal-child { opacity: 1; transform: none; }
 
         @media (prefers-reduced-motion: reduce) {
             body.page-fx,
@@ -987,7 +1006,7 @@
                 e.preventDefault();
                 document.body.classList.add('is-leaving');
                 document.body.classList.remove('is-loaded');
-                setTimeout(() => { window.location.href = url.href; }, 170);
+                setTimeout(() => { window.location.href = url.href; }, 240);
             });
         })();
 
@@ -1012,16 +1031,30 @@
             update();
         })();
 
-        // ── Scroll-synced section reveal ──
+        // ── Scroll-synced section reveal (Apple-style cascading) ──
         (() => {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
             if (!targets.length) return;
 
+            // Tag direct children so they cascade in after their parent
+            const STAGGER_MS = 90;
+            const MAX_STAGGER_MS = 540;
+            const cascade = (parent) => {
+                const kids = parent.children;
+                for (let i = 0; i < kids.length; i++) {
+                    const k = kids[i];
+                    if (k.classList.contains('reveal-skip')) continue;
+                    k.classList.add('reveal-child');
+                    k.style.setProperty('--child-delay', Math.min(i * STAGGER_MS, MAX_STAGGER_MS) + 'ms');
+                }
+            };
+
             const vh = window.innerHeight;
             targets.forEach(el => {
+                cascade(el);
                 const rect = el.getBoundingClientRect();
-                // If already in (or above) the viewport on load, skip the animation entirely.
+                // Already in viewport on load — skip the animation entirely (no FOUC, no awkward intro).
                 if (rect.top < vh - 80) {
                     el.classList.add('reveal', 'is-instant');
                 } else {
@@ -1036,7 +1069,7 @@
                         io.unobserve(e.target);
                     }
                 });
-            }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+            }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
             targets.forEach(el => { if (!el.classList.contains('is-instant')) io.observe(el); });
         })();
     </script>
