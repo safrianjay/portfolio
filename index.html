@@ -214,29 +214,30 @@
             .page-loader { display: none; }
         }
 
-        /* ── Scroll-synced reveal (Apple feel) ── */
+        /* ── Scroll-synced reveal (Apple feel) ──
+           Driven by a rAF scroll listener that writes a 0→1 progress
+           value to --r on each section. The transform/opacity
+           interpolate against that number, so the effect is *continuous*
+           during scroll instead of a one-shot toggle. */
         .reveal {
-            opacity: 0;
-            transform: translate3d(0, 48px, 0) scale(0.96);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-            transition-delay: var(--reveal-delay, 0ms);
+            --r: 0;
+            opacity: calc(var(--r));
+            transform: translate3d(0, calc((1 - var(--r)) * 64px), 0)
+                       scale(calc(0.94 + var(--r) * 0.06));
             will-change: opacity, transform;
         }
-        .reveal.is-revealed { opacity: 1; transform: none; }
-        .reveal.is-instant { transition: none; opacity: 1; transform: none; }
+        .reveal.is-instant { --r: 1 !important; }
 
-        /* Cascading children when their parent .reveal enters */
+        /* Cascading children — same continuous progress, but each
+           child reads from its parent's --r minus a small per-child
+           offset so they cascade in. */
         .reveal-child {
-            opacity: 0;
-            transform: translate3d(0, 28px, 0);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-            transition-delay: var(--child-delay, 0ms);
+            --c: 0;
+            opacity: calc(var(--c));
+            transform: translate3d(0, calc((1 - var(--c)) * 36px), 0);
             will-change: opacity, transform;
         }
-        .reveal.is-revealed .reveal-child,
-        .reveal.is-instant .reveal-child { opacity: 1; transform: none; }
+        .reveal.is-instant .reveal-child { --c: 1 !important; }
 
         @media (prefers-reduced-motion: reduce) {
             body.page-fx,
@@ -1095,55 +1096,80 @@
             update();
         })();
 
-        // ── Scroll-synced section reveal (Apple-style cascading) ──
+        // ── Scroll-synced section reveal (continuous progress) ──
+        // Each section gets a --r value 0→1 driven by its position in
+        // the viewport, so the fade/translate animates *during* scroll
+        // (Apple-style) rather than firing once at a threshold.
         (() => {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
             if (!targets.length) return;
 
-            // Tag direct children so they cascade in after their parent
-            const STAGGER_MS = 110;
-            const MAX_STAGGER_MS = 660;
+            // Tag cascade children with a per-child stagger offset (0..1)
+            // that we'll subtract from the parent's progress.
             const cascade = (parent) => {
                 const kids = parent.children;
+                let idx = 0;
                 for (let i = 0; i < kids.length; i++) {
                     const k = kids[i];
                     if (k.classList.contains('reveal-skip')) continue;
                     k.classList.add('reveal-child');
-                    k.style.setProperty('--child-delay', Math.min(i * STAGGER_MS, MAX_STAGGER_MS) + 'ms');
+                    // Stagger up to 0.35 of the parent's progress range
+                    k.style.setProperty('--stagger', Math.min(idx * 0.07, 0.35).toFixed(3));
+                    idx++;
                 }
             };
 
-            const vh = window.innerHeight;
-            // Only the very first section above the fold should appear
-            // instantly. Everything else — even sections partially visible
-            // on load — should fade-in once the body finishes its page-fx
-            // intro, so the user actually *sees* the reveal.
-            targets.forEach((el, i) => {
+            targets.forEach(el => {
                 cascade(el);
-                const rect = el.getBoundingClientRect();
-                if (i === 0 && rect.top < vh * 0.5) {
-                    el.classList.add('reveal', 'is-instant');
-                } else {
-                    el.classList.add('reveal');
-                }
+                el.classList.add('reveal');
             });
 
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) {
-                        e.target.classList.add('is-revealed');
-                        io.unobserve(e.target);
-                    }
-                });
-            }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+            // Easing: easeOutCubic — same family as the "Apple" feel
+            const ease = t => 1 - Math.pow(1 - t, 3);
 
-            // Defer observation by two frames so the body's page-fx fade
-            // completes its first paint — otherwise the IO callback fires
-            // before the user can perceive any reveal animation.
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                targets.forEach(el => { if (!el.classList.contains('is-instant')) io.observe(el); });
-            }));
+            let ticking = false;
+            const update = () => {
+                const vh = window.innerHeight;
+                // Reveal starts when section's top reaches 92% of viewport
+                // and completes when it reaches 35%. That window keeps the
+                // motion visible without dragging on.
+                const START = vh * 0.92;
+                const END = vh * 0.35;
+                const RANGE = START - END;
+
+                for (const el of targets) {
+                    if (el.classList.contains('is-instant')) continue;
+                    const top = el.getBoundingClientRect().top;
+                    let p = (START - top) / RANGE;
+                    p = Math.max(0, Math.min(1, p));
+                    const r = ease(p);
+                    el.style.setProperty('--r', r.toFixed(3));
+
+                    // Cascade children read parent progress shifted by stagger
+                    const kids = el.children;
+                    for (let i = 0; i < kids.length; i++) {
+                        const k = kids[i];
+                        if (!k.classList.contains('reveal-child')) continue;
+                        const stagger = parseFloat(k.style.getPropertyValue('--stagger')) || 0;
+                        let cp = (r - stagger) / (1 - stagger);
+                        cp = Math.max(0, Math.min(1, cp));
+                        k.style.setProperty('--c', ease(cp).toFixed(3));
+                    }
+                }
+                ticking = false;
+            };
+
+            const onScroll = () => {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            // Run synchronously so the hero (and anything else above the
+            // fold) lands at its correct --r on the very first paint —
+            // no flash of invisibility while waiting for a rAF tick.
+            update();
         })();
     </script>
 </body>
