@@ -141,16 +141,59 @@
             will-change: transform;
         }
 
-        /* ── Page transition (quick fade) ── */
-        body.page-fx {
+        /* ── Page transition (quick fade — applied to children so the loader can stay solid) ── */
+        body.page-fx > *:not(.page-loader):not(.scroll-progress) {
             opacity: 0;
             transition: opacity 0.22s ease-out;
         }
-        body.page-fx.is-loaded { opacity: 1; }
-        body.page-fx.is-leaving {
+        body.page-fx.is-loaded > *:not(.page-loader):not(.scroll-progress) {
+            opacity: 1;
+        }
+        body.page-fx.is-leaving > *:not(.page-loader):not(.scroll-progress) {
             opacity: 0;
             transition-duration: 0.12s;
             transition-timing-function: ease-in;
+        }
+
+        /* ── Page loader (three-dot brutalist pill) ── */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.12s ease-out;
+        }
+        body.page-fx.is-leaving .page-loader { opacity: 1; }
+        .page-loader-pill {
+            background: #ffffff;
+            border: 2px solid #0a0a0a;
+            box-shadow: 4px 4px 0 rgba(8, 71, 247, 1);
+            border-radius: 999px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .page-loader-pill span {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #0847f7;
+            display: block;
+            animation: loader-bounce 0.6s ease-in-out infinite;
+        }
+        .page-loader-pill span:nth-child(2) { animation-delay: 0.1s; }
+        .page-loader-pill span:nth-child(3) { animation-delay: 0.2s; }
+        @keyframes loader-bounce {
+            0%, 100% { transform: translateY(0) scale(0.85); opacity: 0.55; }
+            50%      { transform: translateY(-5px) scale(1); opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-loader { display: none; }
         }
 
         /* ── Scroll-synced reveal (Apple feel) ── */
@@ -201,6 +244,12 @@
 <body class="antialiased font-sans page-fx">
 
     <div class="scroll-progress" aria-hidden="true"></div>
+
+    <div class="page-loader" aria-hidden="true">
+        <div class="page-loader-pill">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
 
     <div class="fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
         <div class="flex items-center px-6 py-4 md:py-0 border-b-2 md:border-b-0 md:border-r-2 border-brand-black md:w-1/4 xl:w-1/5">
