@@ -109,7 +109,10 @@
            both states share the same function shape — required for smooth
            CSS transform interpolation. */
         nav.mobile-bottom-nav {
-            padding-bottom: env(safe-area-inset-bottom, 0);
+            /* Lift the whole dock above the iPhone home indicator instead of
+               padding the bottom — that way item content stays vertically
+               centered inside each pill. */
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
             transform: translate(-50%, 0%) scale(1);
             transform-origin: 50% 100%;
             /* Default = the "appearing" transition: dramatic spring overshoot */
@@ -832,8 +835,8 @@
             const targets = Array.from(document.querySelectorAll('main > section, main > div > section, .reveal-me'));
             if (!targets.length) return;
 
-            const STAGGER_MS = 90;
-            const MAX_STAGGER_MS = 540;
+            const STAGGER_MS = 110;
+            const MAX_STAGGER_MS = 660;
             const cascade = (parent) => {
                 const kids = parent.children;
                 for (let i = 0; i < kids.length; i++) {
@@ -845,10 +848,13 @@
             };
 
             const vh = window.innerHeight;
-            targets.forEach(el => {
+            // Only the very first hero section should appear instantly.
+            // Everything else fades in on scroll so the user actually
+            // *sees* the reveal interaction.
+            targets.forEach((el, i) => {
                 cascade(el);
                 const rect = el.getBoundingClientRect();
-                if (rect.top < vh - 80) {
+                if (i === 0 && rect.top < vh * 0.5) {
                     el.classList.add('reveal', 'is-instant');
                 } else {
                     el.classList.add('reveal');
@@ -862,8 +868,14 @@
                         io.unobserve(e.target);
                     }
                 });
-            }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
-            targets.forEach(el => { if (!el.classList.contains('is-instant')) io.observe(el); });
+            }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+
+            // Defer observation by two frames so the body's page-fx fade
+            // completes its first paint — otherwise the IO callback fires
+            // before the user can perceive any reveal animation.
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                targets.forEach(el => { if (!el.classList.contains('is-instant')) io.observe(el); });
+            }));
         })();
     </script>
 </body>
