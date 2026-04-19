@@ -602,27 +602,6 @@
             window.addEventListener('resize', onScroll);
             update();
         })();
-
-        // ── Mobile bottom-nav: hide while scrolling, show when idle ──
-        (() => {
-            const nav = document.querySelector('.mobile-bottom-nav');
-            if (!nav) return;
-            let idleTimer = null;
-            let lastY = window.scrollY;
-            const HIDE_DELTA = 6;
-            const SHOW_DELAY = 280;
-
-            const onScroll = () => {
-                const y = window.scrollY;
-                if (Math.abs(y - lastY) > HIDE_DELTA) {
-                    nav.classList.add('is-hidden');
-                    lastY = y;
-                }
-                clearTimeout(idleTimer);
-                idleTimer = setTimeout(() => nav.classList.remove('is-hidden'), SHOW_DELAY);
-            };
-            window.addEventListener('scroll', onScroll, { passive: true });
-        })();
     </script>
 
     <!-- ── Mobile floating bottom nav ── -->
@@ -648,5 +627,28 @@
             <span class="text-[9px] font-bold uppercase tracking-wider mt-1 leading-none">Talk</span>
         </a>
     </nav>
+
+    <script>
+        // ── Mobile bottom-nav: hide while scrolling, show when idle ──
+        (() => {
+            const nav = document.querySelector('.mobile-bottom-nav');
+            if (!nav) return;
+            let idleTimer = null;
+            let lastY = window.scrollY;
+            const HIDE_DELTA = 6;
+            const SHOW_DELAY = 280;
+
+            const onScroll = () => {
+                const y = window.scrollY;
+                if (Math.abs(y - lastY) > HIDE_DELTA) {
+                    nav.classList.add('is-hidden');
+                    lastY = y;
+                }
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(() => nav.classList.remove('is-hidden'), SHOW_DELAY);
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+    </script>
 </body>
 </html>
