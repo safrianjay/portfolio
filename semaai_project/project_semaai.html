@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0a"/>
+    <rect x="120" y="120" width="560" height="80" rx="12" fill="#f8ba28"/>
+    <rect x="120" y="220" width="420" height="80" rx="12" fill="#ffffff"/>
+    <rect x="120" y="340" width="700" height="24" rx="6" fill="#1f1f1f"/>
+    <rect x="120" y="380" width="520" height="24" rx="6" fill="#1f1f1f"/>
+    <circle cx="980" cy="240" r="140" fill="#0847f7"/>
+    <rect x="120" y="580" width="180" height="140" rx="16" fill="#f8ba28"/>
+    <rect x="320" y="580" width="180" height="140" rx="16" fill="#ffffff"/>
+    <rect x="520" y="580" width="180" height="140" rx="16" fill="#0847f7"/>
+    <rect x="720" y="580" width="180" height="140" rx="16" fill="#ff4fa3"/>
+  </svg>
+</template>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safrian | Semaai PDP Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --font-sans: Inter, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --color-brand-black: #0a0a0a;
+    --color-brand-white: #ffffff;
+    --color-brand-blue: #4A88FF;
+    --color-brand-vibrant: #0847f7;
+    --color-brand-lightBlue: #C9DDFF;
+    --color-brand-pink: #ff3366;
+    --color-brand-yellow: #ffcc00;
+    --color-brand-purple: #a855f7;
+    --color-brand-green: #22c55e;
+    --color-brand-amber: #f8ba28;
+    --shadow-brutal-white: 8px 8px 0px 0px rgba(255,255,255,1);
+    --shadow-brutal-blue:  8px 8px 0px 0px rgba(8,71,247,1);
+    --shadow-brutal-dark:  8px 8px 0px 0px rgba(10,10,10,1);
+    --shadow-brutal-pink:  8px 8px 0px 0px rgba(255,51,102,1);
+    --shadow-brutal-yellow:8px 8px 0px 0px rgba(255,204,0,1);
+    --shadow-brutal-purple:8px 8px 0px 0px rgba(168,85,247,1);
+    --shadow-brutal-amber: 8px 8px 0px 0px rgba(248,186,40,1);
+  }
+</style>
+<script>
+  // legacy v3 config — ignored under v4, kept as a fallback if tailwind play CDN ever loads
+  if (typeof tailwind !== 'undefined') tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter','sans-serif'],
+          mono: ['JetBrains Mono','monospace']
+        },
+        colors: {
+          brand: {
+            black: '#0a0a0a',
+            white: '#ffffff',
+            blue: '#4A88FF',
+            vibrant: '#0847f7',
+            lightBlue: '#C9DDFF',
+            pink: '#ff3366',
+            yellow: '#ffcc00',
+            purple: '#a855f7',
+            green: '#22c55e',
+            amber: '#f8ba28'
+          }
+        },
+        boxShadow: {
+          'brutal-white': '8px 8px 0px 0px rgba(255,255,255,1)',
+          'brutal-blue': '8px 8px 0px 0px rgba(8,71,247,1)',
+          'brutal-dark': '8px 8px 0px 0px rgba(10,10,10,1)',
+          'brutal-pink': '8px 8px 0px 0px rgba(255,51,102,1)',
+          'brutal-yellow': '8px 8px 0px 0px rgba(255,204,0,1)',
+          'brutal-purple': '8px 8px 0px 0px rgba(168,85,247,1)',
+          'brutal-amber': '8px 8px 0px 0px rgba(248,186,40,1)',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color:#0a0a0a; color:#ffffff; }
+  .heading-brutal { letter-spacing:-0.02em; line-height:1.05; }
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  @keyframes float-1 { 0%,100%{transform:translate(0,0) rotate(-6deg);} 50%{transform:translate(-10px,10px) rotate(5deg);} }
+  @keyframes float-2 { 0%,100%{transform:translate(0,0) scale(1) rotate(6deg);} 50%{transform:translate(15px,-10px) scale(1.05) rotate(0);} }
+  @keyframes float-3 { 0%,100%{transform:translateY(0) rotate(3deg);} 50%{transform:translateY(-16px) rotate(-4deg);} }
+  .animate-float-1 { animation: float-1 6s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 8s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 9s ease-in-out infinite; }
+  .image-frame { transition: transform .3s ease, box-shadow .3s ease; }
+  .image-frame:hover { transform: translate(-4px,-4px); box-shadow: 12px 12px 0 0 rgba(8,71,247,1); }
+  .metric-big { font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
+  .tag-chip { letter-spacing:.08em; }
+  .glow-pink { box-shadow: 0 0 0 2px #fff, 0 20px 40px -10px rgba(255,51,102,.4); }
+  /* churn bar animation */
+  @keyframes barRise { from { height: 0; } to { height: var(--h); } }
+  .bar { animation: barRise 1.2s cubic-bezier(.22,1,.36,1) forwards; }
+  /* tab buttons */
+  .tab-btn.is-active { background:#0847f7; color:#fff; border-color:#0847f7; }
+  .phone-shell { aspect-ratio: 320 / 640; }
+</style>
+</head>
+<body class="antialiased font-sans relative">
+
+<!-- Ambient bg -->
+<div class="fixed inset-0 z-[-1] pointer-events-none bg-grid-pattern"></div>
+<div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-amber/10 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-brand-vibrant/10 rounded-full blur-[100px] pointer-events-none z-[-1]"></div>
+
+<!-- Header (matches site chrome, dark variant) -->
+<div class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b-2 border-white/10 flex flex-col md:flex-row h-auto md:h-16">
+  <div class="flex items-center px-6 py-4 md:py-0 border-b-2 md:border-b-0 md:border-r-2 border-white/10 md:w-1/4 xl:w-1/5">
+    <a href="index.html" class="font-bold text-xl tracking-tight flex items-center gap-2 text-white">
+      <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z"/></svg>
+      safrian
+    </a>
+  </div>
+  <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
+    <a href="index.html#work" class="text-gray-300 hover:text-brand-vibrant transition-colors">Work</a>
+    <a href="index.html#expertise" class="text-gray-300 hover:text-brand-vibrant transition-colors">Expertise</a>
+    <a href="index.html#process" class="text-gray-300 hover:text-brand-vibrant transition-colors">Process</a>
+    <a href="about/" class="text-gray-300 hover:text-brand-vibrant transition-colors">About</a>
+  </nav>
+  <div class="hidden md:flex items-center gap-3 px-6 border-l-2 border-white/10">
+    <a href="mailto:safrianjayadi@gmail.com" class="bg-white text-brand-black px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-brand-vibrant hover:text-white transition-colors">
+      Let's Talk
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+  </div>
+</div>
+
+<main class="pt-32 md:pt-40 px-6 md:px-12 max-w-[90rem] mx-auto pb-24">
+
+  <!-- Breadcrumb -->
+  <nav class="mb-10 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
+    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+    <span class="text-gray-700">/</span>
+    <a href="index.html#work" class="hover:text-white transition-colors">Work</a>
+    <span class="text-gray-700">/</span>
+    <span class="text-white">Semaai PDP</span>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="mb-20 md:mb-24 relative">
+    <div class="absolute top-0 right-0 hidden lg:flex bg-brand-black border-2 border-white rounded-full px-5 py-2 shadow-brutal-white animate-float-1 items-center gap-2">
+      <div class="w-2 h-2 bg-brand-amber rounded-full animate-pulse"></div>
+      <span class="text-xs font-bold text-white uppercase tracking-wider">Agritech · Rural UX</span>
+    </div>
+    <div class="absolute top-16 right-8 hidden lg:flex bg-brand-amber border-2 border-black rounded-full px-5 py-2 shadow-[6px_6px_0_0_rgba(0,0,0,1)] animate-float-3 items-center gap-2" style="animation-delay:-2s">
+      <span class="text-xs font-black text-black uppercase tracking-wider">+60% GMV</span>
+    </div>
+
+    <div class="mb-8 flex items-center gap-4">
+      <div class="bg-white border-2 border-white rounded-2xl p-2 shadow-brutal-white w-16 h-16 flex items-center justify-center">
+        <img src="./project_semaai/semaai.png" alt="Semaai logo" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm font-bold text-white flex flex-wrap items-center gap-2">
+          Semaai · Agritech ·
+          <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2 py-0.5">
+            <svg viewBox="0 0 6 4" class="w-4 h-[10px] rounded-[1px] overflow-hidden border border-black/40" preserveAspectRatio="none" aria-hidden="true">
+              <rect width="6" height="2" fill="#ff0000"/>
+              <rect y="2" width="6" height="2" fill="#ffffff"/>
+            </svg>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Indonesia</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2 py-0.5">
+            <svg viewBox="0 0 9 6" class="w-4 h-[10px] rounded-[1px] overflow-hidden border border-black/40" preserveAspectRatio="none" aria-hidden="true">
+              <rect width="9" height="2" fill="#FF9933"/>
+              <rect y="2" width="9" height="2" fill="#ffffff"/>
+              <rect y="4" width="9" height="2" fill="#138808"/>
+              <circle cx="4.5" cy="3" r="0.7" fill="none" stroke="#000080" stroke-width="0.15"/>
+            </svg>
+            <span class="text-[10px] font-bold uppercase tracking-wider">India</span>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase heading-brutal text-white mb-8 max-w-5xl">
+      Revamping the Semaai PDP<br>
+      <span class="text-brand-amber">for farmers in rural Java.</span>
+    </h1>
+
+    <p class="text-xl md:text-2xl font-medium text-gray-400 max-w-3xl leading-relaxed mb-16">
+      A product detail page revamp for elderly and rural users in Indonesia. We cut churn on the PDP by 25% and helped the company hit its first CM4 profitability milestone.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-b border-white/10 py-8">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Role</p>
+        <p class="text-base font-medium text-white">Product Design Lead &amp; IC</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Timeline</p>
+        <p class="text-base font-medium text-white">2024 · 12 weeks</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Platform</p>
+        <p class="text-base font-medium text-white">Mobile App (Android)</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Industry</p>
+        <p class="text-base font-medium text-white">Agritech / E-commerce</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== KEY METRICS STRIP ========== -->
+  <section class="mb-32">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-brand-amber border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-70 mb-3">Churn rate</p>
+        <p class="metric-big text-6xl md:text-7xl font-black">−25<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">On the product detail page</p>
+      </div>
+      <div class="bg-white border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Add-to-cart</p>
+        <p class="metric-big text-6xl md:text-7xl font-black text-brand-vibrant">+45<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-600">Users proceeding to checkout</p>
+      </div>
+      <div class="bg-brand-vibrant border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">GMV lift</p>
+        <p class="metric-big text-6xl md:text-7xl font-black">+60<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">Driven by PDP overhaul</p>
+      </div>
+      <div class="bg-black border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Milestone</p>
+        <p class="metric-big text-5xl md:text-6xl font-black text-brand-amber">CM4</p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-400">First-ever profitability marker</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-6">
+          <span class="w-10 h-10 rounded-full bg-brand-pink flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">01</span>
+          Context
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Why the PDP mattered, and why the old one wasn't working.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 space-y-12 pt-2">
+      <div>
+        <h3 class="text-xl font-bold uppercase tracking-wider text-brand-pink mb-4">The Challenge</h3>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          Semaai is an agritech platform for Indonesian farmers. Most of our users are middle-aged or elderly, with limited digital literacy and patchy connectivity. When I looked at the funnel, <strong class="text-white">more than 58% of users who opened a product detail page didn't go on to checkout.</strong> The PDP was where we were losing the people who had already shown clear intent to buy.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold uppercase tracking-wider text-brand-amber mb-4">The Mandate</h3>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          As Product Design Lead, I was asked to run a full revamp of the PDP. The goal was to lift checkouts and GMV without alienating farmers who already trusted the app's simple, familiar layout. Whatever we shipped had to work on low-end Android phones, over 3G, with large touch targets and high contrast.
+        </p>
+      </div>
+
+      <!-- Churn / funnel visualization -->
+      <div id="funnelCard" class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Funnel snapshot</p>
+            <p class="text-xl md:text-2xl font-bold uppercase heading-brutal text-white">Before revamp <span class="text-gray-600">vs</span> <span class="text-brand-amber">after</span></p>
+          </div>
+          <div class="flex items-center gap-5 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2"><span class="w-3 h-3 bg-brand-pink border-2 border-black rounded"></span><span class="text-gray-400">Before</span></div>
+            <div class="flex items-center gap-2"><span class="w-3 h-3 bg-brand-amber border-2 border-black rounded"></span><span class="text-gray-400">After</span></div>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <div id="funnelChart" class="relative">
+          <!-- y-axis gridlines -->
+          <div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-14">
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/5"></div>
+          </div>
+          <div class="absolute left-0 top-0 bottom-14 flex flex-col justify-between text-[10px] font-bold text-gray-600 -ml-1">
+            <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+          </div>
+
+          <div class="flex items-end gap-6 md:gap-10 h-64 pl-8" id="funnelBars">
+            <!-- bars injected via JS -->
+          </div>
+          <!-- x-axis labels -->
+          <div class="flex gap-6 md:gap-10 pl-8 mt-3" id="funnelLabels"></div>
+        </div>
+
+        <p class="text-sm font-medium text-gray-400 mt-8 leading-relaxed" id="funnelCaption">
+          The biggest drop in the old funnel was between viewing the PDP and adding to cart. After the revamp, that same step turned into our biggest gain.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESS OVERVIEW ========== -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-4">
+          <span class="w-10 h-10 rounded-full bg-brand-purple flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">02</span>
+          Process
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Four stages. Each one built on what the last one found.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 space-y-6 pt-2">
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Heuristic Evaluation</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 01</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          I walked through the full flow from homescreen to PDP, which is how most users reach the product page (search is a distant second). I flagged every friction point I ran into: unclear icons, too many competing CTAs, stock and delivery info buried below the fold.
+        </p>
+      </div>
+
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Cross-Functional Brainstorm</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 02</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          I brought engineering, product, research, business and ops into the room to map out user stories together. Five recurring problems came up independently across different teams, which told us where to focus.
+        </p>
+      </div>
+
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Field Research in Java</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 03</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          I visited villages across Java and spent time with farmers during their actual buying routine. I ran interviews, watched them hold the phone, and saw where they got stuck, where they squinted, where they asked a neighbour for help.
+        </p>
+      </div>
+
+      <div class="bg-brand-vibrant text-white p-8 md:p-10 rounded-2xl border-2 border-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Revamp &amp; Ship</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 04</span>
+        </div>
+        <p class="font-medium text-blue-50 leading-relaxed">
+          Lo-fi wireframes, then hi-fi prototypes, then moderated usability testing, then handoff. Every design decision traced back to something specific from stages 1 to 3.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXISTING PRODUCT AUDIT ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-lightBlue flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">03</span>
+        The Existing Product
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Audit of v0</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7 flex items-start justify-center gap-4">
+        <div class="relative group w-full max-w-[300px]">
+          <div class="absolute -inset-1 bg-brand-pink rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <img src="./project_semaai/existing_product.png" alt="Original Semaai PDP screens" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-pink bg-white object-contain">
+        </div>
+        <div class="relative group w-full max-w-[300px]">
+          <div class="absolute -inset-1 bg-brand-pink rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+          <img src="./project_semaai/oldpdp.png" alt="Original Semaai PDP — product detail variant" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-pink bg-white object-contain">
+        </div>
+      </div>
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <p class="text-gray-400 font-medium leading-relaxed mb-2">Five issues came out of the audit. Each one showed up in the data as a drop before Add-to-Cart.</p>
+
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-pink transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-pink mb-1">Issue 01</p>
+          <p class="font-bold text-white">Too many CTAs on one screen</p>
+          <p class="text-sm text-gray-400 mt-1">&ldquo;Pre-Order&rdquo;, &ldquo;Add to Cart&rdquo; and &ldquo;Compare&rdquo; were all competing for attention in the same area.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-pink transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-pink mb-1">Issue 02</p>
+          <p class="font-bold text-white">Delivery time and stock info buried</p>
+          <p class="text-sm text-gray-400 mt-1">Farmers plan by season. If they can't see when it arrives or whether it's in stock, they leave.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-pink transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-pink mb-1">Issue 03</p>
+          <p class="font-bold text-white">Long descriptions, no expiry date</p>
+          <p class="text-sm text-gray-400 mt-1">Big walls of copy with nothing scannable, and a missing piece of info they actually needed.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-pink transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-pink mb-1">Issue 04</p>
+          <p class="font-bold text-white">No image zoom and no seller trust signals</p>
+          <p class="text-sm text-gray-400 mt-1">Users couldn't inspect the product properly or check if the seller was trustworthy.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-pink transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-pink mb-1">Issue 05</p>
+          <p class="font-bold text-white">Confusing quantity flow</p>
+          <p class="text-sm text-gray-400 mt-1">Unclear icons and too many taps just to buy more than one of something.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESEARCH ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-amber flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">04</span>
+        Field Research
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Java Island · In-depth interviews</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="bg-brand-amber text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
+          <p class="text-xs font-bold tag-chip uppercase mb-4">Methodology</p>
+          <ul class="space-y-3 font-medium text-sm">
+            <li class="flex gap-3"><span class="font-black">→</span> Direct village visits across Java</li>
+            <li class="flex gap-3"><span class="font-black">→</span> Diverse farmer participants by crop &amp; age</li>
+            <li class="flex gap-3"><span class="font-black">→</span> Open-ended in-depth interviews</li>
+            <li class="flex gap-3"><span class="font-black">→</span> Contextual observation during actual buying</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+          <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-4">Participant snapshot</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div><p class="metric-big text-4xl font-black text-white">18</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Farmers</p></div>
+            <div><p class="metric-big text-4xl font-black text-white">6</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Villages</p></div>
+            <div><p class="metric-big text-4xl font-black text-white">45<span class="text-xl">–70</span></p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Age range</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="relative group h-full flex items-center justify-center gap-3 bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
+          <img src="./project_semaai/field_research_new.png" alt="Field research in Java villages — farmer using phone" class="max-w-[48%] max-h-[520px] w-auto h-auto object-contain rounded-2xl shadow-brutal-amber">
+          <img src="./project_semaai/field_research_2.png" alt="Field research in Java villages — usability testing" class="max-w-[48%] max-h-[520px] w-auto h-auto object-contain rounded-2xl shadow-brutal-amber">
+        </div>
+      </div>
+    </div>
+
+    <!-- Findings board -->
+    <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10 mb-12">
+      <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-4">Synthesis board · affinity mapping</p>
+      <img src="./project_semaai/synthesis.png" alt="Affinity mapping of research findings" class="w-full h-auto rounded-2xl border-2 border-black bg-white">
+    </div>
+
+    <!-- Key findings - design -->
+    <div>
+      <h3 class="text-xl font-bold uppercase tracking-wider text-brand-amber mb-6">Key Design Findings</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-black">A</span>
+            <p class="text-xs font-bold tag-chip uppercase">Typography</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Bigger text, always.</p>
+          <p class="text-sm text-gray-600">Between poor lighting in the field and older eyes, farmers asked for noticeably larger body text. Not just a little bigger. Big.</p>
+        </div>
+        <div class="bg-brand-vibrant text-white rounded-[2rem] p-8 border-2 border-black shadow-brutal-white">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-white text-brand-vibrant flex items-center justify-center text-sm font-black">B</span>
+            <p class="text-xs font-bold tag-chip uppercase">Contrast</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Strong color contrast.</p>
+          <p class="text-sm text-blue-100">Price, product name and the primary CTA need to jump off the screen. Subtle grays and soft accents weren't getting read.</p>
+        </div>
+        <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-black">C</span>
+            <p class="text-xs font-bold tag-chip uppercase">Copy</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Cut the heavy text.</p>
+          <p class="text-sm text-gray-600">Long descriptions got skipped entirely. Short, scannable bullets, only the parts people actually need to decide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DESIGN PRINCIPLES ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-vibrant flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">05</span>
+        Design Principles
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Layout &amp; structure rules</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">01</p>
+        <p class="font-bold uppercase text-lg mb-2">Hierarchy First</p>
+        <p class="text-sm text-gray-600">Name, price, stock and CTA need to land first. Nothing else competes in that area above the fold.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">02</p>
+        <p class="font-bold uppercase text-lg mb-2">Progressive Disclosure</p>
+        <p class="text-sm text-gray-600">Application tips, benefits, and reviews sit in collapsible sections, available when people want them and out of the way otherwise.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">03</p>
+        <p class="font-bold uppercase text-lg mb-2">One Clear CTA</p>
+        <p class="text-sm text-gray-600">A single high-contrast Pre-Order / Add-to-Cart button that stays visible as people scroll.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">04</p>
+        <p class="font-bold uppercase text-lg mb-2">Trust Signals</p>
+        <p class="text-sm text-gray-600">Seller verification badge, ratings and expiry date, all surfaced near where the buying decision happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WIREFRAMES ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-purple flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">06</span>
+        Wireframes
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Lo-fi structural exploration</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-8">
+        <div class="relative group">
+          <img src="./project_semaai/hifi_design.png" alt="Low-fidelity wireframes of revamped PDP" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-purple bg-white object-contain">
+        </div>
+      </div>
+      <div class="lg:col-span-4 space-y-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">What changed</p>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Simplified header:</strong> just product name, price and Pre-Order. Extra icons removed.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Stock moved up</strong> next to the primary CTA so availability is visible before people commit.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Collapsible sections</strong> for benefits, usage instructions and reviews.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Persistent CTA</strong> pinned to the bottom so the main action is always within reach of a thumb.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HIGH FIDELITY ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-pink flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">07</span>
+        High Fidelity
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Shipped interface</span>
+    </div>
+
+    <!-- hero shot hi-fi -->
+    <div class="relative group mb-12">
+      <div class="absolute -inset-1 bg-brand-amber rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+      <img src="./project_semaai/flow.png" alt="Shipped high-fidelity PDP designs" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-amber bg-white object-contain">
+    </div>
+
+    <!-- detail shots grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <div class="group relative flex flex-col gap-5 items-center md:items-start">
+        <div class="relative overflow-hidden rounded-[2rem] border-2 border-white/20 bg-white shadow-brutal-dark group-hover:-translate-y-2 group-hover:shadow-brutal-amber transition-all duration-300 w-full max-w-[260px]">
+          <img src="./project_semaai/hero.png" alt="Product hero — new PDP" class="w-full h-auto object-contain">
+        </div>
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-wider text-white mb-2">Product Hero</h3>
+          <p class="text-gray-400 font-medium">Full-bleed image with tap-to-zoom, large product name and price. Legible at arm's length, even in bright outdoor light.</p>
+        </div>
+      </div>
+
+      <div class="group relative flex flex-col gap-5 md:mt-24 items-center md:items-start">
+        <div class="relative overflow-hidden rounded-[2rem] border-2 border-white/20 bg-white shadow-brutal-dark group-hover:-translate-y-2 group-hover:shadow-brutal-pink transition-all duration-300 w-full max-w-[260px]">
+          <img src="./project_semaai/compare.png" alt="Product detail — alt view" class="w-full h-auto object-contain">
+        </div>
+        <div>
+          <h3 class="text-xl font-bold uppercase tracking-wider text-white mb-2">Comparison Sheet</h3>
+          <p class="text-gray-400 font-medium">Reworked bottom sheet with cleaner cards, a numeric quantity input, a persistent Add-to-Cart, and the quantity kept between opens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BEFORE / AFTER ========== -->
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center text-sm border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">08</span>
+        Before / After
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-6 relative">
+        <div class="absolute top-4 left-4 bg-brand-pink text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">Before</div>
+        <div class="phone-shell bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[9/19] max-w-[240px] mx-auto">
+          <img src="./project_semaai/existing_product.png" alt="Old PDP" class="w-full h-full object-contain">
+        </div>
+        <ul class="mt-6 space-y-2 text-sm text-gray-400">
+          <li>✕ Small text that was hard to read outdoors</li>
+          <li>✕ Stock and delivery info buried further down</li>
+          <li>✕ Too many buttons competing for attention</li>
+          <li>✕ No way to tell if the seller was trustworthy</li>
+        </ul>
+      </div>
+      <div class="bg-brand-vibrant/10 border-2 border-brand-vibrant/30 rounded-[2rem] p-6 relative">
+        <div class="absolute top-4 left-4 bg-brand-amber text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">After</div>
+        <div class="phone-shell bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[9/19] max-w-[240px] mx-auto">
+          <img src="./project_semaai/pdp_after.png" alt="New PDP" class="w-full h-full object-contain">
+        </div>
+        <ul class="mt-6 space-y-2 text-sm text-gray-300">
+          <li>✓ Big, high-contrast text you can read at a glance</li>
+          <li>✓ Stock and delivery shown right next to the button</li>
+          <li>✓ One main action that's always on screen</li>
+          <li>✓ Verified seller badge and ratings up front</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== IMPACT ========== -->
+  <section class="mb-24">
+    <div class="bg-brand-vibrant rounded-[2rem] p-10 md:p-16 border-2 border-white text-white shadow-brutal-white relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-grid-pattern mix-blend-overlay"></div>
+      <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-white rounded-full blur-[100px] opacity-20 z-0 pointer-events-none"></div>
+      <div class="absolute top-8 right-8 bg-brand-amber border-2 border-black rounded-full px-4 py-1.5 shadow-[4px_4px_0_0_rgba(0,0,0,1)] animate-float-2 flex items-center gap-2 z-20">
+        <span class="text-xs font-black text-black uppercase tracking-wider">CM4 Milestone</span>
+      </div>
+
+      <div class="w-full md:w-1/3 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black uppercase heading-brutal drop-shadow-md">The<br>Impact.</h2>
+      </div>
+      <div class="w-full md:w-2/3 relative z-10 md:border-l-4 border-white/30 md:pl-12 pt-8 md:pt-0 border-t-4 md:border-t-0">
+        <p class="text-2xl md:text-3xl font-bold leading-tight drop-shadow-sm mb-6">
+          "Churn on the PDP dropped by 25%, engagement went up 30%, and GMV grew 60%. The PDP work also helped the company hit its first CM4 milestone."
+        </p>
+        <p class="text-lg font-medium text-blue-100">
+          The revamp didn't just move one metric. It showed that user-centered design could be a real profitability lever for rural agritech. The patterns became the baseline we used for every other screen in the app.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LESSONS ========== -->
+  <section class="mb-24">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white">Takeaways.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-amber mb-3">// 01</p>
+        <p class="font-bold text-lg text-white mb-2">Show up in person.</p>
+        <p class="text-sm text-gray-400">Analytics told us what was broken. Field research told us why. You can't build real empathy for farmers from a dashboard.</p>
+      </div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-amber mb-3">// 02</p>
+        <p class="font-bold text-lg text-white mb-2">Accessibility is conversion.</p>
+        <p class="text-sm text-gray-400">Bigger text and higher contrast were mainly for our older users, but they ended up driving a 60% lift in GMV.</p>
+      </div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-amber mb-3">// 03</p>
+        <p class="font-bold text-lg text-white mb-2">One CTA beats five.</p>
+        <p class="text-sm text-gray-400">Fewer options made the decision easier. Every CTA we removed paid us back in checkouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next / Back -->
+  <section class="pt-16 border-t-2 border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+    <a href="index.html#work" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      All Projects
+    </a>
+    <a href="project_erudifi.html" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
+      Next · ErudiFi
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </section>
+
+  <footer class="mt-24 pt-8 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="font-bold text-xl tracking-tight text-white">safrian.</div>
+    <div class="flex gap-6 text-sm font-bold uppercase text-gray-400">
+      <a href="#" class="hover:text-brand-vibrant transition-colors">LinkedIn</a>
+      <a href="mailto:safrianjayadi@gmail.com" class="hover:text-brand-vibrant transition-colors">Email</a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Tweaks panel -->
+<div id="tweaksPanel" class="hidden fixed bottom-6 right-6 z-[200] w-[340px] bg-[#0f0f0f] border-2 border-white rounded-2xl shadow-[8px_8px_0_0_rgba(8,71,247,1)] font-sans">
+  <div class="flex items-center justify-between px-4 py-3 border-b-2 border-white/15">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 bg-brand-amber rounded-full animate-pulse"></span>
+      <span class="text-xs font-black text-white uppercase tracking-widest">Tweaks</span>
+    </div>
+    <button id="tweaksClose" class="text-gray-500 hover:text-white text-sm font-bold">✕</button>
+  </div>
+  <div class="p-4 space-y-5 text-white max-h-[70vh] overflow-y-auto">
+
+    <div>
+      <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Chart mode</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button data-chart-mode="compare" class="tweak-mode-btn text-[11px] font-bold uppercase py-2 rounded-lg border-2 border-white/20 hover:border-brand-amber transition">Before / After</button>
+        <button data-chart-mode="delta" class="tweak-mode-btn text-[11px] font-bold uppercase py-2 rounded-lg border-2 border-white/20 hover:border-brand-amber transition">Delta only</button>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-4">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Before revamp (%)</p>
+      <div class="space-y-3" id="tweakBefore"></div>
+    </div>
+
+    <div class="border-t border-white/10 pt-4">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">After revamp (%)</p>
+      <div class="space-y-3" id="tweakAfter"></div>
+    </div>
+
+    <div class="border-t border-white/10 pt-4">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Accent color</p>
+      <div class="flex gap-2">
+        <button data-accent="#f8ba28" class="tweak-accent-btn w-8 h-8 rounded-full border-2 border-white/30" style="background:#f8ba28"></button>
+        <button data-accent="#22c55e" class="tweak-accent-btn w-8 h-8 rounded-full border-2 border-white/30" style="background:#22c55e"></button>
+        <button data-accent="#0847f7" class="tweak-accent-btn w-8 h-8 rounded-full border-2 border-white/30" style="background:#0847f7"></button>
+        <button data-accent="#a855f7" class="tweak-accent-btn w-8 h-8 rounded-full border-2 border-white/30" style="background:#a855f7"></button>
+        <button data-accent="#ffffff" class="tweak-accent-btn w-8 h-8 rounded-full border-2 border-white/30" style="background:#ffffff"></button>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-4">
+      <button id="tweakReset" class="w-full text-[11px] font-bold uppercase py-2 rounded-lg bg-white/5 hover:bg-white/10 border-2 border-white/10 transition">Reset defaults</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  // Tweakable defaults — persisted by host between the markers
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "chartMode": "compare",
+    "accent": "#f8ba28",
+    "beforePdp": 71,
+    "beforeAtc": 42,
+    "beforeCheckout": 28,
+    "beforePurchase": 16,
+    "afterPdp": 86,
+    "afterAtc": 61,
+    "afterCheckout": 48,
+    "afterPurchase": 34
+  }/*EDITMODE-END*/;
+
+  const STEPS = [
+    { key: 'Pdp',      label: 'PDP Views' },
+    { key: 'Atc',      label: 'Added to Cart' },
+    { key: 'Checkout', label: 'Reached Checkout' },
+    { key: 'Purchase', label: 'Purchased' }
+  ];
+
+  const state = { ...TWEAK_DEFAULTS };
+
+  // -------- chart rendering --------
+  const barsEl   = document.getElementById('funnelBars');
+  const labelsEl = document.getElementById('funnelLabels');
+
+  function render(){
+    if (!barsEl) return;
+    const accent = state.accent || '#f8ba28';
+    const mode = state.chartMode || 'compare';
+
+    barsEl.innerHTML = '';
+    labelsEl.innerHTML = '';
+
+    STEPS.forEach((step, i) => {
+      const b = Number(state['before' + step.key]) || 0;
+      const a = Number(state['after'  + step.key]) || 0;
+
+      const col = document.createElement('div');
+      col.className = 'flex-1 flex items-end justify-center gap-1.5 h-full relative';
+
+      if (mode === 'compare') {
+        // Two side-by-side bars
+        col.innerHTML = `
+          <div class="flex flex-col items-center gap-2 flex-1 h-full justify-end">
+            <span class="text-[10px] font-black text-brand-pink">${b}%</span>
+            <div class="bar w-full rounded-t-lg border-2 border-black bg-[var(--pink,#ff3366)]" style="--h:${b}%; height:${b}%"></div>
+          </div>
+          <div class="flex flex-col items-center gap-2 flex-1 h-full justify-end">
+            <span class="text-[10px] font-black" style="color:${accent}">${a}%</span>
+            <div class="bar w-full rounded-t-lg border-2 border-black" style="--h:${a}%; height:${a}%; background:${accent}"></div>
+          </div>`;
+      } else {
+        // Delta mode: single bar showing +/- change
+        const delta = a - b;
+        const absPct = Math.min(Math.abs(delta), 100);
+        const color = delta >= 0 ? accent : '#ff3366';
+        const sign = delta >= 0 ? '+' : '−';
+        col.innerHTML = `
+          <div class="flex flex-col items-center gap-2 flex-1 h-full justify-end">
+            <span class="text-xs font-black" style="color:${color}">${sign}${Math.abs(delta)}pp</span>
+            <div class="bar w-3/4 rounded-t-lg border-2 border-black" style="--h:${absPct}%; height:${absPct}%; background:${color}"></div>
+          </div>`;
+      }
+      barsEl.appendChild(col);
+
+      const lab = document.createElement('div');
+      lab.className = 'flex-1 text-[10px] font-bold uppercase tracking-wider text-gray-500 text-center leading-tight';
+      lab.textContent = step.label;
+      labelsEl.appendChild(lab);
+    });
+
+    // force-reflow the animation
+    barsEl.querySelectorAll('.bar').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = '';
+    });
+  }
+
+  // -------- tweak panel UI --------
+  const panel = document.getElementById('tweaksPanel');
+  const beforeWrap = document.getElementById('tweakBefore');
+  const afterWrap  = document.getElementById('tweakAfter');
+
+  function slider(key, label){
+    const v = state[key];
+    const wrap = document.createElement('label');
+    wrap.className = 'block';
+    wrap.innerHTML = `
+      <div class="flex justify-between text-[11px] font-bold text-gray-300 mb-1">
+        <span>${label}</span>
+        <span class="font-mono text-white" data-val="${key}">${v}%</span>
+      </div>
+      <input type="range" min="0" max="100" step="1" value="${v}" data-key="${key}"
+        class="w-full accent-white">`;
+    return wrap;
+  }
+
+  function buildPanel(){
+    beforeWrap.innerHTML = ''; afterWrap.innerHTML = '';
+    STEPS.forEach(s => {
+      beforeWrap.appendChild(slider('before' + s.key, s.label));
+      afterWrap.appendChild(slider('after'  + s.key, s.label));
+    });
+    panel.querySelectorAll('input[type=range]').forEach(inp => {
+      inp.addEventListener('input', e => {
+        const k = e.target.dataset.key;
+        state[k] = Number(e.target.value);
+        panel.querySelector(`[data-val="${k}"]`).textContent = state[k] + '%';
+        render();
+        persist({ [k]: state[k] });
+      });
+    });
+    // chart-mode buttons
+    panel.querySelectorAll('[data-chart-mode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.chartMode = btn.dataset.chartMode;
+        syncModeButtons();
+        render();
+        persist({ chartMode: state.chartMode });
+      });
+    });
+    // accent buttons
+    panel.querySelectorAll('[data-accent]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.accent = btn.dataset.accent;
+        syncAccentButtons();
+        render();
+        persist({ accent: state.accent });
+      });
+    });
+    document.getElementById('tweaksClose').addEventListener('click', hidePanel);
+    document.getElementById('tweakReset').addEventListener('click', () => {
+      Object.assign(state, TWEAK_DEFAULTS);
+      rebuildSliderValues();
+      syncModeButtons();
+      syncAccentButtons();
+      render();
+      persist({ ...TWEAK_DEFAULTS });
+    });
+  }
+
+  function rebuildSliderValues(){
+    panel.querySelectorAll('input[type=range]').forEach(inp => {
+      const k = inp.dataset.key;
+      inp.value = state[k];
+      panel.querySelector(`[data-val="${k}"]`).textContent = state[k] + '%';
+    });
+  }
+  function syncModeButtons(){
+    panel.querySelectorAll('[data-chart-mode]').forEach(b => {
+      const on = b.dataset.chartMode === state.chartMode;
+      b.style.background = on ? '#0847f7' : 'transparent';
+      b.style.color = on ? '#fff' : '';
+      b.style.borderColor = on ? '#0847f7' : '';
+    });
+  }
+  function syncAccentButtons(){
+    panel.querySelectorAll('[data-accent]').forEach(b => {
+      b.style.outline = (b.dataset.accent === state.accent) ? '3px solid #fff' : 'none';
+      b.style.outlineOffset = '2px';
+    });
+  }
+
+  // -------- host protocol --------
+  function showPanel(){ panel.classList.remove('hidden'); }
+  function hidePanel(){ panel.classList.add('hidden'); }
+  function persist(edits){
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*'); } catch(e){}
+  }
+
+  window.addEventListener('message', e => {
+    const t = e.data && e.data.type;
+    if (t === '__activate_edit_mode')   showPanel();
+    if (t === '__deactivate_edit_mode') hidePanel();
+  });
+
+  // Init
+  buildPanel();
+  syncModeButtons();
+  syncAccentButtons();
+  render();
+
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e){}
+})();
+</script>
+
+</body>
+</html>
