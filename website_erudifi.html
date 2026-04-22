@@ -703,7 +703,7 @@
   <section class="pt-16 border-t-2 border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
     <a href="semaai_project/project_semaai.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-      Prev · Semaai PDP
+      Prev · Semaai App
     </a>
     <a href="index.html#work" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
       All Projects
@@ -869,23 +869,49 @@
       }, { passive: true });
   })();
 
-  // Page Load
-  window.addEventListener('load', () => {
+  // Page transitions logic
+  (function(){
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Entrance
+    requestAnimationFrame(() => {
       document.body.classList.add('is-loaded');
-  });
+    });
 
-  // Handle page transitions
-  document.addEventListener('click', e => {
-      const anchor = e.target.closest('a[href]');
-      if (!anchor || anchor.target === '_blank' || anchor.getAttribute('href').startsWith('#') || anchor.getAttribute('href').startsWith('mailto:')) return;
-      
-      e.preventDefault();
-      const href = anchor.getAttribute('href');
-      document.body.classList.add('is-leaving');
-      setTimeout(() => {
-          window.location.href = href;
-      }, 150);
-  });
+    window.addEventListener('pageshow', (event) => {
+      // Ensure we reset if coming back via bfcache
+      document.body.classList.remove('is-leaving');
+      document.body.classList.add('is-loaded');
+    });
+
+    if (!isReduced) {
+      document.addEventListener('click', e => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        if (link.target && link.target !== '_self') return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+        let url;
+        try { url = new URL(href, window.location.href); } catch(err) { return; }
+
+        if (url.origin === window.location.origin) {
+          // Only trigger FX if it's not a same-page hash jump
+          if (url.pathname !== window.location.pathname || !url.hash) {
+            e.preventDefault();
+            document.body.classList.add('is-leaving');
+            document.body.classList.remove('is-loaded');
+            setTimeout(() => {
+              window.location.href = url.href;
+            }, 150);
+          }
+        }
+      });
+    }
+  })();
 
   // Intersection Observer for Nav
   const observerOptions = {
