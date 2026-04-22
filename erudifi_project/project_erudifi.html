@@ -45,6 +45,58 @@
     --shadow-brutal-amber: 8px 8px 0px 0px rgba(248,186,40,1);
   }
 
+  /* Page FX */
+  body.page-fx > :not(.page-loader):not(.page-persist) {
+    opacity: 0;
+    transition: opacity 0.22s ease-out;
+  }
+  body.page-fx.is-loaded > :not(.page-loader):not(.page-persist) {
+    opacity: 1;
+  }
+  body.page-fx.is-leaving > :not(.page-loader):not(.page-persist) {
+    opacity: 0;
+    transition-duration: 0.12s;
+    transition-timing-function: ease-in;
+  }
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease-out;
+  }
+  body.page-fx.is-leaving .page-loader {
+    opacity: 1;
+  }
+  .page-loader-pill {
+    background: #fff;
+    border: 2px solid #0a0a0a;
+    box-shadow: 4px 4px 0 #0847f7;
+    border-radius: 999px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .page-loader-pill span {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #0847f7;
+    display: block;
+    animation: loader-bounce 0.6s ease-in-out infinite;
+  }
+  .page-loader-pill span:nth-child(2) { animation-delay: 0.1s; }
+  .page-loader-pill span:nth-child(3) { animation-delay: 0.2s; }
+  @keyframes loader-bounce {
+    0%, 100% { transform: translateY(0) scale(0.85); opacity: 0.55; }
+    50% { transform: translateY(-5px) scale(1); opacity: 1; }
+  }
+
 .talk-backdrop{position:fixed;inset:0;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .talk-backdrop.is-open{opacity:1;pointer-events:auto}
 .talk-modal{background:#fff;border:2px solid #0a0a0a;box-shadow:8px 8px 0 #0a0a0a;border-radius:1.75rem;padding:2rem;width:100%;max-width:420px;transform:translateY(24px) scale(.96);transition:transform .35s cubic-bezier(.22, 1, .36, 1),opacity .25s ease;opacity:0}
@@ -114,7 +166,14 @@
   .phone-shell { aspect-ratio: 320 / 640; }
 </style>
 </head>
-<body class="antialiased font-sans relative">
+<body class="antialiased font-sans relative page-fx">
+
+<!-- Page Loader -->
+<div class="page-loader" aria-hidden="true">
+  <div class="page-loader-pill">
+    <span></span><span></span><span></span>
+  </div>
+</div>
 
 <!-- Ambient bg -->
 <div class="fixed inset-0 z-[-1] pointer-events-none bg-grid-pattern"></div>
@@ -130,8 +189,8 @@
   </div>
   <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
     <a href="../index.html#work" class="text-brand-black hover:text-brand-vibrant transition-colors">Work</a>
-    <a href="../index.html#expertise" class="text-brand-black hover:text-brand-vibrant transition-colors">Expertise</a>
     <a href="../index.html#process" class="text-brand-black hover:text-brand-vibrant transition-colors">Process</a>
+    <a href="../index.html#expertise" class="text-brand-black hover:text-brand-vibrant transition-colors">Expertise</a>
   </nav>
   <div class="hidden md:flex items-center gap-3 px-6 border-l-2 border-brand-black">
     <a href="../about/" class="px-5 py-1.5 rounded-full text-sm font-bold transition-all border-2 border-brand-black text-brand-black bg-transparent hover:bg-brand-black hover:text-brand-white">About Me</a>
@@ -974,6 +1033,50 @@ function closeTalkModal(){_talkBackdrop.classList.remove("is-open"),document.bod
 _talkBackdrop.addEventListener("click",e=>{e.target===_talkBackdrop&&closeTalkModal()});
 _talkClose.addEventListener("click",closeTalkModal);
 document.addEventListener("keydown",e=>{"Escape"===e.key&&closeTalkModal()});
+
+// Page transitions logic
+(function(){
+  const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Entrance
+  requestAnimationFrame(() => {
+    document.body.classList.add('is-loaded');
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    // Ensure we reset if coming back via bfcache
+    document.body.classList.remove('is-leaving');
+    document.body.classList.add('is-loaded');
+  });
+
+  if (!isReduced) {
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      if (link.target && link.target !== '_self') return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      const href = link.getAttribute('href');
+      if (!href) return;
+      if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+      let url;
+      try { url = new URL(href, window.location.href); } catch(err) { return; }
+
+      if (url.origin === window.location.origin) {
+        // Only trigger FX if it's not a same-page hash jump
+        if (url.pathname !== window.location.pathname || !url.hash) {
+          e.preventDefault();
+          document.body.classList.add('is-leaving');
+          document.body.classList.remove('is-loaded');
+          setTimeout(() => {
+            window.location.href = url.href;
+          }, 150);
+        }
+      }
+    });
+  }
+})();
 </script>
 
 </body>
