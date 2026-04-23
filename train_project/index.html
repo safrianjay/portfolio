@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safrian | Tokopedia Train Reservation Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --font-sans: Inter, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --color-brand-black: #0a0a0a;
+    --color-brand-white: #ffffff;
+    --color-brand-vibrant: #00a34a;
+    --color-brand-mint: #a7f05a;
+    --color-brand-lime: #c7f84f;
+    --color-brand-orange: #ff5a1f;
+    --color-brand-blue: #0847f7;
+    --color-brand-pink: #ff3366;
+    --color-brand-amber: #f8ba28;
+    --shadow-brutal-white: 8px 8px 0px 0px rgba(255,255,255,1);
+    --shadow-brutal-dark: 8px 8px 0px 0px rgba(10,10,10,1);
+    --shadow-brutal-green: 8px 8px 0px 0px rgba(0,163,74,1);
+    --shadow-brutal-orange: 8px 8px 0px 0px rgba(255,90,31,1);
+  }
+</style>
+<style>
+  body { background-color:#0a0a0a; color:#ffffff; }
+  .heading-brutal { letter-spacing:-0.02em; line-height:1.05; }
+  .bg-grid-pattern {
+    background-size:40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  @keyframes float-1 { 0%,100%{transform:translate(0,0) rotate(-5deg);} 50%{transform:translate(-10px,10px) rotate(3deg);} }
+  @keyframes float-2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(12px,-10px) scale(1.04);} }
+  .animate-float-1 { animation: float-1 7s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 8s ease-in-out infinite; }
+  .image-frame { transition: transform .3s ease, box-shadow .3s ease; }
+  .image-frame:hover { transform: translate(-4px,-4px); box-shadow: 12px 12px 0 0 rgba(0,163,74,1); }
+  .metric-big { font-variant-numeric: tabular-nums; letter-spacing:-0.04em; }
+  .tag-chip { letter-spacing:.08em; }
+  .phone-shell { aspect-ratio: 320 / 568; }
+  .talk-backdrop{position:fixed;inset:0;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .2s ease}
+  .talk-backdrop.is-open{opacity:1;pointer-events:auto}
+  .talk-modal{background:#fff;border:2px solid #0a0a0a;box-shadow:8px 8px 0 #0a0a0a;border-radius:1.75rem;padding:2rem;width:100%;max-width:420px;transform:translateY(24px) scale(.96);transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s ease;opacity:0}
+  .talk-backdrop.is-open .talk-modal{transform:translateY(0) scale(1);opacity:1}
+</style>
+</head>
+<body class="antialiased font-sans relative">
+
+<div class="fixed inset-0 z-[-1] pointer-events-none bg-grid-pattern"></div>
+<div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-vibrant/15 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[420px] h-[420px] bg-brand-orange/10 rounded-full blur-[100px] pointer-events-none z-[-1]"></div>
+
+<div class="fixed top-0 w-full z-50 flex flex-col md:flex-row h-auto md:h-16 bg-brand-white border-b-2 border-brand-black">
+  <div class="flex items-center px-6 py-4 md:py-0 md:w-1/4 xl:w-1/5 md:border-r-2 border-brand-black">
+    <a href="../index.html" class="font-bold text-xl tracking-tight flex items-center gap-2 text-brand-black">
+      <svg class="w-5 h-5 text-brand-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z"/></svg> safrian
+    </a>
+  </div>
+  <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
+    <a href="../index.html#work" class="text-brand-black hover:text-brand-vibrant transition-colors">Work</a>
+    <a href="../index.html#process" class="text-brand-black hover:text-brand-vibrant transition-colors">Process</a>
+    <a href="../index.html#expertise" class="text-brand-black hover:text-brand-vibrant transition-colors">Expertise</a>
+  </nav>
+  <div class="hidden md:flex items-center gap-3 px-6 border-l-2 border-brand-black">
+    <a href="../about/" class="px-5 py-1.5 rounded-full text-sm font-bold transition-all border-2 border-brand-black text-brand-black bg-transparent hover:bg-brand-black hover:text-brand-white">About Me</a>
+    <button onclick="openTalkModal()" class="px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors bg-brand-black text-brand-white hover:bg-gray-800">Let's Talk
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </button>
+  </div>
+</div>
+
+<main class="pt-24 md:pt-32 px-6 md:px-12 max-w-[90rem] mx-auto pb-24">
+
+  <header class="mb-20 md:mb-24 relative">
+    <div class="absolute top-0 right-0 hidden lg:flex bg-brand-black border-2 border-white rounded-full px-5 py-2 shadow-brutal-white animate-float-1 items-center gap-2">
+      <div class="w-2 h-2 bg-brand-mint rounded-full animate-pulse"></div>
+      <span class="text-xs font-bold text-white uppercase tracking-wider">Mitra Tokopedia · Transport</span>
+    </div>
+    <div class="absolute top-16 right-8 hidden lg:flex bg-brand-mint border-2 border-black rounded-full px-5 py-2 shadow-[6px_6px_0_0_rgba(0,0,0,1)] animate-float-2 items-center gap-2" style="animation-delay:-2s">
+      <span class="text-xs font-black text-black uppercase tracking-wider">5/5 Tasks Completed</span>
+    </div>
+
+    <div class="mb-8 flex items-center gap-4">
+      <div class="bg-white border-2 border-white rounded-2xl p-3 shadow-brutal-white w-24 h-16 flex items-center justify-center">
+        <img src="./project_train/tokopedia-logo.png" alt="Tokopedia logo" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm font-bold text-white flex flex-wrap items-center gap-2">
+          Tokopedia/train · SME grocery stores ·
+          <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2 py-0.5">
+            <svg viewBox="0 0 6 4" class="w-4 h-[10px] rounded-[1px] overflow-hidden border border-black/40" preserveAspectRatio="none" aria-hidden="true">
+              <rect width="6" height="2" fill="#ff0000"/><rect y="2" width="6" height="2" fill="#ffffff"/>
+            </svg>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Indonesia</span>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase heading-brutal text-white mb-8 max-w-6xl">
+      Train ticket reservation<br>
+      <span class="text-brand-mint">for SME grocery stores.</span>
+    </h1>
+
+    <p class="text-xl md:text-2xl font-medium text-gray-400 max-w-3xl leading-relaxed mb-16">
+      A Mitra Tokopedia case study exploring how grocery stores can become a simple, trusted portal for Indonesian train ticket reservations during high-demand travel moments like Eid al-Fitr.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-b border-white/10 py-8">
+      <div><p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Product</p><p class="text-base font-medium text-white">Mitra Tokopedia Train</p></div>
+      <div><p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Platform</p><p class="text-base font-medium text-white">Mobile App</p></div>
+      <div><p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Method</p><p class="text-base font-medium text-white">Quant + Qual Research</p></div>
+      <div><p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Audience</p><p class="text-base font-medium text-white">Mitra grocery stores</p></div>
+    </div>
+  </header>
+
+  <section class="mb-32">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-brand-mint border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-70 mb-3">Market Context</p>
+        <p class="metric-big text-6xl md:text-7xl font-black">250<span class="text-3xl align-top">M+</span></p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">People living in Indonesia</p>
+      </div>
+      <div class="bg-white border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Quant Phase</p>
+        <p class="metric-big text-6xl md:text-7xl font-black text-brand-vibrant">58</p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-600">Mitra achieved from n:100 target</p>
+      </div>
+      <div class="bg-brand-vibrant border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">Task Result</p>
+        <p class="metric-big text-6xl md:text-7xl font-black">5/5</p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">Booked without issues</p>
+      </div>
+      <div class="bg-black border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Flow Feedback</p>
+        <p class="metric-big text-6xl md:text-7xl font-black text-brand-orange">4/5</p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-400">Felt the flow was simple enough</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-6">
+          <span class="w-10 h-10 rounded-full bg-brand-orange flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">01</span>
+          Overview
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Why train tickets made sense inside a grocery-store partner app.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-8 space-y-10 pt-2">
+      <div>
+        <h3 class="text-xl font-bold uppercase tracking-wider text-brand-mint mb-4">The Question</h3>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          How can SME grocery stores provide train reservation for people? In Indonesia, trains are one of the most popular transportation choices, especially during Eid al-Fitr when many people travel back to their hometowns.
+        </p>
+      </div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10">
+        <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-4">Hypothesis</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white text-black rounded-2xl p-6 border-2 border-black"><p class="font-black text-3xl text-brand-vibrant mb-3">01</p><p class="font-bold">Train is a favorite transportation mode, so grocery stores can help sell train tickets to local customers.</p></div>
+          <div class="bg-white text-black rounded-2xl p-6 border-2 border-black"><p class="font-black text-3xl text-brand-vibrant mb-3">02</p><p class="font-bold">The flow needs to be straightforward, readable, and easy to complete across age groups.</p></div>
+          <div class="bg-white text-black rounded-2xl p-6 border-2 border-black"><p class="font-black text-3xl text-brand-vibrant mb-3">03</p><p class="font-bold">A cleaner design can support a higher success rate for train reservation booking.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-4">
+          <span class="w-10 h-10 rounded-full bg-brand-mint flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">02</span>
+          Process
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Research plan, objectives, respondent criteria, and prioritization.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-8 space-y-6 pt-2">
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Research Plan</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap">Stage 01</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">Started with quantitative and qualitative methods to identify product backlog priority from Mitra's perspective and decide which backlogs needed deeper research.</p>
+      </div>
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Objectives</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap">Stage 02</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">Understand Mitra app usage and attitude, explore the experience of using Mitra Tokopedia, identify pain points and unmet needs, then evaluate the new backlog concept.</p>
+      </div>
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Respondent Criteria</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap">Stage 03</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">Approved Mitra Tokopedia users, recruited from the quantitative phase, active in the app, with at least five transactions, at least one transaction each month, and a minimum one month of membership.</p>
+      </div>
+      <div class="bg-brand-vibrant text-white p-8 md:p-10 rounded-2xl border-2 border-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Sampling</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap">Stage 04</span>
+        </div>
+        <p class="font-medium text-green-50 leading-relaxed">Targeted three Mitra from each Sobat group, with n:100 target and n:58 achieved. The qualitative sample was n:11 across Bogor, Bekasi, and Cirebon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center text-sm border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">03</span>
+        Personas
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Bogor · Bekasi · Cirebon</span>
+    </div>
+    <div class="relative group bg-white/5 border-2 border-white/10 rounded-[2rem] p-4 md:p-8">
+      <img src="./project_train/personas.png" alt="Mitra Tokopedia respondent personas" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-green bg-white object-contain">
+    </div>
+  </section>
+
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-orange flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">04</span>
+        Research Findings
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black"><p class="font-mono text-xs text-brand-vibrant mb-3">// 01</p><p class="font-bold text-lg mb-2">Less scrolling is better.</p><p class="text-sm text-gray-600">Too much scrolling irritates Mitra and makes important information harder to deliver.</p></div>
+      <div class="bg-brand-mint text-black rounded-[2rem] p-8 border-2 border-black shadow-brutal-white"><p class="font-mono text-xs mb-3">// 02</p><p class="font-bold text-lg mb-2">Recognizable icons help discovery.</p><p class="text-sm text-gray-700">Unique icons that represent features are appealing and trigger Mitra to explore the feature.</p></div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black"><p class="font-mono text-xs text-brand-vibrant mb-3">// 03</p><p class="font-bold text-lg mb-2">Simple color combinations win.</p><p class="text-sm text-gray-600">White backgrounds with clear supporting colors make information easier to read.</p></div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black"><p class="font-mono text-xs text-brand-vibrant mb-3">// 04</p><p class="font-bold text-lg mb-2">Train booking fits seasonal demand.</p><p class="text-sm text-gray-600">During big holidays, customers ask about train schedules and availability.</p></div>
+      <div class="bg-brand-vibrant text-white rounded-[2rem] p-8 border-2 border-white shadow-brutal-white md:col-span-2"><p class="font-mono text-xs text-green-100 mb-3">// 05</p><p class="font-bold text-lg mb-2">Awareness does not guarantee first transaction.</p><p class="text-sm text-green-50">High awareness still needs a clear flow, helpful content, and confidence-building interaction.</p></div>
+    </div>
+  </section>
+
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-mint flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">05</span>
+        Ideation
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-5 bg-brand-mint text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
+        <p class="text-xs font-bold tag-chip uppercase mb-4">Design direction</p>
+        <ul class="space-y-3 font-medium text-sm">
+          <li class="flex gap-3"><span class="font-black">-></span> Make the train booking flow straightforward.</li>
+          <li class="flex gap-3"><span class="font-black">-></span> Keep the design clean instead of overloading pages with content.</li>
+          <li class="flex gap-3"><span class="font-black">-></span> Avoid small fonts and too many colors in high fidelity.</li>
+          <li class="flex gap-3"><span class="font-black">-></span> Support passenger scenarios for children and babies.</li>
+          <li class="flex gap-3"><span class="font-black">-></span> Add payment flexibility, including e-wallet options.</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-7 grid grid-cols-1 gap-8">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">User Flow · General</p>
+          <img src="./project_train/user-flow.png" alt="General user flow for train reservation" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl shadow-brutal-green bg-white object-contain">
+        </div>
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Wireflow</p>
+          <img src="./project_train/wireflow.png" alt="Wireflow for train reservation booking" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl shadow-brutal-green bg-white object-contain">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-32">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-vibrant flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">06</span>
+        High Fidelity
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Highlight only</span>
+    </div>
+    <div class="relative group mb-12 bg-white/5 border-2 border-white/10 rounded-[2rem] p-4">
+      <img src="./project_train/high-fidelity-flow.png" alt="High fidelity train ticket reservation flow" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-green bg-white object-contain">
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/search-destination.png" alt="Choose destination screen" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">Choose Destination</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/review-booking.png" alt="Review booking page" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">Review Booking</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/empty-page.png" alt="Empty page" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">Empty Page</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/payment-method.png" alt="Payment method" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">Payment Method</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/list-train.png" alt="List of train screen" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">List of Train</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-4"><img src="./project_train/seat-page.png" alt="Seat page" class="phone-shell w-full object-contain bg-white rounded-2xl border-2 border-black"><p class="font-bold uppercase text-xs text-white mt-4">Seat Page</p></div>
+    </div>
+  </section>
+
+  <section class="mb-24">
+    <div class="bg-brand-vibrant rounded-[2rem] p-10 md:p-16 border-2 border-white text-white shadow-brutal-white relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-grid-pattern mix-blend-overlay"></div>
+      <div class="absolute top-8 right-8 bg-brand-mint border-2 border-black rounded-full px-4 py-1.5 shadow-[4px_4px_0_0_rgba(0,0,0,1)] animate-float-2 flex items-center gap-2 z-20">
+        <span class="text-xs font-black text-black uppercase tracking-wider">User Feedback</span>
+      </div>
+      <div class="w-full md:w-1/3 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black uppercase heading-brutal drop-shadow-md">The<br>Result.</h2>
+      </div>
+      <div class="w-full md:w-2/3 relative z-10 md:border-l-4 border-white/30 md:pl-12 pt-8 md:pt-0 border-t-4 md:border-t-0">
+        <p class="text-2xl md:text-3xl font-bold leading-tight drop-shadow-sm mb-6">
+          "Users could buy tickets without specific issues. Clean design and readable text helped them identify the content and interactions needed to complete booking."
+        </p>
+        <p class="text-lg font-medium text-green-50">
+          In task testing, 5 out of 5 users had no issue booking a train reservation, and 4 out of 5 felt the flow was simple enough.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-24">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white">Conclusion.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8"><p class="font-mono text-xs text-brand-mint mb-3">// 01</p><p class="font-bold text-lg text-white mb-2">Think through real scenarios.</p><p class="text-sm text-gray-400">Passenger types, payment choices, low balance, unavailable trains, and seat expiry all shaped the flow.</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8"><p class="font-mono text-xs text-brand-mint mb-3">// 02</p><p class="font-bold text-lg text-white mb-2">Clarity is the feature.</p><p class="text-sm text-gray-400">Clean pages, readable text, and fewer competing elements made the booking path easier to finish.</p></div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8"><p class="font-mono text-xs text-brand-mint mb-3">// 03</p><p class="font-bold text-lg text-white mb-2">Launch and measure.</p><p class="text-sm text-gray-400">The design worked well after launch and was measured through the analytical dashboard.</p></div>
+    </div>
+  </section>
+
+  <section class="pt-16 border-t-2 border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+    <a href="../#work" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      All Projects
+    </a>
+    <a href="../semaai_project/" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
+      Next · Semaai
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </section>
+
+  <footer class="mt-24 pt-8 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="font-bold text-xl tracking-tight text-white">safrian.</div>
+    <div class="flex gap-6 text-sm font-bold uppercase text-gray-400">
+      <a href="https://www.linkedin.com/in/safrianjayadi/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-vibrant transition-colors">LinkedIn</a>
+      <a href="mailto:safrianjayadi@gmail.com" class="hover:text-brand-vibrant transition-colors">Email</a>
+    </div>
+  </footer>
+</main>
+
+<div class="talk-backdrop" id="talkBackdrop" role="dialog" aria-modal="true" aria-label="Get in touch">
+  <div class="talk-modal text-brand-black">
+    <div class="flex items-start justify-between mb-6">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-brand-vibrant mb-1">Let's connect</p>
+        <h2 class="text-2xl font-black heading-brutal text-brand-black">Get in Touch</h2>
+      </div>
+      <button id="talkClose" class="w-9 h-9 rounded-full border-2 border-brand-black flex items-center justify-center hover:bg-brand-black hover:text-white transition-colors text-brand-black" aria-label="Close">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <a href="mailto:safrianjayadi@gmail.com" class="flex items-center gap-3 border-2 border-brand-black rounded-2xl p-4 mb-3 hover:bg-brand-black hover:text-white transition-colors group bg-[#f8f9ff]">
+      <div class="w-10 h-10 rounded-full bg-brand-mint border-2 border-brand-black flex items-center justify-center flex-shrink-0 group-hover:border-white">
+        <svg class="w-5 h-5 text-brand-vibrant" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="flex-1"><p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-gray-300 mb-0.5">Email</p><p class="text-sm font-bold">safrianjayadi@gmail.com</p></div>
+    </a>
+    <a href="https://www.linkedin.com/in/safrianjayadi/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 border-2 border-brand-black rounded-2xl p-4 mb-5 hover:bg-brand-black hover:text-white transition-colors group bg-white">
+      <div class="w-10 h-10 rounded-full bg-[#0077B5] border-2 border-brand-black flex items-center justify-center flex-shrink-0 group-hover:border-white">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </div>
+      <div class="flex-1"><p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 group-hover:text-gray-300 mb-0.5">LinkedIn</p><p class="text-sm font-bold">Connect with Safrian</p></div>
+    </a>
+  </div>
+</div>
+
+<nav class="mobile-bottom-nav md:hidden fixed bottom-5 left-1/2 z-50 bg-brand-white border-2 border-brand-black rounded-full shadow-[5px_5px_0px_0px_rgba(10,10,10,1)] flex items-center gap-1 px-2.5 py-2.5" style="transform:translateX(-50%)" aria-label="Mobile navigation">
+  <a href="../#work" class="flex flex-col items-center justify-center w-[52px] h-[52px] rounded-full text-brand-black">
+    <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M2 13h20"/></svg>
+    <span class="text-[9px] font-bold uppercase tracking-wider mt-1 leading-none">Work</span>
+  </a>
+  <button onclick="openTalkModal()" class="flex flex-col items-center justify-center w-[52px] h-[52px] rounded-full bg-brand-black text-white">
+    <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    <span class="text-[9px] font-bold uppercase tracking-wider mt-1 leading-none">Talk</span>
+  </button>
+</nav>
+
+<script>
+  function openTalkModal(){ document.getElementById('talkBackdrop')?.classList.add('is-open'); }
+  function closeTalkModal(){ document.getElementById('talkBackdrop')?.classList.remove('is-open'); }
+  document.getElementById('talkClose')?.addEventListener('click', closeTalkModal);
+  document.getElementById('talkBackdrop')?.addEventListener('click', function(e){ if(e.target === this) closeTalkModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeTalkModal(); });
+</script>
+</body>
+</html>
