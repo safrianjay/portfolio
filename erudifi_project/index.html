@@ -204,7 +204,6 @@
 
   <!-- ========== HERO ========== -->
   <header class="mb-20 md:mb-24 relative">
-      <span class="text-xs font-bold text-white uppercase tracking-wider">B2B Dashboard · Ops UX</span>
     <div class="absolute top-16 right-8 hidden lg:flex bg-brand-amber border-2 border-black rounded-full px-5 py-2 shadow-[6px_6px_0_0_rgba(0,0,0,1)] animate-float-3 items-center gap-2" style="animation-delay:-2s">
       <span class="text-xs font-black text-black uppercase tracking-wider">Leads → Activation Clarity</span>
     </div>
@@ -218,8 +217,10 @@
           ErudiFi · Edutech ·
           <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2 py-0.5">
             <svg viewBox="0 0 6 4" class="w-4 h-[10px] rounded-[1px] overflow-hidden border border-black/40" preserveAspectRatio="none" aria-hidden="true">
-              <rect width="6" height="2" fill="#ff0000"/>
-              <rect y="2" width="6" height="2" fill="#ffffff"/>
+              <rect width="6" height="2" fill="#0038a8"/>
+              <rect y="2" width="6" height="2" fill="#ce1126"/>
+              <polygon points="0,0 2.5,2 0,4" fill="#ffffff"/>
+              <circle cx="0.8" cy="2" r="0.25" fill="#fcd116"/>
             </svg>
             <span class="text-[10px] font-bold uppercase tracking-wider">Philippines</span>
           </span>
@@ -494,10 +495,17 @@
           </div>
         </div>
       </div>
-      <div class="lg:col-span-7">
-        <div class="relative group h-full flex items-center justify-center gap-3 bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
-          <img src="./project_erudifi/workshop_school_squad.png" alt="School Squad workshop board and voting output" class="max-w-[48%] max-h-[520px] w-auto h-auto object-contain rounded-2xl shadow-brutal-amber">
-          <img src="./project_erudifi/workshop_partnerships.png" alt="Partnership workshop synthesis board across PH and ID teams" class="max-w-[48%] max-h-[520px] w-auto h-auto object-contain rounded-2xl shadow-brutal-amber">
+      <div class="lg:col-span-7 space-y-5">
+        <p class="text-gray-300 leading-relaxed">
+          We ran two structured workshop tracks. The School Squad session converged on day-to-day operator pain points and dashboard interaction patterns, while the Partnerships session aligned PH and ID teams on lead generation, legal, onboarding, and troubleshooting workflows.
+        </p>
+        <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">School Squad Workshop</p>
+          <img src="./project_erudifi/workshop_school_squad.png" alt="School Squad workshop board and voting output" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
+        </div>
+        <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Partnerships Workshop</p>
+          <img src="./project_erudifi/workshop_partnerships.png" alt="Partnership workshop synthesis board across PH and ID teams" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
         </div>
       </div>
     </div>
@@ -613,9 +621,19 @@
     </div>
 
     <!-- hero shot hi-fi -->
-    <div class="relative group mb-12">
+    <div class="relative group mb-10 max-w-5xl mx-auto">
       <div class="absolute -inset-1 bg-brand-amber rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
       <img src="./project_erudifi/high_fidelity_overview.png" alt="Shipped high-fidelity Bukas partner dashboard designs" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-amber bg-white object-contain">
+    </div>
+
+    <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10 mb-10">
+      <h3 class="text-2xl font-black uppercase heading-brutal text-white mb-4">Design Narrative</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+        <p><strong class="text-white">Information hierarchy:</strong> weekly activations, new applications, and disbursement updates are surfaced first so teams can triage quickly before diving into module-level detail.</p>
+        <p><strong class="text-white">Action density:</strong> high-frequency actions like Add Lead, Batch Upload, and filtered lead review are grouped in the same operational zone to reduce tab-hopping.</p>
+        <p><strong class="text-white">Status transparency:</strong> conversion states are visible from encoded leads to activation, making drop-off and intervention points obvious for both ops and partnership teams.</p>
+        <p><strong class="text-white">Risk readability:</strong> cohort-level risk summaries and repayment status tables support fast prioritization without requiring manual spreadsheet reconciliation.</p>
+      </div>
     </div>
 
     <!-- detail shots grid -->
@@ -651,10 +669,10 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
       <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-6 relative">
         <div class="absolute top-4 left-4 bg-brand-pink text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">Before</div>
-        <div class="phone-shell bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[9/19] max-w-[240px] mx-auto">
+        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[16/10] w-full max-w-[560px] mx-auto">
           <img src="./project_erudifi/dashboard_leads_landing.png" alt="Before state dashboard" class="w-full h-full object-cover">
         </div>
         <ul class="mt-6 space-y-2 text-sm text-gray-400">
@@ -666,7 +684,7 @@
       </div>
       <div class="bg-brand-vibrant/10 border-2 border-brand-vibrant/30 rounded-[2rem] p-6 relative">
         <div class="absolute top-4 left-4 bg-brand-amber text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">After</div>
-        <div class="phone-shell bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[9/19] max-w-[240px] mx-auto">
+        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[16/10] w-full max-w-[560px] mx-auto">
           <img src="./project_erudifi/dashboard_home.png" alt="After state dashboard" class="w-full h-full object-cover">
         </div>
         <ul class="mt-6 space-y-2 text-sm text-gray-300">
