@@ -70,6 +70,18 @@
       pointer-events: none;
       transition: transform 0.24s cubic-bezier(0.55, 0, 0.85, 0.35), opacity 0.2s ease-in;
   }
+
+  /* ── Readability improvements ── */
+  #rdprogress { position:fixed; top:0; left:0; height:3px; z-index:999; width:0%; pointer-events:none; transition:width .1s linear; background:linear-gradient(90deg,#4A88FF,#0847f7); }
+  main > section h2 { text-transform:none !important; }
+  main p.text-gray-400 { color:#c5cad6 !important; }
+  main p.text-gray-300 { color:#dde1e9 !important; }
+  main p { line-height:1.82; }
+  #secNav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:8px; align-items:center; }
+  @media(min-width:1280px){ #secNav { display:flex; } }
+  .sec-dot { width:6px; height:6px; border-radius:999px; background:rgba(255,255,255,.2); border:none; padding:0; cursor:pointer; transition:width .2s,height .2s,background-color .2s ease; }
+  .sec-dot.is-active { width:8px; height:8px; background:rgba(255,255,255,.9); }
+  .sec-dot:hover { background:rgba(255,255,255,.6); }
   .scroll-progress {
       position: fixed;
       top: 0;
@@ -153,6 +165,8 @@
 </head>
 <body class="antialiased font-sans page-fx">
 
+<div id="rdprogress" aria-hidden="true"></div>
+<div id="secNav" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"></div>
 <div class="page-loader" aria-hidden="true">
     <div class="page-loader-pill">
@@ -169,8 +183,7 @@
 <div class="page-persist fixed top-0 w-full z-50 bg-brand-white border-b-2 border-brand-black flex flex-col md:flex-row h-auto md:h-16">
     <div class="flex items-center px-6 py-4 md:py-0 border-b-2 md:border-b-0 md:border-r-2 border-brand-black md:w-1/4 xl:w-1/5">
         <a href="../" class="font-bold text-xl tracking-tight flex items-center gap-2 text-brand-black">
-            <svg class="w-5 h-5 text-brand-black" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 6l5 10H7l5-10z"/></svg>
-            safrian
+            <img src="/sj-logo.svg" alt="SJ" class="w-8 h-8 object-contain"> safrian
         </a>
     </div>
     <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
@@ -701,12 +714,12 @@
 
   <!-- Navigation -->
   <section class="pt-16 border-t-2 border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
-    <a href="../semaai_project/" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
+    <a href="../#work" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-      Prev · Semaai App
-    </a>
-    <a href="../#work" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
       All Projects
+    </a>
+    <a href="../train_project/" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
+      Next · Train
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
     </a>
   </section>
@@ -867,6 +880,43 @@
           const scrolled = (winScroll / height);
           progress.style.setProperty('--p', scrolled);
       }, { passive: true });
+  })();
+
+  // Reading progress bar
+  (function(){
+    const bar = document.getElementById('rdprogress');
+    if (!bar) return;
+    window.addEventListener('scroll', () => {
+      const d = document.documentElement;
+      bar.style.width = Math.min(100, (d.scrollTop || document.body.scrollTop) / (d.scrollHeight - d.clientHeight) * 100) + '%';
+    }, { passive: true });
+  })();
+
+  // Section dot navigator
+  (function(){
+    const nav = document.getElementById('secNav');
+    if (!nav) return;
+    const sections = [...document.querySelectorAll('main > section')].filter(s => s.querySelector('h2'));
+    if (sections.length < 2) return;
+    sections.forEach(s => {
+      const h2text = s.querySelector('h2')?.textContent?.replace(/\d+/g,'').trim() || '';
+      const btn = document.createElement('button');
+      btn.className = 'sec-dot';
+      btn.title = h2text;
+      btn.setAttribute('aria-label', 'Jump to: ' + h2text);
+      btn.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+      nav.appendChild(btn);
+    });
+    const dots = [...nav.querySelectorAll('.sec-dot')];
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = sections.indexOf(e.target);
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+    sections.forEach(s => obs.observe(s));
   })();
 
   // Page transitions logic
