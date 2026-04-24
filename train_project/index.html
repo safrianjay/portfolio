@@ -55,9 +55,27 @@
   .talk-backdrop.is-open{opacity:1;pointer-events:auto}
   .talk-modal{background:#fff;border:2px solid #0a0a0a;box-shadow:8px 8px 0 #0a0a0a;border-radius:1.75rem;padding:2rem;width:100%;max-width:420px;transform:translateY(24px) scale(.96);transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s ease;opacity:0}
   .talk-backdrop.is-open .talk-modal{transform:translateY(0) scale(1);opacity:1}
+
+  /* ── Readability improvements ── */
+  #rdprogress { position:fixed; top:0; left:0; height:3px; z-index:999; width:0%; pointer-events:none; transition:width .1s linear; background:linear-gradient(90deg,#a7f05a,#0847f7); }
+  main > section h2 { text-transform:none !important; }
+  main p.text-gray-400 { color:#c5cad6 !important; }
+  main p.text-gray-300 { color:#dde1e9 !important; }
+  main p { line-height:1.82; }
+  #secNav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:8px; align-items:center; }
+  @media(min-width:1280px){ #secNav { display:flex; } }
+  .sec-dot { width:6px; height:6px; border-radius:999px; background:rgba(255,255,255,.2); border:none; padding:0; cursor:pointer; transition:width .2s,height .2s,background-color .2s ease; }
+  .sec-dot.is-active { width:8px; height:8px; background:rgba(255,255,255,.9); }
+  .sec-dot:hover { background:rgba(255,255,255,.6); }
 </style>
 </head>
 <body class="antialiased font-sans relative">
+
+<!-- Reading progress bar -->
+<div id="rdprogress" aria-hidden="true"></div>
+
+<!-- Section navigator -->
+<div id="secNav" aria-hidden="true"></div>
 
 <div class="fixed inset-0 z-[-1] pointer-events-none bg-grid-pattern"></div>
 <div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-vibrant/15 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
@@ -462,6 +480,46 @@
       scrollTimeout = setTimeout(() => nav.classList.remove('is-hidden'), 600);
     }, { passive: true });
   })();
+</script>
+
+<script>
+// Reading progress
+(function(){
+  const bar = document.getElementById('rdprogress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const scrolled = d.scrollTop || document.body.scrollTop;
+    bar.style.width = Math.min(100, scrolled / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  }, { passive: true });
+})();
+
+// Section dot navigator
+(function(){
+  const nav = document.getElementById('secNav');
+  if (!nav) return;
+  const sections = [...document.querySelectorAll('main > section')].filter(s => s.querySelector('h2'));
+  if (sections.length < 2) return;
+  sections.forEach((s, i) => {
+    const h2text = s.querySelector('h2')?.textContent?.replace(/\d+/g,'').trim() || '';
+    const btn = document.createElement('button');
+    btn.className = 'sec-dot';
+    btn.title = h2text;
+    btn.setAttribute('aria-label', 'Jump to: ' + h2text);
+    btn.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(btn);
+  });
+  const dots = [...nav.querySelectorAll('.sec-dot')];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.indexOf(e.target);
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
+})();
 </script>
 </body>
 </html>

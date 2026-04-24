@@ -170,9 +170,27 @@
   .bn-item:active, .mobile-bottom-nav .talk-trigger:active { transform: scale(.9); }
   nav.mobile-bottom-nav { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 0) scale(1); transform-origin: 50% 100%; transition: transform .75s cubic-bezier(.18, 1.65, .4, 1), opacity .4s ease-out; will-change: transform, opacity; }
   nav.mobile-bottom-nav.is-hidden { transform: translate(-50%, 170%) scale(.6); opacity: 0; pointer-events: none; transition: transform .24s cubic-bezier(.55, 0, .85, .35), opacity .2s ease-in; }
+
+  /* ── Readability improvements ── */
+  #rdprogress { position:fixed; top:0; left:0; height:3px; z-index:999; width:0%; pointer-events:none; transition:width .1s linear; background:linear-gradient(90deg,#f8ba28,#0847f7); }
+  main > section h2 { text-transform:none !important; }
+  main p.text-gray-400 { color:#c5cad6 !important; }
+  main p.text-gray-300 { color:#dde1e9 !important; }
+  main p { line-height:1.82; }
+  #secNav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:8px; align-items:center; }
+  @media(min-width:1280px){ #secNav { display:flex; } }
+  .sec-dot { width:6px; height:6px; border-radius:999px; background:rgba(255,255,255,.2); border:none; padding:0; cursor:pointer; transition:width .2s,height .2s,background-color .2s ease; }
+  .sec-dot.is-active { width:8px; height:8px; background:rgba(255,255,255,.9); }
+  .sec-dot:hover { background:rgba(255,255,255,.6); }
 </style>
 </head>
 <body class="antialiased font-sans relative page-fx">
+
+<!-- Reading progress bar -->
+<div id="rdprogress" aria-hidden="true"></div>
+
+<!-- Section navigator -->
+<div id="secNav" aria-hidden="true"></div>
 
 <!-- Page Loader -->
 <div class="page-loader" aria-hidden="true">
@@ -1165,6 +1183,46 @@ document.addEventListener("keydown",e=>{"Escape"===e.key&&closeTalkModal()});
       }
     });
   }
+})();
+</script>
+
+<script>
+// Reading progress
+(function(){
+  const bar = document.getElementById('rdprogress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const scrolled = d.scrollTop || document.body.scrollTop;
+    bar.style.width = Math.min(100, scrolled / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  }, { passive: true });
+})();
+
+// Section dot navigator
+(function(){
+  const nav = document.getElementById('secNav');
+  if (!nav) return;
+  const sections = [...document.querySelectorAll('main > section')].filter(s => s.querySelector('h2'));
+  if (sections.length < 2) return;
+  sections.forEach((s, i) => {
+    const h2text = s.querySelector('h2')?.textContent?.replace(/\d+/g,'').trim() || '';
+    const btn = document.createElement('button');
+    btn.className = 'sec-dot';
+    btn.title = h2text;
+    btn.setAttribute('aria-label', 'Jump to: ' + h2text);
+    btn.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(btn);
+  });
+  const dots = [...nav.querySelectorAll('.sec-dot')];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.indexOf(e.target);
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
 })();
 </script>
 
