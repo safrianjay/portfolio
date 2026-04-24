@@ -164,6 +164,11 @@
   /* tab buttons */
   .tab-btn.is-active { background:#0847f7; color:#fff; border-color:#0847f7; }
   .phone-shell { aspect-ratio: 320 / 640; }
+  .bn-item { transition: background-color .25s ease, color .25s ease, transform .18s cubic-bezier(.22, 1, .36, 1); }
+  .bn-item.is-active { background-color: #c9ddff; color: #0847f7; }
+  .bn-item:active, .mobile-bottom-nav .talk-trigger:active { transform: scale(.9); }
+  nav.mobile-bottom-nav { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 0) scale(1); transform-origin: 50% 100%; transition: transform .75s cubic-bezier(.18, 1.65, .4, 1), opacity .4s ease-out; will-change: transform, opacity; }
+  nav.mobile-bottom-nav.is-hidden { transform: translate(-50%, 170%) scale(.6); opacity: 0; pointer-events: none; transition: transform .24s cubic-bezier(.55, 0, .85, .35), opacity .2s ease-in; }
 </style>
 </head>
 <body class="antialiased font-sans relative page-fx">
@@ -475,8 +480,9 @@
       <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">School Squad + Partnerships synthesis</span>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-      <div class="lg:col-span-5 flex flex-col gap-6">
+    <!-- Intro + stats row -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+      <div class="lg:col-span-4 flex flex-col gap-6">
         <div class="bg-brand-amber text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
           <p class="text-xs font-bold tag-chip uppercase mb-4">Methodology</p>
           <ul class="space-y-3 font-medium text-sm">
@@ -495,18 +501,22 @@
           </div>
         </div>
       </div>
-      <div class="lg:col-span-7 space-y-5">
-        <p class="text-gray-300 leading-relaxed">
+      <div class="lg:col-span-8 flex flex-col justify-center">
+        <p class="text-gray-300 leading-relaxed text-lg">
           We ran two structured workshop tracks. The School Squad session converged on day-to-day operator pain points and dashboard interaction patterns, while the Partnerships session aligned PH and ID teams on lead generation, legal, onboarding, and troubleshooting workflows.
         </p>
-        <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
-          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">School Squad Workshop</p>
-          <img src="./project_erudifi/workshop_school_squad.png" alt="School Squad workshop board and voting output" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
-        </div>
-        <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-4">
-          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Partnerships Workshop</p>
-          <img src="./project_erudifi/workshop_partnerships.png" alt="Partnership workshop synthesis board across PH and ID teams" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
-        </div>
+      </div>
+    </div>
+
+    <!-- Workshop images — full width, side by side -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">School Squad Workshop</p>
+        <img src="./project_erudifi/workshop_school_squad.png" alt="School Squad workshop board and voting output" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
+      </div>
+      <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Partnerships Workshop</p>
+        <img src="./project_erudifi/workshop_partnerships.png" alt="Partnership workshop synthesis board across PH and ID teams" class="w-full h-auto object-contain rounded-2xl shadow-brutal-amber">
       </div>
     </div>
 
@@ -637,7 +647,7 @@
     </div>
 
     <!-- detail shots grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
       <div class="group relative flex flex-col gap-5 items-center md:items-start">
         <div class="relative overflow-hidden rounded-[2rem] border-2 border-white/20 bg-white shadow-brutal-dark group-hover:-translate-y-2 group-hover:shadow-brutal-amber transition-all duration-300 w-full max-w-[260px]">
           <img src="./project_erudifi/dashboard_home.png" alt="Bukas dashboard home screen" class="w-full h-auto object-contain">
@@ -658,41 +668,36 @@
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ========== BEFORE / AFTER ========== -->
-  <section class="mb-32">
-    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
-      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
-        <span class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center text-sm border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">08</span>
-        Before / After
-      </h2>
-    </div>
-
+    <!-- Design challenge vs shipped comparison -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-6 relative">
-        <div class="absolute top-4 left-4 bg-brand-pink text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">Before</div>
-        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[16/10] w-full max-w-[560px] mx-auto">
-          <img src="./project_erudifi/dashboard_leads_landing.png" alt="Before state dashboard" class="w-full h-full object-cover">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-6">
+        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden flex items-center justify-center aspect-[16/10] w-full mx-auto">
+          <img src="./project_erudifi/dashboard_leads_landing.png" alt="Initial leads dashboard design" class="w-full h-full object-cover">
         </div>
-        <ul class="mt-6 space-y-2 text-sm text-gray-400">
-          <li>✕ Leads and activation states were split across tools</li>
-          <li>✕ Batch upload outcomes were hard to validate</li>
-          <li>✕ Risk monitoring relied on manual reconciliation</li>
-          <li>✕ Admin and campus access setup was time-consuming</li>
-        </ul>
+        <div class="mt-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Design Challenges We Set Out to Solve</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>→ Unify leads and activation states in one operational view</li>
+            <li>→ Make batch upload outcomes explicit and easy to validate</li>
+            <li>→ Surface risk monitoring without manual reconciliation</li>
+            <li>→ Simplify admin and campus access management</li>
+          </ul>
+        </div>
       </div>
-      <div class="bg-brand-vibrant/10 border-2 border-brand-vibrant/30 rounded-[2rem] p-6 relative">
-        <div class="absolute top-4 left-4 bg-brand-amber text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black">After</div>
-        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden mt-12 flex items-center justify-center aspect-[16/10] w-full max-w-[560px] mx-auto">
-          <img src="./project_erudifi/dashboard_home.png" alt="After state dashboard" class="w-full h-full object-cover">
+      <div class="bg-brand-vibrant/10 border-2 border-brand-vibrant/30 rounded-[2rem] p-6">
+        <div class="bg-white rounded-2xl border-2 border-black overflow-hidden flex items-center justify-center aspect-[16/10] w-full mx-auto">
+          <img src="./project_erudifi/dashboard_home.png" alt="Shipped dashboard design" class="w-full h-full object-cover">
         </div>
-        <ul class="mt-6 space-y-2 text-sm text-gray-300">
-          <li>✓ Conversion pipeline is visible from lead to activation</li>
-          <li>✓ Batch actions include clear success and follow-up cues</li>
-          <li>✓ Risk module highlights cohort health at a glance</li>
-          <li>✓ Admin and permission flows are centralized</li>
-        </ul>
+        <div class="mt-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">What We Shipped</p>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li>✓ Conversion pipeline visible from lead to activation</li>
+            <li>✓ Batch actions with clear success and follow-up cues</li>
+            <li>✓ Risk module highlighting cohort health at a glance</li>
+            <li>✓ Centralized admin and permission flows</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
