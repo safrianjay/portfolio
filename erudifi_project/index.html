@@ -499,31 +499,29 @@
       <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">School Squad + Partnerships synthesis</span>
     </div>
 
-    <!-- Intro + stats row -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
-      <div class="lg:col-span-4 flex flex-col gap-6">
-        <div class="bg-brand-amber text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
-          <p class="text-xs font-bold tag-chip uppercase mb-4">Methodology</p>
-          <ul class="space-y-3 font-medium text-sm">
-            <li class="flex gap-3"><span class="font-black">→</span> Flow mapping from lead upload to activation</li>
-            <li class="flex gap-3"><span class="font-black">→</span> School Squad ideation workshop (pain points, ideas, voting)</li>
-            <li class="flex gap-3"><span class="font-black">→</span> Partnerships workshop across PH and ID teams</li>
-            <li class="flex gap-3"><span class="font-black">→</span> Concept prioritization into module architecture</li>
-          </ul>
-        </div>
-        <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
-          <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-4">Participant snapshot</p>
-          <div class="grid grid-cols-3 gap-4">
-            <div><p class="metric-big text-4xl font-black text-white">8</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Squad members</p></div>
-            <div><p class="metric-big text-4xl font-black text-white">2</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Market teams</p></div>
-            <div><p class="metric-big text-4xl font-black text-white">5</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Pain points each</p></div>
-          </div>
-        </div>
+    <!-- Intro paragraph — full width, read this first -->
+    <p class="text-lg text-gray-200 leading-relaxed mb-8 max-w-4xl">
+      We ran two structured workshop tracks. The School Squad session converged on day-to-day operator pain points and dashboard interaction patterns, while the Partnerships session aligned PH and ID teams on lead generation, legal, onboarding, and troubleshooting workflows.
+    </p>
+
+    <!-- Methodology + Participant snapshot — side by side -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-brand-amber text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
+        <p class="text-xs font-bold tag-chip uppercase mb-4">Methodology</p>
+        <ul class="space-y-3 font-medium text-sm">
+          <li class="flex gap-3"><span class="font-black">→</span> Flow mapping from lead upload to activation</li>
+          <li class="flex gap-3"><span class="font-black">→</span> School Squad ideation workshop (pain points, ideas, voting)</li>
+          <li class="flex gap-3"><span class="font-black">→</span> Partnerships workshop across PH and ID teams</li>
+          <li class="flex gap-3"><span class="font-black">→</span> Concept prioritization into module architecture</li>
+        </ul>
       </div>
-      <div class="lg:col-span-8 flex flex-col justify-center">
-        <p class="text-gray-300 leading-relaxed text-lg">
-          We ran two structured workshop tracks. The School Squad session converged on day-to-day operator pain points and dashboard interaction patterns, while the Partnerships session aligned PH and ID teams on lead generation, legal, onboarding, and troubleshooting workflows.
-        </p>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 flex flex-col justify-center">
+        <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-6">Participant snapshot</p>
+        <div class="grid grid-cols-3 gap-4">
+          <div><p class="metric-big text-4xl font-black text-white">8</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Squad members</p></div>
+          <div><p class="metric-big text-4xl font-black text-white">2</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Market teams</p></div>
+          <div><p class="metric-big text-4xl font-black text-white">5</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Pain points each</p></div>
+        </div>
       </div>
     </div>
 
@@ -649,12 +647,6 @@
       <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Shipped interface</span>
     </div>
 
-    <!-- hero shot hi-fi -->
-    <div class="relative group mb-10 max-w-5xl mx-auto">
-      <div class="absolute -inset-1 bg-brand-amber rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-      <img src="./project_erudifi/high_fidelity_overview.png" alt="Shipped high-fidelity Bukas partner dashboard designs" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-amber bg-white object-contain">
-    </div>
-
     <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10 mb-10">
       <h3 class="text-2xl font-black uppercase heading-brutal text-white mb-4">Design Narrative</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
@@ -663,6 +655,12 @@
         <p><strong class="text-white">Status transparency:</strong> conversion states are visible from encoded leads to activation, making drop-off and intervention points obvious for both ops and partnership teams.</p>
         <p><strong class="text-white">Risk readability:</strong> cohort-level risk summaries and repayment status tables support fast prioritization without requiring manual spreadsheet reconciliation.</p>
       </div>
+    </div>
+
+    <!-- hero shot hi-fi -->
+    <div class="relative group mb-10 max-w-3xl mx-auto">
+      <div class="absolute -inset-1 bg-brand-amber rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+      <img src="./project_erudifi/high_fidelity_overview.png" alt="Shipped high-fidelity Bukas partner dashboard designs" class="w-full h-auto image-frame border-2 border-white/20 rounded-2xl relative z-10 shadow-brutal-amber bg-white object-contain">
     </div>
 
     <!-- detail shots grid -->
@@ -774,8 +772,8 @@
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
       All Projects
     </a>
-    <a href="../semaai_project/" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
-      Next · Semaai
+    <a href="../train_project/" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
+      Next · Train
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
     </a>
   </section>
