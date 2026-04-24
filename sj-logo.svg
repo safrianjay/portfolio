@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280">
+  <rect width="280" height="280" rx="0" fill="#3D52E8"/>
+  <!-- drop shadow circle -->
+  <circle cx="148" cy="150" r="108" fill="#0a0a0a"/>
+  <!-- white circle -->
+  <circle cx="140" cy="140" r="108" fill="#ffffff" stroke="#0a0a0a" stroke-width="7"/>
+  <!-- SJ text -->
+  <text x="140" y="168" font-family="Inter, Arial Black, sans-serif" font-size="88" font-weight="900" text-anchor="middle" fill="#0a0a0a" letter-spacing="-2">SJ</text>
+</svg>
