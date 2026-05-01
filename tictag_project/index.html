@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0a"/>
+    <rect x="0" y="0" width="1200" height="80" fill="#131920"/>
+    <rect x="120" y="22" width="220" height="36" rx="8" fill="#00d4ff"/>
+    <rect x="120" y="120" width="280" height="120" rx="16" fill="#131920"/>
+    <rect x="120" y="120" width="8" height="120" rx="4" fill="#22c55e"/>
+    <rect x="440" y="120" width="280" height="120" rx="16" fill="#131920"/>
+    <rect x="440" y="120" width="8" height="120" rx="4" fill="#f59e0b"/>
+    <rect x="760" y="120" width="280" height="120" rx="16" fill="#131920"/>
+    <rect x="760" y="120" width="8" height="120" rx="4" fill="#ef4444"/>
+    <rect x="120" y="290" width="240" height="160" rx="12" fill="#0f1820"/>
+    <rect x="380" y="290" width="240" height="160" rx="12" fill="#0f1820"/>
+    <rect x="640" y="290" width="240" height="160" rx="12" fill="#0f1820"/>
+    <rect x="900" y="290" width="240" height="160" rx="12" fill="#ef4444" opacity="0.3"/>
+    <rect x="120" y="510" width="960" height="56" rx="12" fill="#131920"/>
+    <rect x="136" y="525" width="160" height="26" rx="6" fill="#22c55e"/>
+    <rect x="312" y="525" width="160" height="26" rx="6" fill="#22c55e"/>
+    <rect x="488" y="525" width="160" height="26" rx="6" fill="#f59e0b"/>
+    <rect x="664" y="525" width="160" height="26" rx="6" fill="#22c55e"/>
+    <rect x="840" y="525" width="160" height="26" rx="6" fill="#22c55e"/>
+    <rect x="120" y="640" width="640" height="48" rx="8" fill="#00d4ff" opacity="0.25"/>
+  </svg>
+</template>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/sj-logo.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safrian | TicTag AI Video Feed Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --font-sans: Inter, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --color-brand-black: #0a0a0a;
+    --color-brand-white: #ffffff;
+    --color-brand-orange: #f97316;
+    --color-brand-cyan: #f97316;
+    --color-brand-vibrant: #1e3a8a;
+    --color-brand-navy: #0c1e3d;
+    --color-brand-deep: #0a1628;
+    --color-brand-purple: #7c3aed;
+    --color-brand-green: #22c55e;
+    --color-brand-amber: #f59e0b;
+    --color-brand-red: #ef4444;
+    --color-brand-pink: #ff3366;
+    --shadow-brutal-white: 8px 8px 0px 0px rgba(255,255,255,1);
+    --shadow-brutal-cyan:  8px 8px 0px 0px rgba(249,115,22,1);
+    --shadow-brutal-orange:8px 8px 0px 0px rgba(249,115,22,1);
+    --shadow-brutal-navy:  8px 8px 0px 0px rgba(12,30,61,1);
+    --shadow-brutal-dark:  8px 8px 0px 0px rgba(10,10,10,1);
+    --shadow-brutal-green: 8px 8px 0px 0px rgba(34,197,94,1);
+    --shadow-brutal-amber: 8px 8px 0px 0px rgba(245,158,11,1);
+    --shadow-brutal-red:   8px 8px 0px 0px rgba(239,68,68,1);
+    --shadow-brutal-purple:8px 8px 0px 0px rgba(124,58,237,1);
+  }
+</style>
+<style>
+  body { background-color:#0a0a0a; color:#ffffff; }
+  .heading-brutal { letter-spacing:-0.02em; line-height:1.05; }
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  @keyframes float-1 { 0%,100%{transform:translate(0,0) rotate(-6deg);} 50%{transform:translate(-10px,10px) rotate(5deg);} }
+  @keyframes float-2 { 0%,100%{transform:translate(0,0) scale(1) rotate(6deg);} 50%{transform:translate(15px,-10px) scale(1.05) rotate(0);} }
+  @keyframes float-3 { 0%,100%{transform:translateY(0) rotate(3deg);} 50%{transform:translateY(-16px) rotate(-4deg);} }
+  .animate-float-1 { animation: float-1 6s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 8s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 9s ease-in-out infinite; }
+  .image-frame { transition: transform .3s ease, box-shadow .3s ease; }
+  .image-frame:hover { transform: translate(-4px,-4px); box-shadow: 12px 12px 0 0 rgba(249,115,22,1); }
+  .metric-big { font-variant-numeric: tabular-nums; letter-spacing:-0.04em; }
+  .tag-chip { letter-spacing:.08em; }
+  @keyframes barRise { from { height: 0; } to { height: var(--h); } }
+  .bar { animation: barRise 1.2s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1);} 50% { opacity:.4; transform:scale(1.3);} }
+  .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+  .dashboard-mock { background:#0a1628; border-radius:16px; overflow:hidden; }
+  .dashboard-mock svg { display:block; width:100%; height:auto; }
+  #rdprogress { position:fixed; top:0; left:0; height:3px; z-index:999; width:0%; pointer-events:none; transition:width .1s linear; background:linear-gradient(90deg,#f97316,#1e3a8a); }
+  main p.text-gray-400 { color:#c5cad6 !important; }
+  main p.text-gray-300 { color:#dde1e9 !important; }
+  main p { line-height:1.82; }
+  #secNav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); z-index:40; display:none; flex-direction:column; gap:8px; align-items:center; }
+  @media(min-width:1280px){ #secNav { display:flex; } }
+  .sec-dot { width:6px; height:6px; border-radius:999px; background:rgba(255,255,255,.2); border:none; padding:0; cursor:pointer; transition:width .2s,height .2s,background-color .2s ease; }
+  .sec-dot.is-active { width:8px; height:8px; background:#f97316; }
+  .sec-dot:hover { background:rgba(255,255,255,.6); }
+</style>
+</head>
+<body class="antialiased font-sans relative">
+
+<div id="rdprogress" aria-hidden="true"></div>
+<div id="secNav" aria-hidden="true"></div>
+
+<!-- Ambient bg -->
+<div class="fixed inset-0 z-[-1] pointer-events-none bg-grid-pattern"></div>
+<div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none z-[-1]"></div>
+
+<!-- Header -->
+<div class="fixed top-0 w-full z-50 flex flex-col md:flex-row h-auto md:h-16 bg-brand-white border-b-2 border-brand-black">
+  <div class="flex items-center px-6 py-4 md:py-0 md:w-1/4 xl:w-1/5 md:border-r-2 border-brand-black">
+    <a href="../index.html" class="font-bold text-xl tracking-tight flex items-center gap-2 text-brand-black">
+      <img src="/sj-logo.svg" alt="SJ" class="w-8 h-8 object-contain"> safrian
+    </a>
+  </div>
+  <nav class="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-bold tracking-wide">
+    <a href="../index.html#work" class="text-brand-black hover:text-brand-vibrant transition-colors">Work</a>
+    <a href="../index.html#process" class="text-brand-black hover:text-brand-vibrant transition-colors">Process</a>
+    <a href="../index.html#expertise" class="text-brand-black hover:text-brand-vibrant transition-colors">Expertise</a>
+  </nav>
+  <div class="hidden md:flex items-center gap-3 px-6 border-l-2 border-brand-black">
+    <a href="../about/" class="px-5 py-1.5 rounded-full text-sm font-bold transition-all border-2 border-brand-black text-brand-black bg-transparent hover:bg-brand-black hover:text-brand-white">About Me</a>
+    <a href="mailto:safrianjayadi@gmail.com" class="px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors bg-brand-black text-brand-white hover:bg-gray-800">Let's Talk
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+    </a>
+  </div>
+</div>
+
+<main class="pt-24 md:pt-32 px-6 md:px-12 max-w-[90rem] mx-auto pb-24">
+
+  <!-- ========== HERO ========== -->
+  <header class="mb-20 md:mb-24 relative">
+    <div class="absolute top-0 right-0 hidden lg:flex bg-brand-black border-2 border-white rounded-full px-5 py-2 shadow-brutal-white animate-float-1 items-center gap-2">
+      <div class="w-2 h-2 bg-brand-cyan rounded-full pulse-dot"></div>
+      <span class="text-xs font-bold text-white uppercase tracking-wider">AI · Computer Vision · B2B</span>
+    </div>
+    <div class="absolute top-16 right-8 hidden lg:flex bg-brand-cyan border-2 border-black rounded-full px-5 py-2 shadow-[6px_6px_0_0_rgba(0,0,0,1)] animate-float-3 items-center gap-2" style="animation-delay:-2s">
+      <span class="text-xs font-black text-black uppercase tracking-wider">−87% MTTD</span>
+    </div>
+
+    <div class="mb-8 flex items-center gap-4">
+      <div class="bg-white border-2 border-white rounded-2xl p-2 shadow-brutal-white w-16 h-16 flex items-center justify-center">
+        <img src="../tictag.png" alt="TicTag logo" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm font-bold text-white flex flex-wrap items-center gap-2">
+          TicTag · AI &amp; Computer Vision ·
+          <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-2 py-0.5">
+            <svg viewBox="0 0 6 4" class="w-4 h-[10px] rounded-[1px] overflow-hidden border border-black/40" preserveAspectRatio="none" aria-hidden="true">
+              <rect width="6" height="4" fill="#ED2E38"/>
+              <rect y="2" width="6" height="2" fill="#ffffff"/>
+              <circle cx="3" cy="1" r="0.7" fill="#ffffff"/>
+              <g fill="#ED2E38"><rect x="2.4" y="0.5" width="1.2" height="1" /></g>
+            </svg>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Singapore</span>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase heading-brutal text-white mb-8 max-w-5xl">
+      Making AI Video Processing<br>
+      <span class="text-brand-cyan">visible to the people who run it.</span>
+    </h1>
+
+    <p class="text-xl md:text-2xl font-medium text-gray-400 max-w-3xl leading-relaxed mb-16">
+      A live-feed monitoring interface for TicTag's AI video pipeline. We turned silent failures into actionable alerts, cut mean time to detect from 52 minutes to under 8, and gave operations teams a single pane of glass for every camera and model in production.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-b border-white/10 py-8">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Role</p>
+        <p class="text-base font-medium text-white">Senior Product Designer</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Timeline</p>
+        <p class="text-base font-medium text-white">2023 · 10 weeks</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Platform</p>
+        <p class="text-base font-medium text-white">Web Dashboard</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Industry</p>
+        <p class="text-base font-medium text-white">AI / Computer Vision</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== KEY METRICS STRIP ========== -->
+  <section class="mb-32" id="secMetrics">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-brand-cyan border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-70 mb-3">Mean Time To Detect</p>
+        <p class="metric-big text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">−87<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">52 min → under 8 min</p>
+      </div>
+      <div class="bg-white border-2 border-black text-black rounded-[2rem] p-8 shadow-brutal-dark hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Eng. Escalations</p>
+        <p class="metric-big text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-brand-vibrant">−65<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-600">Ops can now self-diagnose</p>
+      </div>
+      <div class="bg-brand-purple border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-3">Pipeline Uptime</p>
+        <p class="metric-big text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">99.2<span class="text-3xl align-top">%</span></p>
+        <p class="text-xs font-bold uppercase mt-3 opacity-80">After launch, sustained 90 days</p>
+      </div>
+      <div class="bg-black border-2 border-white text-white rounded-[2rem] p-8 shadow-brutal-white hover:-translate-y-2 transition-transform">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Feeds Onboarded</p>
+        <p class="metric-big text-4xl sm:text-5xl md:text-6xl font-black text-brand-cyan">120<span class="text-3xl align-top">+</span></p>
+        <p class="text-xs font-bold uppercase mt-3 text-gray-400">Cameras live in week one</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32" id="secContext">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-6">
+          <span class="w-10 h-10 rounded-full bg-brand-cyan flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">01</span>
+          Context
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Why operations teams were always the last to know — and what that cost the business.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 space-y-12 pt-2">
+      <div>
+        <h3 class="text-xl font-bold uppercase tracking-wider text-brand-cyan mb-4">The Challenge</h3>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          TicTag runs an AI video intelligence platform across retail, transit, and urban surveillance networks in Singapore and the wider region. Every minute, the pipeline ingests hundreds of CCTV feeds, decodes them, runs object detection and behavioural analytics, and writes the results back to clients. <strong class="text-white">When something failed — a camera went dark, a model hung, a queue backed up — nobody on the operations side could see it until a client called.</strong> By that point the damage had already been done.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold uppercase tracking-wider text-brand-amber mb-4">The Mandate</h3>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          As Senior Product Designer, I was asked to design a monitoring interface that made the health of every camera feed and every AI processing stage visible — at a glance, without engineering access. The tool had to work for ops teams on long on-call shifts, surface real failures without alert fatigue, and be trustworthy enough that the engineering team could stop being the first line of triage.
+        </p>
+      </div>
+
+      <!-- MTTD chart visualization -->
+      <div id="mttdCard" class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Incident response · within SLA</p>
+            <p class="text-xl md:text-2xl font-bold uppercase heading-brutal text-white">Before dashboard <span class="text-gray-600">vs</span> <span class="text-brand-cyan">after</span></p>
+          </div>
+          <div class="flex items-center gap-5 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2"><span class="w-3 h-3 bg-brand-red border-2 border-black rounded"></span><span class="text-gray-400">Before</span></div>
+            <div class="flex items-center gap-2"><span class="w-3 h-3 bg-brand-cyan border-2 border-black rounded"></span><span class="text-gray-400">After</span></div>
+          </div>
+        </div>
+
+        <div id="mttdChart" class="relative">
+          <div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-14">
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/10"></div>
+            <div class="h-px bg-white/5"></div>
+          </div>
+          <div class="absolute left-0 top-0 bottom-14 flex flex-col justify-between text-[10px] font-bold text-gray-600 -ml-1">
+            <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+          </div>
+
+          <div class="flex items-end gap-1 sm:gap-4 md:gap-10 h-48 md:h-64 pl-6 md:pl-8" id="mttdBars"></div>
+          <div class="flex gap-1 sm:gap-4 md:gap-10 pl-6 md:pl-8 mt-3" id="mttdLabels"></div>
+        </div>
+
+        <p class="text-sm font-medium text-gray-400 mt-8 leading-relaxed">
+          The biggest lift was at detection itself: incidents that used to surface only after a client phoned in were now caught in the first monitoring cycle. Every downstream stage — diagnosis, action, resolution — got faster as a consequence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESS OVERVIEW ========== -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-32" id="secProcess">
+    <div class="lg:col-span-4">
+      <div class="sticky top-28">
+        <h2 class="text-2xl md:text-3xl font-bold uppercase heading-brutal text-white flex items-center gap-4 mb-4">
+          <span class="w-10 h-10 rounded-full bg-brand-purple flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">02</span>
+          Process
+        </h2>
+        <p class="text-gray-400 font-medium text-sm leading-relaxed">Four stages, working backward from the operations team's reality.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 space-y-6 pt-2">
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">System &amp; Stakeholder Mapping</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 01</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          I sat with the platform engineers to map the full AI pipeline — ingest, decode, detect, annotate, store — and tagged every point where a failure could happen silently. We ended up with a list of fourteen failure modes, eleven of which had no user-facing signal at all.
+        </p>
+      </div>
+
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Operations Team Shadowing</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 02</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          I spent five days alongside the ops team during their daily monitoring routine and on-call shifts. I watched them juggle five separate tools — Slack, Grafana, raw log tails, a spreadsheet of camera IDs, and direct phone calls to engineers — to answer the question, "is the system actually running?"
+        </p>
+      </div>
+
+      <div class="bg-brand-white text-brand-black p-8 md:p-10 rounded-2xl border-2 border-brand-black shadow-brutal-white hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Alert Taxonomy Workshop</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 03</span>
+        </div>
+        <p class="font-medium text-gray-700 leading-relaxed">
+          With engineering, product and ops in the room, we defined a three-tier severity model — Critical, Warning, Info — and assigned each failure mode to a tier with a clear owner and a recommended first action. This became the spine of every alert in the dashboard.
+        </p>
+      </div>
+
+      <div class="bg-brand-vibrant text-white p-8 md:p-10 rounded-2xl border-2 border-black shadow-brutal-cyan hover:-translate-y-1 transition-transform">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <h3 class="text-2xl font-bold uppercase heading-brutal flex-1 min-w-0">Iterative Dashboard Design</h3>
+          <span class="text-xs font-bold tag-chip uppercase bg-black text-white px-3 py-1 rounded-full whitespace-nowrap flex-shrink-0">Stage 04</span>
+        </div>
+        <p class="font-medium text-blue-50 leading-relaxed">
+          Lo-fi wireframes tested with ops in week three, hi-fi prototypes in week six, moderated usability testing in week eight, then handoff. Every visual element was tied back to a specific failure mode from stage one or a real moment we'd watched in stage two.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXISTING SYSTEM AUDIT ========== -->
+  <section class="mb-32" id="secAudit">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-red flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">03</span>
+        The Existing System
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Audit of the "before"</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7">
+        <div class="rounded-2xl border-2 border-white/20 shadow-brutal-red overflow-hidden bg-[#0a1628]">
+          <svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" aria-label="The system the team had before: a Slack channel and a raw log tail" font-family="Inter, system-ui, sans-serif">
+            <defs>
+              <linearGradient id="bg-grad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0c1a30"/>
+                <stop offset="100%" stop-color="#070f1d"/>
+              </linearGradient>
+              <linearGradient id="slack-shadow" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="rgba(0,0,0,0)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.45)"/>
+              </linearGradient>
+            </defs>
+            <rect width="820" height="540" fill="url(#bg-grad)"/>
+            <!-- subtle grid -->
+            <g opacity="0.05" stroke="#ffffff" stroke-width="0.5">
+              <path d="M0 60 H820 M0 120 H820 M0 180 H820 M0 240 H820 M0 300 H820 M0 360 H820 M0 420 H820 M0 480 H820"/>
+              <path d="M60 0 V540 M120 0 V540 M180 0 V540 M240 0 V540 M300 0 V540 M360 0 V540 M420 0 V540 M480 0 V540 M540 0 V540 M600 0 V540 M660 0 V540 M720 0 V540 M780 0 V540"/>
+            </g>
+
+            <!-- ===== Slack window ===== -->
+            <g transform="translate(40 40)">
+              <rect width="430" height="420" rx="12" fill="#1a1d29"/>
+              <rect width="430" height="420" rx="12" fill="url(#slack-shadow)" opacity="0.6"/>
+              <!-- chrome -->
+              <rect width="430" height="36" rx="12" fill="#13151c"/>
+              <rect y="24" width="430" height="12" fill="#13151c"/>
+              <circle cx="18" cy="18" r="5" fill="#ff5f57"/>
+              <circle cx="36" cy="18" r="5" fill="#febc2e"/>
+              <circle cx="54" cy="18" r="5" fill="#28c840"/>
+              <text x="215" y="22" text-anchor="middle" fill="#9aa3b2" font-size="11" font-weight="500">Slack — TicTag</text>
+              <!-- channel header -->
+              <rect x="0" y="36" width="430" height="42" fill="#1a1d29"/>
+              <line x1="0" y1="78" x2="430" y2="78" stroke="#2a2e3a"/>
+              <text x="20" y="62" fill="#e5e7eb" font-size="14" font-weight="700">#ops-alerts</text>
+              <text x="116" y="62" fill="#6b7280" font-size="11">12 members · pinned by @ops</text>
+              <!-- messages -->
+              <!-- msg 1 -->
+              <g transform="translate(20 96)">
+                <circle cx="14" cy="14" r="14" fill="#7c3aed"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">PB</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">pipeline-bot <tspan fill="#6b7280" font-weight="500"> APP  09:14</tspan></text>
+                <text x="38" y="32" fill="#cbd5e1" font-size="11">[WARN] queue depth=412 stage=detect</text>
+              </g>
+              <!-- msg 2 -->
+              <g transform="translate(20 144)">
+                <circle cx="14" cy="14" r="14" fill="#0ea5e9"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">SR</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">siti.r <tspan fill="#6b7280" font-weight="500">  09:21</tspan></text>
+                <text x="38" y="32" fill="#cbd5e1" font-size="11">is anyone seeing this on cam-07?</text>
+              </g>
+              <!-- msg 3: real error -->
+              <g transform="translate(20 192)">
+                <circle cx="14" cy="14" r="14" fill="#ef4444"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">PB</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">pipeline-bot <tspan fill="#6b7280" font-weight="500"> APP  09:34</tspan></text>
+                <rect x="38" y="22" width="364" height="34" rx="6" fill="#2a1418" stroke="#7f1d1d"/>
+                <rect x="38" y="22" width="3" height="34" fill="#ef4444"/>
+                <text x="50" y="38" fill="#fca5a5" font-size="11" font-weight="700">ERROR · rtsp_timeout</text>
+                <text x="50" y="52" fill="#cbd5e1" font-size="10">cam-07 · retries=4 · last_seen=08:51</text>
+              </g>
+              <!-- msg 4: human shrug -->
+              <g transform="translate(20 248)">
+                <circle cx="14" cy="14" r="14" fill="#22c55e"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">AT</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">arif.t <tspan fill="#6b7280" font-weight="500">  09:42</tspan></text>
+                <text x="38" y="32" fill="#cbd5e1" font-size="11">is the AI still running on the others or not</text>
+              </g>
+              <!-- msg 5: client -->
+              <g transform="translate(20 296)">
+                <circle cx="14" cy="14" r="14" fill="#f59e0b"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">RC</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">rank.client <tspan fill="#6b7280" font-weight="500"> GUEST  09:51</tspan></text>
+                <text x="38" y="32" fill="#fde68a" font-size="11">our cibubur store has been blank since this morning</text>
+              </g>
+              <!-- msg 6: triage -->
+              <g transform="translate(20 344)">
+                <circle cx="14" cy="14" r="14" fill="#0ea5e9"/>
+                <text x="14" y="18" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">SR</text>
+                <text x="38" y="14" fill="#e5e7eb" font-size="12" font-weight="700">siti.r <tspan fill="#6b7280" font-weight="500">  09:53</tspan></text>
+                <text x="38" y="32" fill="#cbd5e1" font-size="11">@on-call can someone check?</text>
+              </g>
+              <!-- input -->
+              <rect x="16" y="384" width="398" height="22" rx="6" fill="#13151c" stroke="#2a2e3a"/>
+              <text x="26" y="399" fill="#4b5563" font-size="10">Message #ops-alerts</text>
+            </g>
+
+            <!-- ===== Terminal window ===== -->
+            <g transform="translate(490 40)">
+              <rect width="290" height="280" rx="12" fill="#0d0d0d"/>
+              <rect width="290" height="28" rx="12" fill="#1a1a1a"/>
+              <rect y="16" width="290" height="12" fill="#1a1a1a"/>
+              <circle cx="14" cy="14" r="4" fill="#ff5f57"/>
+              <circle cx="28" cy="14" r="4" fill="#febc2e"/>
+              <circle cx="42" cy="14" r="4" fill="#28c840"/>
+              <text x="145" y="18" text-anchor="middle" fill="#9aa3b2" font-size="10">tail -f /var/log/pipeline.log</text>
+              <g font-family="ui-monospace, Menlo, monospace" font-size="9">
+                <text x="14" y="50" fill="#94a3b8">14:22:01</text><text x="64" y="50" fill="#22c55e">INFO </text><text x="100" y="50" fill="#cbd5e1">decode ok cam-04</text>
+                <text x="14" y="66" fill="#94a3b8">14:22:03</text><text x="64" y="66" fill="#22c55e">INFO </text><text x="100" y="66" fill="#cbd5e1">detect ok cam-04 obj=3</text>
+                <text x="14" y="82" fill="#94a3b8">14:22:05</text><text x="64" y="82" fill="#f59e0b">WARN </text><text x="100" y="82" fill="#cbd5e1">queue depth=412 stage=detect</text>
+                <text x="14" y="98" fill="#94a3b8">14:22:07</text><text x="64" y="98" fill="#22c55e">INFO </text><text x="100" y="98" fill="#cbd5e1">decode ok cam-09</text>
+                <text x="14" y="114" fill="#94a3b8">14:22:09</text><text x="64" y="114" fill="#ef4444">ERROR</text><text x="100" y="114" fill="#fca5a5">rtsp_timeout cam-07 retry=3</text>
+                <text x="14" y="130" fill="#94a3b8">14:22:11</text><text x="64" y="130" fill="#22c55e">INFO </text><text x="100" y="130" fill="#cbd5e1">decode ok cam-04</text>
+                <text x="14" y="146" fill="#94a3b8">14:22:13</text><text x="64" y="146" fill="#22c55e">INFO </text><text x="100" y="146" fill="#cbd5e1">detect ok cam-09 obj=1</text>
+                <text x="14" y="162" fill="#94a3b8">14:22:15</text><text x="64" y="162" fill="#f59e0b">WARN </text><text x="100" y="162" fill="#cbd5e1">queue depth=487 stage=detect</text>
+                <text x="14" y="178" fill="#94a3b8">14:22:17</text><text x="64" y="178" fill="#ef4444">ERROR</text><text x="100" y="178" fill="#fca5a5">rtsp_timeout cam-07 retry=4</text>
+                <text x="14" y="194" fill="#94a3b8">14:22:19</text><text x="64" y="194" fill="#22c55e">INFO </text><text x="100" y="194" fill="#cbd5e1">decode ok cam-04</text>
+                <text x="14" y="210" fill="#94a3b8">14:22:21</text><text x="64" y="210" fill="#22c55e">INFO </text><text x="100" y="210" fill="#cbd5e1">detect ok cam-04 obj=2</text>
+                <text x="14" y="226" fill="#94a3b8">14:22:23</text><text x="64" y="226" fill="#ef4444">ERROR</text><text x="100" y="226" fill="#fca5a5">rtsp_timeout cam-07 retry=5</text>
+                <text x="14" y="242" fill="#94a3b8">14:22:25</text><text x="64" y="242" fill="#22c55e">INFO </text><text x="100" y="242" fill="#cbd5e1">decode ok cam-09</text>
+                <text x="14" y="262" fill="#22c55e">›</text>
+                <rect x="22" y="254" width="6" height="10" fill="#22c55e"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+              </g>
+            </g>
+
+            <!-- ===== Camera health spreadsheet ===== -->
+            <g transform="translate(490 340)">
+              <rect width="290" height="160" rx="12" fill="#fafafa"/>
+              <rect width="290" height="32" rx="12" fill="#f0f0f0"/>
+              <rect y="20" width="290" height="12" fill="#f0f0f0"/>
+              <text x="14" y="20" fill="#374151" font-size="11" font-weight="700">camera_status.xlsx</text>
+              <text x="276" y="20" text-anchor="end" fill="#9ca3af" font-size="9">last edited 4 days ago</text>
+              <!-- column headers -->
+              <line x1="0" y1="32" x2="290" y2="32" stroke="#d4d4d4"/>
+              <text x="14" y="48" fill="#6b7280" font-size="9" font-weight="700">CAMERA</text>
+              <text x="120" y="48" fill="#6b7280" font-size="9" font-weight="700">SITE</text>
+              <text x="200" y="48" fill="#6b7280" font-size="9" font-weight="700">LAST OK</text>
+              <line x1="0" y1="56" x2="290" y2="56" stroke="#e5e7eb"/>
+              <!-- rows -->
+              <g font-size="10" fill="#1f2937">
+                <text x="14" y="72">cam-01 entrance</text><text x="120" y="72">Cibubur 1</text><text x="200" y="72" fill="#16a34a">25/08 18:30</text>
+                <line x1="0" y1="80" x2="290" y2="80" stroke="#f3f4f6"/>
+                <text x="14" y="94">cam-02 lobby</text><text x="120" y="94">Cibubur 1</text><text x="200" y="94" fill="#16a34a">25/08 18:30</text>
+                <line x1="0" y1="102" x2="290" y2="102" stroke="#f3f4f6"/>
+                <text x="14" y="116">cam-03 loading</text><text x="120" y="116">Bekasi 1</text><text x="200" y="116" fill="#d97706">21/08 09:14</text>
+                <line x1="0" y1="124" x2="290" y2="124" stroke="#f3f4f6"/>
+                <text x="14" y="138">cam-07 dock</text><text x="120" y="138">Cibubur 2</text><text x="200" y="138" fill="#dc2626" font-weight="700">16/08 ?</text>
+                <line x1="0" y1="146" x2="290" y2="146" stroke="#f3f4f6"/>
+              </g>
+            </g>
+
+            <!-- caption -->
+            <text x="40" y="510" fill="#64748b" font-size="11" font-weight="500" letter-spacing="2">THE STATE OF MONITORING · DEC 2022</text>
+            <text x="40" y="528" fill="#475569" font-size="10">A chat channel, a log tail, and a spreadsheet four days out of date.</text>
+          </svg>
+        </div>
+      </div>
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <p class="text-gray-400 font-medium leading-relaxed mb-2">Five issues showed up over and over again, in every shadowing session and every retro.</p>
+
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-cyan transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-cyan mb-1">Issue 01</p>
+          <p class="font-bold text-white">No unified health view</p>
+          <p class="text-sm text-gray-400 mt-1">The team checked five separate tools to answer one question. There was no single place where the system's state was true.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-cyan transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-cyan mb-1">Issue 02</p>
+          <p class="font-bold text-white">Alerts without severity</p>
+          <p class="text-sm text-gray-400 mt-1">Every alert looked the same in Slack. A camera offline at a flagship retail client and a transient queue spike got the same visual weight.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-cyan transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-cyan mb-1">Issue 03</p>
+          <p class="font-bold text-white">Silent AI failures</p>
+          <p class="text-sm text-gray-400 mt-1">When the detection model hung or stalled, ingestion kept running. There was no signal that the AI part of the pipeline had stopped doing real work.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-cyan transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-cyan mb-1">Issue 04</p>
+          <p class="font-bold text-white">Engineers as the only path</p>
+          <p class="text-sm text-gray-400 mt-1">Every diagnosis required Slack-pinging an engineer. On-call rotation was burning out fast, and resolution depended on whoever was awake.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-2xl p-5 hover:border-brand-cyan transition">
+          <p class="text-xs font-bold tag-chip uppercase text-brand-cyan mb-1">Issue 05</p>
+          <p class="font-bold text-white">No historical context</p>
+          <p class="text-sm text-gray-400 mt-1">Every incident felt new. The team had no way to tell whether a flapping feed was a known pattern or a genuine outage starting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESEARCH ========== -->
+  <section class="mb-32" id="secResearch">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-amber flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">04</span>
+        Field Research
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Ops shadowing · Engineer interviews</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="bg-brand-amber text-black border-2 border-black rounded-[2rem] p-8 shadow-brutal-white">
+          <p class="text-xs font-bold tag-chip uppercase mb-4">Methodology</p>
+          <ul class="space-y-3 font-medium text-sm">
+            <li class="flex gap-3"><span class="font-black">→</span> 5 days shadowing the ops team during regular and on-call shifts</li>
+            <li class="flex gap-3"><span class="font-black">→</span> 12 semi-structured interviews with operators, engineers and CSMs</li>
+            <li class="flex gap-3"><span class="font-black">→</span> Three months of alert log and incident ticket analysis</li>
+            <li class="flex gap-3"><span class="font-black">→</span> Diary studies during the on-call rotation</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+          <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-4">Participant snapshot</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div><p class="metric-big text-4xl font-black text-white">12</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Operators</p></div>
+            <div><p class="metric-big text-4xl font-black text-white">3</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Engineers</p></div>
+            <div><p class="metric-big text-4xl font-black text-white">4</p><p class="text-[10px] font-bold uppercase text-gray-500 mt-1">Client CSMs</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="bg-white/5 border-2 border-white/20 rounded-[2rem] p-8 md:p-10 h-full flex flex-col justify-center gap-6">
+          <div>
+            <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-2">Quote · Operations Lead, week one</p>
+            <p class="text-2xl md:text-3xl font-black text-white leading-tight heading-brutal">
+              "I'm not monitoring the AI. I'm waiting for someone to tell me it broke."
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-6">
+            <p class="text-xs font-bold tag-chip uppercase text-gray-500 mb-2">Quote · On-call engineer</p>
+            <p class="text-xl md:text-2xl font-bold text-brand-cyan leading-tight heading-brutal">
+              "Half my pages are things ops could've handled — if they had any way to see what was happening."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key findings -->
+    <div>
+      <h3 class="text-xl font-bold uppercase tracking-wider text-brand-amber mb-6">Key Research Findings</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-black">A</span>
+            <p class="text-xs font-bold tag-chip uppercase">Trust</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Status needs verification.</p>
+          <p class="text-sm text-gray-600">Operators never trusted that a feed was "working" without actively re-checking. They needed a state they could believe at a glance.</p>
+        </div>
+        <div class="bg-brand-vibrant text-white rounded-[2rem] p-8 border-2 border-black shadow-brutal-white">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-white text-brand-vibrant flex items-center justify-center text-sm font-black">B</span>
+            <p class="text-xs font-bold tag-chip uppercase">Severity</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Priority must be shown, not inferred.</p>
+          <p class="text-sm text-blue-100">Operators were spending mental energy ranking alerts by importance. The system needed to do that work for them.</p>
+        </div>
+        <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-black">C</span>
+            <p class="text-xs font-bold tag-chip uppercase">History</p>
+          </div>
+          <p class="font-bold text-lg mb-2">Patterns matter more than points.</p>
+          <p class="text-sm text-gray-600">A single point-in-time alert hid the difference between a flapping camera and a real outage. The dashboard had to show trend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DESIGN PRINCIPLES ========== -->
+  <section class="mb-32" id="secPrinciples">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-cyan flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">05</span>
+        Design Principles
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Observability rules of thumb</span>
+    </div>
+
+    <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10 mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-full bg-brand-cyan text-black flex items-center justify-center text-sm font-black border-2 border-black">HMW</span>
+        <p class="text-xs font-bold tag-chip uppercase text-gray-400">Framing the Brief</p>
+      </div>
+      <h3 class="text-2xl font-black uppercase heading-brutal text-white mb-4">How might we make AI failure immediately visible — and actionable without engineering?</h3>
+      <p class="text-gray-300 leading-relaxed mb-4">
+        Across the research, the same pattern came up: operators wanted to be useful, engineers wanted to be paged less, and clients wanted to stop being the ones who noticed first. The dashboard had to bridge those three needs without inventing a new role.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        Our design direction was to surface system state on a hierarchy of severity, not volume — fewer, clearer signals tied to a specific owner and a specific next action. Everything in the UI had to earn its place by helping someone act, not just informing them.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">01</p>
+        <p class="font-bold uppercase text-lg mb-2">Status First</p>
+        <p class="text-sm text-gray-600">Every screen opens with the answer to "is the system healthy?". Drilldown comes after the headline.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">02</p>
+        <p class="font-bold uppercase text-lg mb-2">Severity as Language</p>
+        <p class="text-sm text-gray-600">Critical, warning and healthy each have their own visual rule — colour, shape, position — so priority reads in a glance.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">03</p>
+        <p class="font-bold uppercase text-lg mb-2">Actionable, Not Just Informative</p>
+        <p class="text-sm text-gray-600">Every alert names an owner and a recommended first action. No alert ends in a question mark.</p>
+      </div>
+      <div class="bg-white text-black rounded-[2rem] p-8 border-2 border-black hover:-translate-y-2 transition">
+        <p class="text-5xl font-black metric-big text-brand-vibrant mb-4">04</p>
+        <p class="font-bold uppercase text-lg mb-2">Show Trend, Not Just Now</p>
+        <p class="text-sm text-gray-600">Sparklines and recent-history strips sit beside every state, so flapping is distinguishable from sustained failure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WIREFRAMES ========== -->
+  <section class="mb-32" id="secWireframes">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-purple flex items-center justify-center text-sm text-white border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">06</span>
+        Wireframes
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Lo-fi structural exploration</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-8">
+        <div class="dashboard-mock border-2 border-white/20 shadow-brutal-purple bg-[#f4f4f5]">
+          <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" aria-label="Lo-fi wireframe of the monitoring dashboard">
+            <rect width="800" height="480" fill="#f4f4f5"/>
+            <rect x="0" y="0" width="800" height="48" fill="#e5e7eb"/>
+            <rect x="20" y="16" width="120" height="16" fill="#9ca3af"/>
+            <rect x="660" y="14" width="120" height="20" rx="10" fill="#9ca3af"/>
+            <rect x="0" y="48" width="180" height="432" fill="#e5e7eb"/>
+            <rect x="20" y="68" width="140" height="14" fill="#374151"/>
+            <rect x="20" y="94" width="140" height="14" fill="#9ca3af"/>
+            <rect x="20" y="120" width="140" height="14" fill="#9ca3af"/>
+            <rect x="20" y="146" width="140" height="14" fill="#9ca3af"/>
+            <rect x="20" y="172" width="140" height="14" fill="#9ca3af"/>
+            <!-- Status row -->
+            <rect x="200" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="396" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="592" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+            <text x="216" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
+            <text x="412" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
+            <text x="608" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
+            <!-- Camera grid -->
+            <text x="200" y="180" fill="#374151" font-size="11" font-family="monospace">LIVE FEED GRID</text>
+            <g stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3" fill="#fff">
+              <rect x="200" y="190" width="135" height="100" rx="6"/>
+              <rect x="349" y="190" width="135" height="100" rx="6"/>
+              <rect x="498" y="190" width="135" height="100" rx="6"/>
+              <rect x="647" y="190" width="125" height="100" rx="6"/>
+            </g>
+            <!-- Alerts -->
+            <text x="200" y="316" fill="#374151" font-size="11" font-family="monospace">ALERT LIST</text>
+            <rect x="200" y="324" width="572" height="40" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="200" y="372" width="572" height="40" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+            <!-- Pipeline -->
+            <text x="200" y="436" fill="#374151" font-size="11" font-family="monospace">AI PIPELINE STAGES</text>
+            <rect x="200" y="444" width="572" height="22" rx="11" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="lg:col-span-4 space-y-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">What changed from the existing system</p>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Three status cards above the fold</strong> answering "healthy / warning / critical" before anything else.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Live feed grid</strong> with each camera's health colour-coded on the tile itself, not buried in a list.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Alert list with a clear severity column,</strong> ordered by impact and showing assigned owner inline.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">AI pipeline strip</strong> showing each stage's state, so silent ML failures became visible at the page level.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HIGH FIDELITY ========== -->
+  <section class="mb-32" id="secHifi">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-brand-green flex items-center justify-center text-sm text-black border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">07</span>
+        High Fidelity
+      </h2>
+      <span class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500">Shipped interface</span>
+    </div>
+
+    <!-- Source design: full Figma layout overview -->
+    <div class="mb-12 bg-white/5 border-2 border-white/10 rounded-[2rem] p-6 md:p-8">
+      <div class="flex items-center justify-between gap-4 mb-5 flex-wrap">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-brand-orange text-black flex items-center justify-center text-xs font-black border-2 border-black">SRC</span>
+          <p class="text-xs font-bold tag-chip uppercase text-gray-400">Design source · videofeed.fig</p>
+        </div>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">5 desktop screens · 3 inspection cards</span>
+      </div>
+      <h3 class="text-2xl md:text-3xl font-black uppercase heading-brutal text-white mb-5">The Full Layout, Straight From The File</h3>
+      <div class="bg-[#f5f5f5] border-2 border-black rounded-2xl p-4 md:p-6 mb-4">
+        <img src="./project_tictag/figma_overview.png" alt="Figma file overview showing 5 desktop dashboard screens and 3 mobile inspection cards" class="w-full h-auto rounded-lg image-frame">
+      </div>
+      <p class="text-gray-300 leading-relaxed">
+        The source file splits the work into two surfaces. The <strong class="text-white">top row</strong> is the operations dashboard — five connected views for the daily monitoring routine: an overview, a feed list, an alert centre, a per-camera deep-dive and a pipeline timeline. The <strong class="text-white">bottom row</strong> is the inspection card — a focused view that wraps a single CCTV still with detection metadata for triage and reporting. The breakdowns below are reconstructions of those screens with the brand's navy + orange palette, the same camera footage the AI runs against, and the on-screen detection overlays that ship in production.
+      </p>
+    </div>
+
+    <!-- Hero shot: real Cameras page -->
+    <div class="relative group mb-12">
+      <div class="absolute -inset-1 bg-brand-orange rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+      <div class="bg-white border-2 border-white/20 rounded-2xl shadow-brutal-cyan relative z-10 overflow-hidden">
+        <img src="./project_tictag/dashboard_main.png" alt="TicTag INSIGHT — Cameras list view, the operational hub" class="w-full h-auto block image-frame">
+      </div>
+      <div class="mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <p class="text-xs font-bold tag-chip uppercase text-brand-orange mb-1">Screen 01 · Cameras</p>
+          <h3 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-white">The operational hub.</h3>
+        </div>
+        <p class="text-gray-400 font-medium md:max-w-md text-sm leading-relaxed">
+          A list of every camera in the tenant, with the latest snapshot, location, group and online status surfaced before anything else. Filters, search and the "Add Camera" CTA stay pinned at the top for fast triage during an on-call shift.
+        </p>
+      </div>
+    </div>
+
+
+
+    <!-- detail shots grid: real designs from videofeed.fig -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-10">
+      <div class="group relative flex flex-col gap-5">
+        <div class="bg-white border-2 border-white/20 rounded-2xl shadow-brutal-dark group-hover:-translate-y-2 group-hover:shadow-brutal-cyan transition-all duration-300 overflow-hidden">
+          <img src="./project_tictag/dashboard_edit_camera.png" alt="TicTag INSIGHT — Edit Camera screen with Region of Interest" class="w-full h-auto block">
+        </div>
+        <div>
+          <p class="text-xs font-bold tag-chip uppercase text-brand-orange mb-1">Screen 02 · Edit Camera</p>
+          <h3 class="text-xl font-bold uppercase tracking-wider text-white mb-2">Region of Interest</h3>
+          <p class="text-gray-400 font-medium">A tabbed editor (Camera Config · Video Feed · Regions · AI Processing · Export). The Regions tab lets the team draw the polygon the AI will analyse — turning a generic camera into a tuned counting zone.</p>
+        </div>
+      </div>
+
+      <div class="group relative flex flex-col gap-5 md:mt-24">
+        <div class="bg-white border-2 border-white/20 rounded-2xl shadow-brutal-dark group-hover:-translate-y-2 group-hover:shadow-brutal-orange transition-all duration-300 overflow-hidden">
+          <img src="./project_tictag/video_feed_alt.png" alt="TicTag INSIGHT — Video Feed playback with day timeline" class="w-full h-auto block">
+        </div>
+        <div>
+          <p class="text-xs font-bold tag-chip uppercase text-brand-orange mb-1">Screen 03 · Video Feed</p>
+          <h3 class="text-xl font-bold uppercase tracking-wider text-white mb-2">Playback &amp; Day Timeline</h3>
+          <p class="text-gray-400 font-medium">Pick a camera, pick a date, scrub through the day. The orange timeline at the bottom condenses 24 hours of footage into a single bar so ops can jump straight to a known incident window.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fourth screen: Coverage matrix -->
+    <div class="bg-white border-2 border-white/20 rounded-2xl shadow-brutal-dark overflow-hidden mb-10">
+      <img src="./project_tictag/video_feed.png" alt="TicTag INSIGHT — Daily Coverage matrix across products and dates" class="w-full h-auto block image-frame">
+    </div>
+    <div class="mb-10 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold tag-chip uppercase text-brand-orange mb-1">Screen 04 · Coverage</p>
+        <h3 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-white">The accountability grid.</h3>
+      </div>
+      <p class="text-gray-400 font-medium md:max-w-2xl text-sm leading-relaxed">
+        A daily coverage matrix — every product across every day of the period — answers the operational question that nobody could answer before: "did the AI actually run, and on what?". A single red cell in this grid is a missed audit window, and the team can act on it the same day.
+      </p>
+    </div>
+
+    <div class="mt-10 bg-white/5 border-2 border-white/10 rounded-[2rem] p-8 md:p-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-full bg-brand-cyan text-black flex items-center justify-center text-sm font-black border-2 border-black">UX</span>
+        <p class="text-xs font-bold tag-chip uppercase text-gray-400">Design Reasoning · Why this hi-fi works</p>
+      </div>
+      <h3 class="text-2xl font-black uppercase heading-brutal text-white mb-4">Four Screens, One Daily Loop</h3>
+      <p class="text-gray-300 leading-relaxed mb-4">
+        The four screens compose a single operational loop. Cameras is where the day starts: a snapshot, a status dot and a last-seen timestamp on every feed in the tenant. From a row, ops jump straight into Edit Camera to draw or adjust the Region of Interest the AI runs against — the moment a generic CCTV feed becomes a tuned counting zone. Video Feed gives the playback surface for any incident window, and Coverage closes the loop by answering whether the AI ran across every product, every day.
+      </p>
+      <ul class="space-y-3 text-gray-300">
+        <li><strong class="text-white">Snapshot beats text:</strong> the latest CCTV still sits on every Cameras row, so an offline feed is recognisable before reading the status column.</li>
+        <li><strong class="text-white">Region of Interest is editable, not magical:</strong> the polygon sits on top of the live frame so the team can verify what the AI is actually looking at.</li>
+        <li><strong class="text-white">Day timeline as primary navigation:</strong> the orange bar at the bottom of Video Feed turns 24 hours of footage into a single scrubable surface for incident review.</li>
+        <li><strong class="text-white">Coverage is the auditor's view:</strong> a product-by-day grid where one red cell flags a missed audit window — the question "did the AI run today?" is answered visually.</li>
+        <li><strong class="text-white">One sidebar, one tenant:</strong> the Tictag INSIGHT chrome is identical across all four screens, so context switching never costs orientation.</li>
+      </ul>
+      <p class="text-gray-300 leading-relaxed mt-4">
+        The flow took the team from "is the AI working?" — a question nobody could answer — to a routine ops can run in under five minutes a morning.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== BEFORE / AFTER ========== -->
+  <section class="mb-32" id="secBeforeAfter">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center text-sm border-2 border-white shadow-[4px_4px_0_rgba(255,255,255,1)]">08</span>
+        Before / After
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-6 relative">
+        <div class="absolute top-4 left-4 bg-brand-red text-white text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black z-10">Before</div>
+        <div class="dashboard-mock border-2 border-white/10 mt-12">
+          <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-label="Before: fragmented monitoring">
+            <rect width="400" height="260" fill="#0a1628"/>
+            <rect x="16" y="16" width="180" height="100" rx="8" fill="#1a1f2e"/>
+            <text x="106" y="40" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Slack #ops-alerts</text>
+            <rect x="28" y="56" width="156" height="6" fill="#374151"/>
+            <rect x="28" y="68" width="120" height="6" fill="#374151"/>
+            <rect x="28" y="82" width="156" height="6" fill="#ef4444" opacity="0.6"/>
+            <rect x="28" y="96" width="100" height="6" fill="#374151"/>
+            <rect x="204" y="16" width="180" height="100" rx="8" fill="#000"/>
+            <text x="294" y="40" text-anchor="middle" fill="#22c55e" font-size="9" font-family="monospace">tail -f log</text>
+            <g font-family="monospace" font-size="7" fill="#22c55e">
+              <text x="216" y="60">[14:22] decode ok cam-04</text>
+              <text x="216" y="74">[14:22] detect ok cam-04</text>
+              <text x="216" y="88" fill="#ef4444">[14:22] ERROR cam-07</text>
+              <text x="216" y="102">[14:22] decode ok cam-09</text>
+            </g>
+            <rect x="16" y="128" width="180" height="100" rx="8" fill="#fff"/>
+            <text x="106" y="152" text-anchor="middle" fill="#6b7280" font-size="9" font-family="monospace">spreadsheet.xlsx</text>
+            <g fill="#9ca3af">
+              <rect x="28" y="166" width="40" height="8"/><rect x="72" y="166" width="40" height="8"/><rect x="116" y="166" width="40" height="8"/>
+              <rect x="28" y="180" width="40" height="8" opacity="0.5"/><rect x="72" y="180" width="40" height="8" opacity="0.5"/><rect x="116" y="180" width="40" height="8" opacity="0.5"/>
+              <rect x="28" y="194" width="40" height="8" opacity="0.7"/><rect x="72" y="194" width="40" height="8" opacity="0.7"/><rect x="116" y="194" width="40" height="8" opacity="0.7"/>
+            </g>
+            <rect x="204" y="128" width="180" height="100" rx="8" fill="#1a1f2e"/>
+            <circle cx="294" cy="178" r="22" fill="#ef4444" opacity="0.2"/>
+            <text x="294" y="184" text-anchor="middle" fill="#ef4444" font-size="18" font-weight="700">☎</text>
+            <text x="294" y="216" text-anchor="middle" fill="#ef4444" font-size="8" font-family="monospace" font-weight="700">CLIENT CALLING</text>
+            <text x="200" y="252" text-anchor="middle" fill="#475569" font-size="8" font-family="monospace">FOUR TOOLS · ZERO CLARITY</text>
+          </svg>
+        </div>
+        <ul class="mt-6 space-y-2 text-sm text-gray-400">
+          <li>✕ Five tools, no single source of truth</li>
+          <li>✕ Alerts had no severity hierarchy</li>
+          <li>✕ Silent AI failures only surfaced via client calls</li>
+          <li>✕ Engineers were the only diagnostic path</li>
+        </ul>
+      </div>
+
+      <div class="bg-brand-orange/10 border-2 border-brand-orange/30 rounded-[2rem] p-6 relative">
+        <div class="absolute top-4 left-4 bg-brand-orange text-black text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-black z-10">After</div>
+        <div class="bg-white border-2 border-brand-orange/40 rounded-2xl mt-12 overflow-hidden shadow-[4px_4px_0_0_rgba(249,115,22,0.4)]">
+          <img src="./project_tictag/dashboard_main.png" alt="After: TicTag INSIGHT — unified Cameras dashboard" class="w-full h-auto block">
+        </div>
+        <ul class="mt-6 space-y-2 text-sm text-gray-300">
+          <li>✓ One dashboard, one source of truth</li>
+          <li>✓ Severity reads in two seconds</li>
+          <li>✓ AI pipeline state visible at the page level</li>
+          <li>✓ Ops resolves first; engineering escalated only when needed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== IMPACT ========== -->
+  <section class="mb-24" id="secImpact">
+    <div class="bg-brand-vibrant rounded-[2rem] p-10 md:p-16 border-2 border-white text-white shadow-brutal-white relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+      <div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-grid-pattern mix-blend-overlay"></div>
+      <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-white rounded-full blur-[100px] opacity-20 z-0 pointer-events-none"></div>
+      <div class="absolute top-8 right-8 bg-brand-cyan border-2 border-black rounded-full px-4 py-1.5 shadow-[4px_4px_0_0_rgba(0,0,0,1)] animate-float-2 flex items-center gap-2 z-20">
+        <span class="text-xs font-black text-black uppercase tracking-wider">Ops First</span>
+      </div>
+
+      <div class="w-full md:w-1/3 relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black uppercase heading-brutal drop-shadow-md">The<br>Impact.</h2>
+      </div>
+      <div class="w-full md:w-2/3 relative z-10 md:border-l-4 border-white/30 md:pl-12 pt-8 md:pt-0 border-t-4 md:border-t-0">
+        <p class="text-2xl md:text-3xl font-bold leading-tight drop-shadow-sm mb-6">
+          "Mean time to detect dropped from 52 minutes to under 8. Engineering escalations fell 65%. For the first time, ops were the first to know — not the last."
+        </p>
+        <p class="text-lg font-medium text-blue-50">
+          Beyond the numbers, the dashboard re-shaped how the company thought about reliability. Operations went from a passive monitoring role to an active first line of defence, and clients stopped phoning to ask whether the AI was on.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LESSONS ========== -->
+  <section class="mb-24">
+    <div class="mb-12 border-b-2 border-white/10 pb-6 flex items-center justify-between">
+      <h2 class="text-3xl md:text-4xl font-bold uppercase heading-brutal text-white">Takeaways.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-cyan mb-3">// 01</p>
+        <p class="font-bold text-lg text-white mb-2">Visibility is a feature.</p>
+        <p class="text-sm text-gray-400">When failure modes are invisible, the product is incomplete. Designing for observability is product work, not platform work.</p>
+      </div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-cyan mb-3">// 02</p>
+        <p class="font-bold text-lg text-white mb-2">Hierarchy beats volume.</p>
+        <p class="text-sm text-gray-400">Fewer, clearer alerts outperform comprehensive but noisy ones. Severity has to be visual before it's textual.</p>
+      </div>
+      <div class="bg-white/5 border-2 border-white/10 rounded-[2rem] p-8">
+        <p class="font-mono text-xs text-brand-cyan mb-3">// 03</p>
+        <p class="font-bold text-lg text-white mb-2">Design for the power user.</p>
+        <p class="text-sm text-gray-400">Operations teams live in the tool. Optimise for speed and recall, not for first-time onboarding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next / Back -->
+  <section class="pt-16 border-t-2 border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+    <a href="../index.html#work" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-black hover:-translate-x-2 transition-all w-full sm:w-auto">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      All Projects
+    </a>
+    <a href="../semaai_project/" class="bg-brand-vibrant border-2 border-brand-vibrant text-white px-8 py-4 rounded-full text-sm font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-brand-vibrant hover:border-white hover:translate-x-2 transition-all shadow-[4px_4px_0_rgba(255,255,255,0.3)] hover:shadow-none w-full sm:w-auto">
+      Next · Semaai
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </section>
+
+  <footer class="mt-24 pt-8 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="font-bold text-xl tracking-tight text-white">safrian.</div>
+    <div class="flex gap-6 text-sm font-bold uppercase text-gray-400">
+      <a href="#" class="hover:text-brand-cyan transition-colors">LinkedIn</a>
+      <a href="mailto:safrianjayadi@gmail.com" class="hover:text-brand-cyan transition-colors">Email</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  // ── MTTD chart ────────────────────────────────────────────
+  const STAGES = [
+    { key:'Detect',   label:'Detected'  },
+    { key:'Diagnose', label:'Diagnosed' },
+    { key:'Action',   label:'Actioned'  },
+    { key:'Resolve',  label:'Resolved'  }
+  ];
+  const BEFORE = { Detect:28, Diagnose:38, Action:55, Resolve:35 };
+  const AFTER  = { Detect:95, Diagnose:88, Action:92, Resolve:84 };
+
+  const barsEl   = document.getElementById('mttdBars');
+  const labelsEl = document.getElementById('mttdLabels');
+
+  if (barsEl && labelsEl) {
+    STAGES.forEach((s, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'flex-1 flex items-end justify-center gap-1 sm:gap-2';
+      const before = BEFORE[s.key];
+      const after  = AFTER[s.key];
+
+      const mkBar = (val, color, delay) => {
+        const col = document.createElement('div');
+        col.className = 'flex flex-col items-center gap-2 w-1/2';
+        const num = document.createElement('span');
+        num.className = 'text-xs md:text-sm font-bold metric-big';
+        num.style.color = color;
+        num.textContent = val + '%';
+        const bar = document.createElement('div');
+        bar.className = 'bar w-full rounded-t-md border-2 border-black';
+        bar.style.background = color;
+        bar.style.setProperty('--h', val + '%');
+        bar.style.animationDelay = delay + 'ms';
+        col.appendChild(num);
+        col.appendChild(bar);
+        return col;
+      };
+
+      wrap.appendChild(mkBar(before, '#ef4444', i * 80));
+      wrap.appendChild(mkBar(after,  '#00d4ff', i * 80 + 120));
+      barsEl.appendChild(wrap);
+
+      const lab = document.createElement('div');
+      lab.className = 'flex-1 text-center text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400';
+      lab.textContent = s.label;
+      labelsEl.appendChild(lab);
+    });
+  }
+
+  // ── Reading progress ──────────────────────────────────────
+  const prog = document.getElementById('rdprogress');
+  function onScroll(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (max <= 0) return;
+    const pct = Math.min(100, Math.max(0, (h.scrollTop / max) * 100));
+    prog.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // ── Section dot navigator ─────────────────────────────────
+  const sections = [
+    {id:'secMetrics', label:'Metrics'},
+    {id:'secContext', label:'Context'},
+    {id:'secProcess', label:'Process'},
+    {id:'secAudit', label:'Audit'},
+    {id:'secResearch', label:'Research'},
+    {id:'secPrinciples', label:'Principles'},
+    {id:'secWireframes', label:'Wireframes'},
+    {id:'secHifi', label:'Hi-Fi'},
+    {id:'secBeforeAfter', label:'Before/After'},
+    {id:'secImpact', label:'Impact'}
+  ];
+  const navEl = document.getElementById('secNav');
+  if (navEl) {
+    sections.forEach(s => {
+      const b = document.createElement('button');
+      b.className = 'sec-dot';
+      b.title = s.label;
+      b.dataset.target = s.id;
+      b.addEventListener('click', () => {
+        const t = document.getElementById(s.id);
+        if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+      navEl.appendChild(b);
+    });
+    const dots = navEl.querySelectorAll('.sec-dot');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          dots.forEach(d => d.classList.toggle('is-active', d.dataset.target === e.target.id));
+        }
+      });
+    }, { threshold:0.4 });
+    sections.forEach(s => {
+      const t = document.getElementById(s.id);
+      if (t) obs.observe(t);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
