@@ -669,50 +669,188 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <div class="lg:col-span-8">
-        <div class="dashboard-mock border-2 border-white/20 shadow-brutal-purple bg-[#f4f4f5]">
-          <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" aria-label="Lo-fi wireframe of the monitoring dashboard">
-            <rect width="800" height="480" fill="#f4f4f5"/>
-            <rect x="0" y="0" width="800" height="48" fill="#e5e7eb"/>
-            <rect x="20" y="16" width="120" height="16" fill="#9ca3af"/>
-            <rect x="660" y="14" width="120" height="20" rx="10" fill="#9ca3af"/>
-            <rect x="0" y="48" width="180" height="432" fill="#e5e7eb"/>
-            <rect x="20" y="68" width="140" height="14" fill="#374151"/>
-            <rect x="20" y="94" width="140" height="14" fill="#9ca3af"/>
-            <rect x="20" y="120" width="140" height="14" fill="#9ca3af"/>
-            <rect x="20" y="146" width="140" height="14" fill="#9ca3af"/>
-            <rect x="20" y="172" width="140" height="14" fill="#9ca3af"/>
-            <!-- Status row -->
-            <rect x="200" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
-            <rect x="396" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
-            <rect x="592" y="68" width="180" height="80" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
-            <text x="216" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
-            <text x="412" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
-            <text x="608" y="92" fill="#6b7280" font-size="10" font-family="monospace">STATUS CARD</text>
-            <!-- Camera grid -->
-            <text x="200" y="180" fill="#374151" font-size="11" font-family="monospace">LIVE FEED GRID</text>
-            <g stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3" fill="#fff">
-              <rect x="200" y="190" width="135" height="100" rx="6"/>
-              <rect x="349" y="190" width="135" height="100" rx="6"/>
-              <rect x="498" y="190" width="135" height="100" rx="6"/>
-              <rect x="647" y="190" width="125" height="100" rx="6"/>
+        <div class="rounded-2xl border-2 border-white/20 shadow-brutal-purple overflow-hidden bg-[#f7f6f1]">
+          <svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-sketched wireframe of the Cameras list" font-family="'Caveat','Patrick Hand','Comic Sans MS',cursive">
+            <defs>
+              <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/>
+                <feDisplacementMap in="SourceGraphic" scale="1.2"/>
+              </filter>
+              <pattern id="paper" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+                <rect width="22" height="22" fill="#f7f6f1"/>
+                <circle cx="11" cy="11" r="0.4" fill="#d6d2c4"/>
+              </pattern>
+            </defs>
+
+            <rect width="820" height="540" fill="url(#paper)"/>
+
+            <!-- subtle margin notes (top right) -->
+            <g fill="#a0998a" font-size="11">
+              <text x="700" y="24">v0.3 — Apr 24</text>
+              <text x="700" y="38" font-size="9">cameras list · lo-fi</text>
             </g>
-            <!-- Alerts -->
-            <text x="200" y="316" fill="#374151" font-size="11" font-family="monospace">ALERT LIST</text>
-            <rect x="200" y="324" width="572" height="40" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
-            <rect x="200" y="372" width="572" height="40" rx="6" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
-            <!-- Pipeline -->
-            <text x="200" y="436" fill="#374151" font-size="11" font-family="monospace">AI PIPELINE STAGES</text>
-            <rect x="200" y="444" width="572" height="22" rx="11" fill="#fff" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 3"/>
+
+            <g filter="url(#rough)" stroke="#1f2937" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Outer page frame -->
+              <path d="M28 60 L792 60 L792 510 L28 510 Z" stroke-width="2.2"/>
+
+              <!-- Sidebar divider -->
+              <path d="M168 60 L168 510" stroke-width="1.6"/>
+
+              <!-- Sidebar: logo block -->
+              <rect x="44" y="78" width="40" height="22" stroke-width="1.4"/>
+              <path d="M92 80 L150 80 M92 92 L138 92" stroke-width="1.6"/>
+
+              <!-- Sidebar: tenant pill -->
+              <path d="M44 118 L150 118 L150 138 L44 138 Z" stroke-width="1.4"/>
+              <path d="M52 128 L60 128" stroke-width="1.6"/>
+              <path d="M64 128 L138 128" stroke-width="1"/>
+
+              <!-- Sidebar: section label -->
+              <path d="M44 162 L86 162" stroke-width="1.2"/>
+              <!-- nav items -->
+              <path d="M44 184 L150 184" stroke-width="1"/>
+              <path d="M44 200 L150 200" stroke-width="1"/>
+              <!-- spacer -->
+              <path d="M44 226 L72 226" stroke-width="1.2"/>
+              <path d="M44 248 L150 248" stroke-width="1"/>
+              <!-- active item: Cameras -->
+              <path d="M44 286 L72 286" stroke-width="1.2"/>
+              <path d="M44 308 L150 308 L150 332 L44 332 Z" stroke-width="2.2"/>
+              <path d="M52 322 L60 322" stroke-width="1.8"/>
+              <path d="M66 322 L120 322" stroke-width="1.4"/>
+              <!-- "this one!" arrow & note -->
+              <path d="M160 320 C 174 318, 184 316, 196 312" stroke-width="1.4"/>
+              <path d="M195 308 L196 312 L191 314" stroke-width="1.4"/>
+
+              <!-- Header: Cameras title -->
+              <path d="M196 78 L208 78 L208 98 L196 98 Z" stroke-width="1.4"/>
+              <path d="M222 88 L300 88" stroke-width="2"/>
+              <path d="M222 96 L266 96" stroke-width="1"/>
+
+              <!-- Filter row -->
+              <rect x="196" y="118" width="58" height="26" rx="2" stroke-width="1.6"/>
+              <path d="M210 132 L240 132" stroke-width="1.2"/>
+              <rect x="262" y="118" width="64" height="26" rx="2" stroke-width="1.2"/>
+              <rect x="334" y="118" width="64" height="26" rx="2" stroke-width="1.2"/>
+              <!-- divider -->
+              <path d="M412 122 L412 142" stroke-width="0.9"/>
+              <!-- Camera Group dropdown -->
+              <rect x="424" y="118" width="148" height="26" rx="2" stroke-width="1.2"/>
+              <path d="M558 128 L564 134 L570 128" stroke-width="1.2"/>
+              <!-- Search -->
+              <rect x="580" y="118" width="140" height="26" rx="2" stroke-width="1.2"/>
+              <circle cx="592" cy="131" r="3.5" stroke-width="1.2"/>
+              <path d="M594 134 L598 138" stroke-width="1.2"/>
+              <!-- Add Cameras CTA -->
+              <rect x="668" y="118" width="106" height="26" rx="3" stroke-width="2.2" fill="#ffe6d2"/>
+              <path d="M680 131 L688 131 M684 127 L684 135" stroke-width="1.6"/>
+              <path d="M696 131 L760 131" stroke-width="1.4"/>
+
+              <!-- Result count -->
+              <path d="M196 168 L260 168" stroke-width="1.2"/>
+
+              <!-- Table headers -->
+              <path d="M196 188 L320 188" stroke-width="1.4"/>
+              <path d="M340 188 L420 188" stroke-width="1.4"/>
+              <path d="M438 188 L508 188" stroke-width="1.4"/>
+              <path d="M524 188 L582 188" stroke-width="1.4"/>
+              <path d="M598 188 L644 188" stroke-width="1.4"/>
+              <path d="M660 188 L730 188" stroke-width="1.4"/>
+              <path d="M748 188 L774 188" stroke-width="1.4"/>
+              <!-- header underline -->
+              <path d="M196 198 L774 198" stroke-width="0.9"/>
+
+              <!-- Row 1 (snapshot + columns) -->
+              <rect x="196" y="212" width="118" height="64" rx="3" stroke-width="1.6"/>
+              <!-- scribble inside snapshot to show "image lives here" -->
+              <path d="M204 224 L240 256 M214 224 L260 250 M224 224 L284 244 M236 226 L304 244 M252 234 L304 252" stroke-width="0.7" opacity="0.5"/>
+              <!-- text columns -->
+              <path d="M340 232 L412 232" stroke-width="1.2"/>
+              <path d="M438 232 L498 232" stroke-width="1.2"/>
+              <path d="M524 232 L580 232" stroke-width="1.2"/>
+              <!-- status dot -->
+              <circle cx="606" cy="232" r="3" stroke-width="1.4"/>
+              <path d="M614 232 L644 232" stroke-width="1.2"/>
+              <path d="M660 228 L724 228" stroke-width="1"/>
+              <path d="M660 240 L700 240" stroke-width="0.9"/>
+              <path d="M748 232 L770 232" stroke-width="1"/>
+              <!-- edit pill -->
+              <rect x="748" y="246" width="38" height="18" rx="2" stroke-width="1.4"/>
+
+              <path d="M196 290 L774 290" stroke-width="0.7" opacity="0.6"/>
+
+              <!-- Row 2 (no snapshot yet) -->
+              <rect x="196" y="304" width="118" height="64" rx="3" stroke-width="1.6"/>
+              <path d="M212 332 L298 332" stroke-width="1" opacity="0.5"/>
+              <path d="M212 342 L268 342" stroke-width="0.9" opacity="0.5"/>
+              <path d="M340 326 L412 326" stroke-width="1.2"/>
+              <path d="M438 326 L498 326" stroke-width="1.2"/>
+              <path d="M524 326 L580 326" stroke-width="1.2"/>
+              <circle cx="606" cy="326" r="3" stroke-width="1.4"/>
+              <path d="M614 326 L644 326" stroke-width="1.2"/>
+              <path d="M660 322 L724 322" stroke-width="1"/>
+              <path d="M748 326 L770 326" stroke-width="1"/>
+              <rect x="748" y="340" width="38" height="18" rx="2" stroke-width="1.4"/>
+
+              <path d="M196 384 L774 384" stroke-width="0.7" opacity="0.6"/>
+
+              <!-- Row 3 -->
+              <rect x="196" y="398" width="118" height="64" rx="3" stroke-width="1.6"/>
+              <path d="M204 410 L240 442 M218 410 L268 438 M232 410 L292 436 M250 416 L304 438" stroke-width="0.7" opacity="0.5"/>
+              <path d="M340 420 L412 420" stroke-width="1.2"/>
+              <path d="M438 420 L498 420" stroke-width="1.2"/>
+              <path d="M524 420 L580 420" stroke-width="1.2"/>
+              <circle cx="606" cy="420" r="3" stroke-width="1.4"/>
+              <path d="M614 420 L644 420" stroke-width="1.2"/>
+              <path d="M660 416 L724 416" stroke-width="1"/>
+              <path d="M748 420 L770 420" stroke-width="1"/>
+              <rect x="748" y="434" width="38" height="18" rx="2" stroke-width="1.4"/>
+
+              <!-- Pagination -->
+              <path d="M580 488 L640 488" stroke-width="1"/>
+              <rect x="650" y="478" width="20" height="20" rx="2" stroke-width="1.2"/>
+              <rect x="676" y="478" width="20" height="20" rx="2" stroke-width="1.6"/>
+              <rect x="702" y="478" width="20" height="20" rx="2" stroke-width="1.2"/>
+              <rect x="728" y="478" width="20" height="20" rx="2" stroke-width="1.2"/>
+            </g>
+
+            <!-- Hand-written annotations (no filter so they stay readable) -->
+            <g fill="#c2410c" font-size="20" font-style="italic">
+              <text x="206" y="304" transform="rotate(-3 206 304)">snapshot = trust signal</text>
+              <text x="540" y="476" transform="rotate(-2 540 476)">"Edit" → drives Region of Interest</text>
+            </g>
+            <g fill="#1f2937" font-size="14">
+              <text x="200" y="80" transform="rotate(-1 200 80)">Cameras</text>
+              <text x="48" y="174" transform="rotate(-1 48 174)">Analytics</text>
+              <text x="48" y="240" transform="rotate(-1 48 240)">Monitoring</text>
+              <text x="48" y="298" transform="rotate(-1 48 298)">Configuration</text>
+              <text x="56" y="328" transform="rotate(-1 56 328)" fill="#c2410c">Cameras</text>
+              <text x="218" y="172" transform="rotate(-1 218 172)" fill="#6b7280">Result (9)</text>
+              <text x="685" y="135" transform="rotate(-1 685 135)" fill="#9a3412">+ Add Cameras</text>
+              <text x="200" y="194" transform="rotate(-1 200 194)" fill="#6b7280">Latest Snapshot</text>
+              <text x="343" y="194" transform="rotate(-1 343 194)" fill="#6b7280">Camera Name</text>
+              <text x="441" y="194" transform="rotate(-1 441 194)" fill="#6b7280">Location</text>
+              <text x="527" y="194" transform="rotate(-1 527 194)" fill="#6b7280">Group</text>
+              <text x="601" y="194" transform="rotate(-1 601 194)" fill="#6b7280">Status</text>
+              <text x="663" y="194" transform="rotate(-1 663 194)" fill="#6b7280">Last Online</text>
+              <text x="751" y="194" transform="rotate(-1 751 194)" fill="#6b7280">Actions</text>
+            </g>
+
+            <!-- Arrow & label pointing to Cameras nav -->
+            <g fill="#c2410c" font-size="16" font-style="italic">
+              <text x="170" y="296" transform="rotate(-6 170 296)">start here</text>
+            </g>
           </svg>
         </div>
       </div>
       <div class="lg:col-span-4 space-y-4">
-        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">What changed from the existing system</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">What the lo-fi locked in</p>
         <ul class="space-y-4">
-          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Three status cards above the fold</strong> answering "healthy / warning / critical" before anything else.</span></li>
-          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Live feed grid</strong> with each camera's health colour-coded on the tile itself, not buried in a list.</span></li>
-          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Alert list with a clear severity column,</strong> ordered by impact and showing assigned owner inline.</span></li>
-          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">AI pipeline strip</strong> showing each stage's state, so silent ML failures became visible at the page level.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Snapshot as the first column</strong> — a glance at the latest frame is the fastest "is this camera alive?" check.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Filter pills + Camera Group dropdown</strong> pinned to the top so a 100-camera tenant collapses to the relevant subset in one click.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">Status as a dot, not a column of words</strong> — online vs. offline reads in peripheral vision.</span></li>
+          <li class="flex gap-3"><span class="w-2 h-2 bg-brand-purple rounded-full mt-2 flex-shrink-0"></span><span class="text-gray-300"><strong class="text-white">"Edit" as the only row action</strong> — every other operation lives one screen deeper, in Edit Camera, where the Region of Interest is configured.</span></li>
         </ul>
       </div>
     </div>
@@ -735,19 +873,19 @@
           <span class="w-9 h-9 rounded-full bg-brand-orange text-black flex items-center justify-center text-xs font-black border-2 border-black">SRC</span>
           <p class="text-xs font-bold tag-chip uppercase text-gray-400">Design source · videofeed.fig</p>
         </div>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">5 desktop screens · 3 inspection cards</span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">2 user flows · 8 connected screens</span>
       </div>
-      <h3 class="text-2xl md:text-3xl font-black uppercase heading-brutal text-white mb-5">The Full Layout, Straight From The File</h3>
+      <h3 class="text-2xl md:text-3xl font-black uppercase heading-brutal text-white mb-5">The Full Flow, Straight From The File</h3>
       <div class="bg-[#f5f5f5] border-2 border-black rounded-2xl p-4 md:p-6 mb-4">
-        <img src="./project_tictag/figma_overview.png" alt="Figma file overview showing 5 desktop dashboard screens and 3 mobile inspection cards" class="w-full h-auto rounded-lg image-frame">
+        <img src="./project_tictag/fullflow.png" alt="Full user flow: Coverage filter scenario (top) and Video Feed playback scenario (bottom)" class="w-full h-auto rounded-lg image-frame">
       </div>
       <p class="text-gray-300 leading-relaxed">
-        The source file splits the work into two surfaces. The <strong class="text-white">top row</strong> is the operations dashboard — five connected views for the daily monitoring routine: an overview, a feed list, an alert centre, a per-camera deep-dive and a pipeline timeline. The <strong class="text-white">bottom row</strong> is the inspection card — a focused view that wraps a single CCTV still with detection metadata for triage and reporting. The breakdowns below are reconstructions of those screens with the brand's navy + orange palette, the same camera footage the AI runs against, and the on-screen detection overlays that ship in production.
+        Two end-to-end scenarios sit at the heart of the file. <strong class="text-white">Scenario 1 — Coverage filter</strong> walks the operator through narrowing the daily coverage matrix to a date range and reading where the AI did or didn't run. <strong class="text-white">Scenario 4a — Video Feed scrub</strong> shows the operator landing on a single camera and jumping to a specific point in the day's footage. Both flows were prototyped before the visual layer was settled, which is why the screen breakdowns below all map back to a clear job-to-be-done rather than a feature list.
       </p>
     </div>
 
     <!-- Hero shot: real Cameras page -->
-    <div class="relative group mb-12">
+    <div class="relative group mb-12 max-w-3xl mx-auto">
       <div class="absolute -inset-1 bg-brand-orange rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
       <div class="bg-white border-2 border-white/20 rounded-2xl shadow-brutal-cyan relative z-10 overflow-hidden">
         <img src="./project_tictag/dashboard_main.png" alt="TicTag INSIGHT — Cameras list view, the operational hub" class="w-full h-auto block image-frame">
@@ -757,7 +895,7 @@
           <p class="text-xs font-bold tag-chip uppercase text-brand-orange mb-1">Screen 01 · Cameras</p>
           <h3 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-white">The operational hub.</h3>
         </div>
-        <p class="text-gray-400 font-medium md:max-w-md text-sm leading-relaxed">
+        <p class="text-gray-400 font-medium md:max-w-sm text-sm leading-relaxed">
           A list of every camera in the tenant, with the latest snapshot, location, group and online status surfaced before anything else. Filters, search and the "Add Camera" CTA stay pinned at the top for fast triage during an on-call shift.
         </p>
       </div>
